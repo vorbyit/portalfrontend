@@ -1,27 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import LoginForm from './components/LoginForm';
+import SignupForm from './components/SignupForm';
+import axios from 'axios';
+
 import './App.css';
-import moduleName from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export default class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      user : undefined,
+    }
+    this.updateUser = this.updateUser.bind(this);
+  }
+
+  async updateUser(user) {
+    console.log(user);
+  }
+
+  render() {
+    return (
+      <div>
+        <Router>
+          <Route 
+            exact 
+            path="/login" 
+            render = {(props) => (
+              <LoginForm
+                user={this.state.user}
+                updateUser={this.updateUser}
+              />
+            )}
+          />
+          <Route 
+            exact
+            path="/signup"
+            render = {(props) => (
+              <SignupForm 
+                user={this.state.user}
+                updateUser={this.updateUser}
+              />
+            )}
+          />
+        </Router>
+      </div>
+    )
+  }
 }
-
-export default App;
