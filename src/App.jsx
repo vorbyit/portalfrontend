@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
-import axios from 'axios';
 
 import './App.css';
 
@@ -17,7 +17,7 @@ export default class App extends Component {
   }
 
   async updateUser(user) {
-    console.log(user);
+    this.setState({ user });
   }
 
   render() {

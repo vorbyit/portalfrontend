@@ -24,8 +24,7 @@ class LoginForm extends Component {
     const loginUser = this.state;
     try {
       const { data } = await API.post('/auth/login', loginUser);
-      console.log(data);
-      this.props.updateUser();
+      this.props.updateUser(data);
       this.props.history.push('/dashboard');
     } catch (error) {
       console.log(error)

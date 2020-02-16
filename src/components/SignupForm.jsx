@@ -13,6 +13,7 @@ export default class SignupForm extends Component {
 			mobile : '',
 		}
 		this.handleChange=this.handleChange.bind(this);
+		this.handleSubmit=this.handleSubmit.bind(this);	
 	}
 	
 	handleChange(evt) {
@@ -23,8 +24,8 @@ export default class SignupForm extends Component {
 		evt.preventDefault();
     try {
       const newUser = this.state;
-      const { data } = await API.post('auth/register', newUser);
-      // this.props.updateUser(data);
+	  const { data } = await API.post('auth/register', newUser);
+      this.props.updateUser(data);
       this.props.history.push('/');
     } catch (error) {
       console.log(error)
@@ -34,7 +35,7 @@ export default class SignupForm extends Component {
 	render() {
 		return (
 			<div>
-				<form>
+				<form onSubmit={this.handleSubmit}>
 					<input 
 						type="text" 
 						name="name" 
@@ -65,9 +66,9 @@ export default class SignupForm extends Component {
 					/>
 					<input 
 						type="password" 
-						name="cofpassword" 
-						id="cofpassword"
-						value={this.state.cofpassword}
+						name="cnfpassword" 
+						id="cnfpassword"
+						value={this.state.cnfpassword}
 						onChange={this.handleChange}
 					/>
 					<input 
@@ -77,6 +78,7 @@ export default class SignupForm extends Component {
 						value={this.state.mobile}
 						onChange={this.handleChange}
 					/>
+					<button type="submit">SUBMIT</button>
 				</form>
 			</div>
 		)
