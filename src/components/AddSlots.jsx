@@ -77,6 +77,7 @@ export default class AddSlots extends Component {
     evt.preventDefault();
     try {
       const res = await API.post('/slots/addslots', this.state.slots)
+      console.log(res.data)
     } catch (error) {
       console.log(error)      
     }
@@ -114,7 +115,7 @@ export default class AddSlots extends Component {
             )}
           </div>
         }
-        <button onClick type="submit">ADD SLOTS</button>
+        <button onClick={this.handleSubmit} type="submit">ADD SLOTS</button>
       </div>
     )
   }
