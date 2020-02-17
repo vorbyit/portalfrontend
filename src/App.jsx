@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import AddSlots from './components/AddSlots';
+import ExpertPage from './components/ExpertsPage';
 
 import './App.css';
 
@@ -50,6 +51,16 @@ export default class App extends Component {
             path="/addslots"
             render = {(props) => (
               <AddSlots
+                user={this.state.user}
+                updateUser={this.updateUser}
+              />
+            )}
+          />
+          <Route 
+            exact
+            path="/experts"
+            render = {(props) => (
+              <ExpertPage 
                 user={this.state.user}
                 updateUser={this.updateUser}
               />
