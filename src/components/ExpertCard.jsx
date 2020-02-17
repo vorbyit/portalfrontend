@@ -29,17 +29,18 @@ export default class ExpertCard extends Component {
 		}
 		else {
 			this.setState({
-
 				bookSlot : slot,
 			})
 		}
 	}
 
 	handleSubmit(evt) {
-		const slot = API.post('/slots/addslot',{
+		evt.preventDefault();
+		console.log(this.state)
+		const slot = API.post('/slots/bookslot',{
 			date : this.state.currDate,
-			slot : this.state.slot,
-			expert : this.props.expert._id,
+			slot : this.state.bookSlot,
+			expertId : this.props.expert._id,
 		})
 	}
 
