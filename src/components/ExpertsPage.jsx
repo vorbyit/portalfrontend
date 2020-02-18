@@ -17,6 +17,8 @@ export default class ExpertsPage extends Component {
 		});
 	}
 
+	comp
+
 	render() {
 		console.log(this.state.experts)
 		if(this.state.experts.length === 0) {
