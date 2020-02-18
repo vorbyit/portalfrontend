@@ -5,6 +5,7 @@ import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import AddSlots from './components/AddSlots';
 import ExpertPage from './components/ExpertsPage';
+import Navbar from './components/Navbar';
 
 import './App.css';
 
@@ -26,6 +27,10 @@ export default class App extends Component {
     return (
       <div>
         <Router>
+          <Navbar 
+            user={this.state.user}
+            updateUser={this.updateUser}
+          />
           <Route 
             exact 
             path="/login" 
