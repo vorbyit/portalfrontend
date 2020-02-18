@@ -1,9 +1,9 @@
 /* eslint-disable consistent-return */
-import API from '../API';
+import axios from 'axios';
 
 async function getCurrentUser() {
   try {
-    const res = await API.get('/current');
+    const res = await axios.get('/current');
     return res.data;
   } catch (error) {
     return undefined;
