@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import API from '../API';
+import '../css/login.css'
 import isEmpty from '../utils/isEmpty';
 import getCurrentUser from '../utils/getCurrentUser';
-
+// import loginimg from '';
 class LoginForm extends Component {
   constructor() {
     super();
@@ -33,26 +34,31 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.onSubmit}>
-        <input 
-          type="text" 
-          name="username" 
-          id="username" 
-          placeholder="Username"   
-          value={this.state.username}
-          onChange={this.onChange}
-        />
-        <input 
-          type="password" 
-          name="password" 
-          id="password" 
-          placeholder="password"
-          value={this.state.password}
-          onChange={this.onChange}
-        />
-        <button type="submit">SUBMIT</button>
-        </form>
+      <div class="login">
+        <div class="image">
+          <img src="../public/login.png" alt="boy-studying" />            
+        </div>
+        <div class="form">
+          <form onSubmit={this.onSubmit}>
+            <input 
+              type="text" 
+              name="username" 
+              id="username" 
+              placeholder="Username"   
+              value={this.state.username}
+              onChange={this.onChange}
+            />
+            <input 
+              type="password" 
+              name="password" 
+              id="password" 
+              placeholder="password"
+              value={this.state.password}
+              onChange={this.onChange}
+            />
+            <button type="submit">Login</button>
+          </form>
+        </div>
       </div>
     )
   }
