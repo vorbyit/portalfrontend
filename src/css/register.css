@@ -1,0 +1,103 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Main Styling */
+body {
+  font-family: 'Raleway', sans-serif;
+  /* background-color: #344a72; */
+  line-height: 1.7em;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  padding-bottom: 20px;
+}
+
+p {
+  padding-bottom: 10px;
+}
+
+/* Form */
+#signup-container {
+  max-width: 400px;
+  margin: 30px auto 10px;
+  padding: 20px;
+  color: #fff;
+}
+
+.form-wrap {
+  display: block;
+  background-color: #fff;
+  padding: 15px 25px;
+  color: #333;
+}
+
+.form-wrap h1,
+.form-wrap p {
+  text-align: center;
+}
+
+.form-wrap .form-group {
+  margin-top: 15px;
+}
+
+.form-wrap .form-group label {
+  display: block;
+  color: #666;
+  font-size: 14px;
+}
+
+.form-wrap .form-group input {
+  width: 100%;
+  font-size: 16px;
+  border: #ddd 1px solid;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.form-wrap .form-group select {
+  width: 40%;
+  border: #ddd 1px solid;
+  font-size: 14px;
+  border-radius: 5px;
+  color: #666;
+  padding: 5px;
+}
+
+.form-wrap .btn {
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.form-wrap button {
+  display: block;
+  width: 100%;
+  background: #49c1a2;
+  margin-top: 20px;
+  color: #fff;
+}
+
+.form-wrap button:hover {
+  background: #37a08e;
+}
+
+.form-wrap .bottom-text {
+  font-size: 13px;
+  font-style: italic;
+}
