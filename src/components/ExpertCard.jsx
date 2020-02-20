@@ -3,6 +3,8 @@ import API from '../API';
 import isEmpty from '../utils/isEmpty';
 import '../css/expertCard.css'
 
+import defaultPic from '../public/defaultpic.png'
+
 export default class ExpertCard extends Component {
 	constructor(props) {
 		super(props);
@@ -47,14 +49,17 @@ export default class ExpertCard extends Component {
 	}
 
 	render() {
+		const { expert } = this.props
+
 		return (
 			<div className="Expert-Card">
 				<div className="info">
-					{this.props.expert.pic}
+					<img src={expert.pic === 'defaultpic' ? defaultPic : expert.pic} alt="profpic"/>
+					
 					<div>
-						<h3>{this.props.expert.name}</h3>
-						<h3>{this.props.expert.university}</h3>
-						<h3>{this.props.expert.branch}</h3>
+						<h3>{expert.name}</h3>
+						<h3>{expert.university}</h3>
+						<h3>{expert.branch}</h3>
 						<button onClick={this.handleSubmit}>BOOK SLOT</button>
 					</div>
 				</div>
@@ -62,7 +67,7 @@ export default class ExpertCard extends Component {
 					<div className="description">
 						<h1>Description</h1>
 						<p>
-							{this.props.expert.bio}
+							{expert.desc}
 						</p>
 					</div>
 					<div className="form">
@@ -81,11 +86,11 @@ export default class ExpertCard extends Component {
 						</div>
 					</div>
 				</div>
-				{isEmpty(this.props.expert.slots) ? null :
+				{isEmpty(expert.slots) ? null :
 				<div className="slots">
 					<h2>Slots Available</h2>
 					<div className="slots=input">
-						{Object.keys(this.props.expert.slots[this.state.currDate]).map((slot) => 
+						{Object.keys(expert.slots[this.state.currDate]).map((slot) => 
 							<label
 								id={slot}
 								onClick={this.bookSlot}
@@ -95,7 +100,7 @@ export default class ExpertCard extends Component {
 						)}
 					</div>
 					<div className="date-input">
-						{Object.keys(this.props.expert.slots).map((date) => 
+						{Object.keys(expert.slots).map((date) => 
 							<label
 								id={date} 
 								onClick={this.setDate}
