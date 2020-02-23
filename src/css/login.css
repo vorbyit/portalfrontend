@@ -3,7 +3,6 @@
 
 body {
     line-height: 1.7em;
-    background-color: #f7f7f7;
     font-family: 'Roboto', sans-serif;
 }
   
@@ -71,7 +70,6 @@ input {
     height: 1.5rem;
     padding: 0.5rem;
     border-bottom: gray solid 0.1rem;
-    background-color: #f7f7f7;
 }
 
 /* .form #password{
