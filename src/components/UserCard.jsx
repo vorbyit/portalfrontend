@@ -6,13 +6,14 @@ export default class UserCard extends Component {
 	}
 
 	render() {
+		const d = Date()
 		return (
 			<div>
-				{this.props.user.pic}
-				{this.props.user.name}
-				{this.props.user.education}
-				{this.props.slot.date}
-				{this.props.slot.time}
+				<div>{this.props.appt.pic}</div>
+				<div>{this.props.appt.name}</div>
+				<div>{this.props.appt.education}</div>
+				<div>{this.props.slot.Date.split('T')[0]}</div>
+				<div>{this.props.slot.slot}</div>
 				<button>Message</button>
 			</div>
 		)
