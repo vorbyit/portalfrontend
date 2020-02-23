@@ -8,6 +8,7 @@ export default class UserCard extends Component {
 	render() {
 		return (
 			<div>
+				{this.props.user.pic}
 				{this.props.user.name}
 				{this.props.user.education}
 				{this.props.slot.date}

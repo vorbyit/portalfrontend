@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import API from '../API';
-import '../css/login.css'
+import '../css/login.css';
 import isEmpty from '../utils/isEmpty';
 import getCurrentUser from '../utils/getCurrentUser';
+<<<<<<< HEAD
 import boyImg from '../public/boy2.svg'
 
+=======
+import back from '../public/login.png';
+
+// import loginimg from '';
+>>>>>>> 24bd44a3baf4d1fe344bfed92a86a90a6ce75942
 class LoginForm extends Component {
   constructor() {
     super();
     this.state = {
       username: '',
-      password: '',
+      password: ''
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -29,30 +35,36 @@ class LoginForm extends Component {
       this.props.updateUser(data);
       this.props.history.push('/dashboard');
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
   render() {
     return (
+<<<<<<< HEAD
       <div class="login">
         <div class="image">
           <img src={boyImg} alt="boy-studying" />            
+=======
+      <div className="login">
+        <div className="image">
+          <img src={back} alt="boy-studying" />
+>>>>>>> 24bd44a3baf4d1fe344bfed92a86a90a6ce75942
         </div>
-        <div class="form">
+        <div className="form">
           <form onSubmit={this.onSubmit}>
-            <input 
-              type="text" 
-              name="username" 
-              id="username" 
-              placeholder="Username"   
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Username"
               value={this.state.username}
               onChange={this.onChange}
             />
-            <input 
-              type="password" 
-              name="password" 
-              id="password" 
+            <input
+              type="password"
+              name="password"
+              id="password"
               placeholder="password"
               value={this.state.password}
               onChange={this.onChange}
@@ -61,7 +73,7 @@ class LoginForm extends Component {
           </form>
         </div>
       </div>
-    )
+    );
   }
 }
 

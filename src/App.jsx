@@ -3,9 +3,12 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
+import SignupExpert from './components/SignupExpert';
 import AddSlots from './components/AddSlots';
 import ExpertPage from './components/ExpertsPage';
+import AppointmentPage from './components/AppointmentPage';
 import Navbar from './components/Navbar';
+
 
 import './App.css';
 
@@ -53,6 +56,16 @@ export default class App extends Component {
           />
           <Route 
             exact
+            path="/signup/expert"
+            render = {(props) => (
+            <SignupExpert 
+              user={this.state.user}
+              updateUser={this.updateUser}
+            />
+            )}
+          />
+          <Route 
+            exact
             path="/addslots"
             render = {(props) => (
               <AddSlots
@@ -66,6 +79,16 @@ export default class App extends Component {
             path="/experts"
             render = {(props) => (
               <ExpertPage 
+                user={this.state.user}
+                updateUser={this.updateUser}
+              />
+            )}
+          />
+          <Route 
+            exact
+            path="/appointments"
+            render = {(props) => (
+              <AppointmentPage 
                 user={this.state.user}
                 updateUser={this.updateUser}
               />
