@@ -1,14 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 body {
-<<<<<<< HEAD
     line-height: 1.7em;
     font-family: 'Roboto', sans-serif;
-=======
-  line-height: 1.7em;
-  background-color: #f7f7f7;
-  font-family: 'Roboto', sans-serif;
->>>>>>> 24bd44a3baf4d1fe344bfed92a86a90a6ce75942
 }
 
 ul {
@@ -69,22 +63,12 @@ input {
 }
 
 .login .form input {
-<<<<<<< HEAD
     border: none;
     margin: 2rem;
     font-size: 1.5rem;
     height: 1.5rem;
     padding: 0.5rem;
     border-bottom: gray solid 0.1rem;
-=======
-  border: none;
-  margin: 2rem;
-  font-size: 1.5rem;
-  height: 1.5rem;
-  padding: 0.5rem;
-  border-bottom: gray solid 0.1rem;
-  background-color: #f7f7f7;
->>>>>>> 24bd44a3baf4d1fe344bfed92a86a90a6ce75942
 }
 
 /* .form #password{
