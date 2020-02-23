@@ -8,7 +8,7 @@
 /* Main Styling */
 body {
   font-family: 'Raleway', sans-serif;
-  /* background-color: #344a72; */
+  background-color: #fff;
   line-height: 1.7em;
 }
 
@@ -81,7 +81,7 @@ p {
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;
-  margin: 10px 0;
+  margin: 20px 0 10px;
   font-size: 14px;
 }
 
