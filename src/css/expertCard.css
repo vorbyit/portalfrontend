@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,400&display=swap');
 
 .Expert-Card {
-    width: 75%;
+    width: 25%;
     margin: 5% 10%;
     border-radius: 1rem;
     box-shadow: 0 0 0.5rem #00000d;
@@ -11,6 +11,12 @@
     transition: ease;
     transition-duration: 0.5s;
     color: #707070;
+    float: right;
+
+}
+
+.EC-details {
+    width: 75%;
 }
 
 .Expert-Card:hover{
@@ -19,12 +25,16 @@
 }
 
 .Expert-Card .info {
-    width: 30%;
     padding: 2%;
+    width: 100%;
     background-color: #ecf9ff;
     border-radius: 1rem;
     text-align: center;
     font-weight: 100;
+}
+
+.EC-details .info{
+    width: 30%;
 }
 
 .Expert-Card .info img {

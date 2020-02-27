@@ -42,6 +42,7 @@ export default class SignupExpert extends Component {
 					<input 
 						type="text" 
 						name="name" 
+						placeholder="name"
 						id="name"
 						value={this.state.name}
 						onChange={this.handleChange}
@@ -49,6 +50,7 @@ export default class SignupExpert extends Component {
 					<input 
 						type="email" 
 						name="email" 
+						placeholder="email"
 						id="email"
 						value={this.state.email}
 						onChange={this.handleChange}
@@ -56,6 +58,7 @@ export default class SignupExpert extends Component {
 					<input 
 						type="text" 
 						name="username" 
+						placeholder="username"
 						id="username"
 						value={this.state.username}
 						onChange={this.handleChange}
@@ -63,6 +66,7 @@ export default class SignupExpert extends Component {
 					<input 
 						type="password" 
 						name="password" 
+						placeholder="password"
 						id="password"
 						value={this.state.password}
 						onChange={this.handleChange}
@@ -70,6 +74,7 @@ export default class SignupExpert extends Component {
 					<input 
 						type="password" 
 						name="cnfpassword" 
+						placeholder="cnfpassword"
 						id="cnfpassword"
 						value={this.state.cnfpassword}
 						onChange={this.handleChange}
@@ -77,6 +82,7 @@ export default class SignupExpert extends Component {
 					<input 
 						type="text" 
 						name="mobile" 
+						placeholder="mobile"
 						id="mobile"
 						value={this.state.mobile}
 						onChange={this.handleChange}
@@ -84,6 +90,7 @@ export default class SignupExpert extends Component {
 					<input 
 						type="text" 
 						name="desc" 
+						placeholder="desc"
 						id="desc" 
 						value={this.state.desc} 
 						onChange={this.handleChange}
@@ -91,6 +98,7 @@ export default class SignupExpert extends Component {
 					<input 
 						type="text" 
 						name="institution" 
+						placeholder="institution"
 						id="institution" 
 						value={this.state.institution} 
 						onChange={this.handleChange}
@@ -98,6 +106,7 @@ export default class SignupExpert extends Component {
 					<input 
 						type="text" 
 						name="branch" 
+						placeholder="branch"
 						id="branch" 
 						value={this.state.barnch} 
 						onChange={this.handleChange}
