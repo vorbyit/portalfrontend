@@ -3,7 +3,7 @@ import API from '../API';
 import '../css/login.css';
 import isEmpty from '../utils/isEmpty';
 import getCurrentUser from '../utils/getCurrentUser';
-import boyImg from '../public/boy2.svg'
+import boyImg from '../public/boy2.svg';
 
 class LoginForm extends Component {
   constructor() {
@@ -35,9 +35,9 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div class="login">
-        <div class="image">
-          <img src={boyImg} alt="boy-studying" />            
+      <div className="login">
+        <div className="image">
+          <img src={boyImg} alt="boy-studying" />
         </div>
         <div className="form">
           <form onSubmit={this.onSubmit}>
