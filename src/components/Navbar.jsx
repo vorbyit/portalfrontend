@@ -6,12 +6,22 @@ import '../css/navbar.css';
 
 export default class Navbar extends Component {
   constructor() {
-    super();
-    this.onLogout = this.onLogout.bind(this);
+	super();
+	this.state={
+		authBar : false,
+	}
+	this.onLogout = this.onLogout.bind(this);
+	this.toggleAuthBar=this.toggleAuthBar.bind(this)
   }
 
   async onLogout() {
     const { data } = await API.get('/auth/logout');
+  }
+
+  toggleAuthBar() {
+	  this.setState({
+		  authBar : !this.state.authBar,
+	  })
   }
 
   render() {
@@ -35,14 +45,21 @@ export default class Navbar extends Component {
             <NavLink className="nav-item" to="/" activeClassName="active">
               Contact Us
             </NavLink>
-            {/* <NavLink className="nav-item" to="/dashboard" activeClassName="active">
-              Login
-            </NavLink>
-            <NavLink className="nav-item" to="/dashboard" activeClassName="active">
-              Signup
-            </NavLink> */}
-            <button onClick={this.onLogout}>LOGOUT</button>
+			<button onClick={this.toggleAuthBar}>
+				<i class="fas fa-user"></i>
+			</button>
           </div>
+			{ !this.state.authBar ? null :
+			<div>
+				<NavLink className="nav-item" to="/login" activeClassName="active">
+				Login
+				</NavLink>
+				<NavLink className="nav-item" to="/signup" activeClassName="active">
+				Signup
+				</NavLink>
+				<button onClick={this.onLogout}>LOGOUT</button>
+			</div>
+			}
         </div>
       </div>
     );
