@@ -6,7 +6,8 @@ import SignupForm from './components/SignupForm';
 import SignupExpert from './components/SignupExpert';
 import AddSlots from './components/AddSlots';
 import ExpertPage from './components/ExpertsPage';
-import AppointmentPage from './components/AppointmentPage';
+import ExpertApptPage from './components/ExpertApptPage';
+import UserApptPage from './components/UserApptPage';
 import Navbar from './components/Navbar';
 
 
@@ -88,7 +89,12 @@ export default class App extends Component {
             exact
             path="/appointments"
             render = {(props) => (
-              <AppointmentPage 
+              this.state.user==="EXPERT" ?
+              <ExpertApptPage 
+                user={this.state.user}
+                updateUser={this.updateUser}
+              />:
+              <UserApptPage 
                 user={this.state.user}
                 updateUser={this.updateUser}
               />

@@ -32,11 +32,11 @@ export default class AddSlots extends Component {
   }
 
   generateDates() {
-    const offset = 86400000;
     const dates = [];
     const d = new Date();
-    for (let i = 0; i < 7; i += 1) {
-      let s = new Date(d - i * offset).toISOString();
+
+    for(let i=0;i<7; i++) {
+      let s = new Date(d.setDate(d.getDate()+1)).toISOString();
       s = s.slice(0, s.indexOf('T')).split('-');
       dates.push([s[1], s[2], s[0]].toLocaleString().replace(',','/').replace(',','/'));
     }
