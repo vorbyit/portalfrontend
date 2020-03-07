@@ -5,7 +5,6 @@ import '../css/register.css';
 
 import getCurrentUser from '../utils/getCurrentUser';
 import isEmpty from '../utils/isEmpty';
-import LoginForm from './LoginForm';
 
 class SignupForm extends Component {
   constructor() {

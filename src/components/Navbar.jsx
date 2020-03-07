@@ -16,6 +16,11 @@ export default class Navbar extends Component {
 
   async onLogout() {
     const { data } = await API.get('/auth/logout');
+    if(data.success) {
+      this.props.updateUser(undefined);
+    } else {
+      console.log("ERROR LOGGING OUT");
+    }
   }
 
   toggleAuthBar() {
@@ -45,21 +50,34 @@ export default class Navbar extends Component {
             <NavLink className="nav-item" to="/" activeClassName="active">
               Contact Us
             </NavLink>
-			<button onClick={this.toggleAuthBar}>
-				<i class="fas fa-user"></i>
-			</button>
+            {this.props.user === undefined ? 
+              <NavLink className="nav-item" to="/login" activeClassName="active">
+                Login
+              </NavLink> :
+              <button onClick={this.toggleAuthBar}>
+                <i class="fas fa-user"></i>
+              </button>
+            }
           </div>
-			{ !this.state.authBar ? null :
-			<div>
-				<NavLink className="nav-item" to="/login" activeClassName="active">
-				Login
-				</NavLink>
-				<NavLink className="nav-item" to="/signup" activeClassName="active">
-				Signup
-				</NavLink>
-				<button onClick={this.onLogout}>LOGOUT</button>
-			</div>
-			}
+          {
+            (!this.state.authBar) ? null :
+            <div>
+              <NavLink className="nav-item" to="/auth/profile" activeClassName="active">
+                Your Profile
+              </NavLink>
+              <NavLink className="nav-item" to="/appointments" activeClassName="active">
+                {this.props.user !== undefined && this.props.user.type === "EXPERT" ? 
+                  <span>Appointments</span> : 
+                  <span> Your Advisors</span> 
+                }
+              </NavLink>
+              <NavLink className="nav-item" to="/" activeClassName="active">
+                Message
+              </NavLink>
+              <div onClick={this.onLogout}>LOGOUT</div>
+            </div>
+          }
+          
         </div>
       </div>
     );
