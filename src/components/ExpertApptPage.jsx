@@ -1,9 +1,12 @@
- import React, { Component } from 'react'
+import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom';
 import API from '../API';	
 import UserCard from './UserCard';
-import isEmpty from '../utils/isEmpty';
 
-export default class ExpertApptPage extends Component {
+import isEmpty from '../utils/isEmpty';
+import getCurrentUser from '../utils/getCurrentUser';
+
+class ExpertApptPage extends Component {
 	constructor() {
 		super()
 		this.state={
@@ -14,6 +17,17 @@ export default class ExpertApptPage extends Component {
 	
 	async componentDidMount() {
 		try {
+			if (isEmpty(this.props.user)) {
+        const currentUser = await getCurrentUser();
+        this.props.updateUser(currentUser);
+        if (isEmpty(currentUser)) {
+          console.log('Not Logged In!');
+          this.props.history.push('/login');
+        } else if (currentUser.type !== "EXPERT") {
+          console.log('Experts only allowed');
+          this.props.history.push('/experts');
+        }
+      }
 			const { data } = await API.get('/expert/appointments');
 			const upcoming = [];
 			const past = [];
@@ -61,3 +75,5 @@ export default class ExpertApptPage extends Component {
 		)
 	}
 }
+
+export default withRouter(ExpertApptPage);

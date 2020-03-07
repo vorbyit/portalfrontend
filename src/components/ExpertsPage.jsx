@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom';
 import ExpertCard from './ExpertCard';
 import API from '../API';
 
-export default class ExpertsPage extends Component {
+import isEmpty from '../utils/isEmpty';
+import getCurrentUser from '../utils/getCurrentUser';
+
+class ExpertsPage extends Component {
 	constructor(props) {
 		super()
 		this.state={
@@ -11,13 +15,19 @@ export default class ExpertsPage extends Component {
 	}
 
 	async componentDidMount() {
+		if (isEmpty(this.props.user)) {
+			const currentUser = await getCurrentUser();
+			this.props.updateUser(currentUser);
+			if (isEmpty(currentUser)) {
+				console.log('Not Logged In!');
+				this.props.history.push('/login');
+			}
+		}
 		const experts = await API.get('/expert/getexperts');
 		this.setState({
 			experts: experts.data
 		});
 	}
-
-	comp
 
 	render() {
 		console.log(this.state.experts)
@@ -33,3 +43,5 @@ export default class ExpertsPage extends Component {
 		)
 	}
 }
+
+export default  withRouter(ExpertsPage)

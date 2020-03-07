@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import API from '../API';
 import '../css/login.css';
+
 import isEmpty from '../utils/isEmpty';
 import getCurrentUser from '../utils/getCurrentUser';
 import boyImg from '../public/boy2.svg';
@@ -20,6 +22,14 @@ class LoginForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  async componentDidMount() {
+    if (isEmpty(this.props.user)) {
+      const currentUser = await getCurrentUser();
+      this.props.updateUser(currentUser);
+      if (!isEmpty(currentUser)) this.props.history.push('/experts');
+    } else this.props.history.push('/experts');
+  }
+
   async onSubmit(e) {
     e.preventDefault();
     console.log(1);
@@ -27,7 +37,7 @@ class LoginForm extends Component {
     try {
       const { data } = await API.post('/auth/login', loginUser);
       this.props.updateUser(data);
-      this.props.history.push('/dashboard');
+      this.props.history.push('/experts');
     } catch (error) {
       console.log(error);
     }
@@ -65,4 +75,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);

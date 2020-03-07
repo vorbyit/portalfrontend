@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import API from '../API';
 import '../css/register.css';
 
-export default class SignupForm extends Component {
+import getCurrentUser from '../utils/getCurrentUser';
+import isEmpty from '../utils/isEmpty';
+import LoginForm from './LoginForm';
+
+class SignupForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -16,6 +21,15 @@ export default class SignupForm extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  
+  async componentDidMount() {
+    if (isEmpty(this.props.user)) {
+      const currentUser = await getCurrentUser();
+      this.props.updateUser(currentUser);
+      if (!isEmpty(currentUser)) this.props.history.push('/experts');
+    } else this.props.history.push('/experts');
   }
 
   handleChange(evt) {
@@ -104,3 +118,5 @@ export default class SignupForm extends Component {
     );
   }
 }
+
+export default withRouter(SignupForm);

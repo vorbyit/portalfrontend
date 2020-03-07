@@ -89,14 +89,14 @@ export default class App extends Component {
             exact
             path="/appointments"
             render = {(props) => (
-              this.state.user==="EXPERT" ?
+              // this.state.user==="EXPERT" ?
               <ExpertApptPage 
                 user={this.state.user}
                 updateUser={this.updateUser}
-              />:
-              <UserApptPage 
-                user={this.state.user}
-                updateUser={this.updateUser}
+              // />:
+              // <UserApptPage 
+              //   user={this.state.user}
+              //   updateUser={this.updateUser}
               />
             )}
           />

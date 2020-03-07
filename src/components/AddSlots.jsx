@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import API from '../API';
+import { withRouter } from 'react-router-dom';
 
 import isEmpty from '../utils/isEmpty';
+import getCurrentUser from '../utils/getCurrentUser';
 
-export default class AddSlots extends Component {
+class AddSlots extends Component {
   constructor() {
     super();
     this.state = {
@@ -24,6 +26,17 @@ export default class AddSlots extends Component {
   async componentDidMount() {
     this.generateDates();
     try {
+      if (isEmpty(this.props.user)) {
+        const currentUser = await getCurrentUser();
+        this.props.updateUser(currentUser);
+        if (isEmpty(currentUser)) {
+          console.log('Not Logged In!');
+          this.props.history.push('/login');
+        } else if (currentUser.type !== "EXPERT") {
+          console.log('Experts only allowed');
+          this.props.history.push('/experts');
+        }
+      }
       const bookedSlots = await API.get('/slots/getslots');
       this.setState({ bookedSlots: bookedSlots.data });
     } catch (error) {
@@ -120,3 +133,5 @@ export default class AddSlots extends Component {
     )
   }
 }
+
+export default withRouter(AddSlots);
