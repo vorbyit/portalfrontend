@@ -24,7 +24,7 @@ class ExpertsPage extends Component {
 			return(null);
 		}
 		return (
-			<div>
+			<div style={{minHeight : '100vh'}}>
 				{this.state.experts.map((expert) => 
 					<ExpertCard expert={expert}/>
 				)}

@@ -10,6 +10,7 @@ import ExpertApptPage from './components/ExpertApptPage';
 import UserApptPage from './components/UserApptPage';
 import Navbar from './components/Navbar';
 import Profile from './components/Profile';
+import Footer from './components/Footer';
 
 import './App.css';
 
@@ -111,6 +112,7 @@ export default class App extends Component {
             )}
           />
         </Router>
+        <Footer />
       </div>
     )
   }
