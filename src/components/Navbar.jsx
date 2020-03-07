@@ -62,7 +62,7 @@ export default class Navbar extends Component {
           {
             (!this.state.authBar) ? null :
             <div>
-              <NavLink className="nav-item" to="/auth/profile" activeClassName="active">
+              <NavLink className="nav-item" to="/profile" activeClassName="active">
                 Your Profile
               </NavLink>
               <NavLink className="nav-item" to="/appointments" activeClassName="active">

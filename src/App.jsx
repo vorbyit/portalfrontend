@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Profiler } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import LoginForm from './components/LoginForm';
@@ -9,7 +9,7 @@ import ExpertPage from './components/ExpertsPage';
 import ExpertApptPage from './components/ExpertApptPage';
 import UserApptPage from './components/UserApptPage';
 import Navbar from './components/Navbar';
-
+import Profile from './components/Profile';
 
 import './App.css';
 
@@ -97,6 +97,16 @@ export default class App extends Component {
               // <UserApptPage 
               //   user={this.state.user}
               //   updateUser={this.updateUser}
+              />
+            )}
+          />
+          <Route 
+            exact
+            path="/profile"
+            render = {(props) => (
+              <Profile 
+                user={this.state.user}
+                updateUser={this.updateUser}
               />
             )}
           />

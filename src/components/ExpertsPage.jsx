@@ -3,9 +3,6 @@ import { withRouter } from 'react-router-dom';
 import ExpertCard from './ExpertCard';
 import API from '../API';
 
-import isEmpty from '../utils/isEmpty';
-import getCurrentUser from '../utils/getCurrentUser';
-
 class ExpertsPage extends Component {
 	constructor(props) {
 		super()
