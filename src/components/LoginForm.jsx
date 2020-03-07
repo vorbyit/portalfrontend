@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import API from '../API';
 import '../css/login.css';
 
@@ -50,6 +50,7 @@ class LoginForm extends Component {
           <img src={boyImg} alt="boy-studying" />
         </div>
         <div className="form">
+          <div className="heading">Login</div>
           <form onSubmit={this.onSubmit}>
             <input
               type="text"
@@ -59,16 +60,25 @@ class LoginForm extends Component {
               value={this.state.username}
               onChange={this.onChange}
             />
+            <hr />
             <input
               type="password"
               name="password"
               id="password"
-              placeholder="password"
+              placeholder="Password"
               value={this.state.password}
               onChange={this.onChange}
             />
-            <button type="submit">Login</button>
+            <hr />
+            <button type="submit">LOG IN</button>
           </form>
+          <br />
+          <div className="lead">or</div>
+          <div className="lead">
+            <Link className="signup-link" to="/SignUp">
+              Create an account
+            </Link>
+          </div>
         </div>
       </div>
     );

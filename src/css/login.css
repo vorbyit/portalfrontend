@@ -1,95 +1,112 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-
 body {
-    line-height: 1.7em;
-    font-family: 'Roboto', sans-serif;
+  line-height: 1.7em;
+  font-family: 'Roboto', sans-serif;
 }
-  
+
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 input {
-    text-decoration: none;
-    border: none;
+  text-decoration: none;
+  border: none;
 }
-  
+
 .login {
-    display: flex;
-    justify-content: space-around;
-    margin: 10% 5%;
-    margin-bottom: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0 5%;
+  margin-bottom: 0;
+  height: 90vh;
 }
 
 .login .image {
-    width: 40%;
+  width: 30%;
 }
 
 .login .image img {
-    width: 90%;
+  width: 90%;
 }
 
 .login .form {
-    width: 35%;
-    border-radius: 2rem;
-    box-shadow: 0 0 0.5rem #666666;
-    padding: 5% 0;
-    transition: ease;
-    transition-duration: 0.3s;
+  width: 32.5%;
+  height: 75%;
+  border-radius: 3rem;
+  padding: 0 0 5% 0;
+  transition: ease;
+  transition-duration: 0.3s;
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.42);
+  -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.42);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.42);
 }
 
-.login .form:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 1rem #666666;
+.login .form .heading {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 2.5rem auto 0rem;
 }
 
 .login .form form {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 0;
 }
 
-.login .form h1 {
-    font-size: 2.5rem;
-    /* margin-bottom: 3rem; */
-    letter-spacing: 1 rem;
-    font-size: 3rem;
-    font-weight: 300;
-    color: #1f1f1f;
+.login .form form input {
+  border: none;
+  margin: 10%;
+  font-size: 1.3rem;
+  color: #333;
+  height: 1.5rem;
+  padding: 1.5rem 0;
+  margin-bottom: 0.5rem;
+  /* border-bottom: gray solid 0.1rem; */
 }
 
-.login .form input {
-    border: none;
-    margin: 2rem;
-    font-size: 1.5rem;
-    height: 1.5rem;
-    padding: 0.5rem;
-    border-bottom: gray solid 0.1rem;
+.login .form form hr {
+  width: 80%;
+  color: gray;
+  margin-left: 10%;
 }
 
-/* .form #password{
-    margin-bottom: 5rem;
-} */
-
-.login button {
-    background-color: #0b6283;
-    color: white;
-    height: 3rem;
-    width: 10rem;
-    border-radius: 3rem;
-    border: none;
-    cursor: pointer;
-    transition: ease;
-    transition-duration: 0.1s;
-    font-size: 1.5rem;
-    margin: auto;
+.login .form form button {
+  background-color: #0b6283;
+  color: white;
+  height: 3.25rem;
+  width: 50%;
+  border-radius: 3rem;
+  border: none;
+  cursor: pointer;
+  transition: ease;
+  transition-duration: 0.1s;
+  font-size: 1.5rem;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  margin: 2.5rem auto 0rem;
 }
 
-.login button:hover {
-    transform: scale(1.05);
+.login .form form button:hover {
+  transform: scale(1.05);
+}
+
+.login .form .lead {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #5a5555;
+}
+
+.login .form .signup-link {
+  font-size: 1.1rem;
+  text-align: center;
+  color: #217fc2;
+  font-weight: bold;
 }
