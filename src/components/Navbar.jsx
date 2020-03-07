@@ -4,6 +4,10 @@ import API from '../API';
 import logo from '../public/vorby-logo.png';
 import '../css/navbar.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+
+
 export default class Navbar extends Component {
   constructor() {
 	super();
@@ -55,7 +59,7 @@ export default class Navbar extends Component {
                 Login
               </NavLink> :
               <button onClick={this.toggleAuthBar}>
-                <i class="fas fa-user"></i>
+                <FontAwesomeIcon icon={ faUser }/>
               </button>
             }
           </div>
