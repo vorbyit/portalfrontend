@@ -15,14 +15,6 @@ class ExpertsPage extends Component {
 	}
 
 	async componentDidMount() {
-		if (isEmpty(this.props.user)) {
-			const currentUser = await getCurrentUser();
-			this.props.updateUser(currentUser);
-			if (isEmpty(currentUser)) {
-				console.log('Not Logged In!');
-				this.props.history.push('/login');
-			}
-		}
 		const experts = await API.get('/expert/getexperts');
 		this.setState({
 			experts: experts.data
