@@ -3,9 +3,6 @@ import { withRouter } from 'react-router-dom';
 import ExpertCard from './ExpertCard';
 import API from '../API';
 
-import isEmpty from '../utils/isEmpty';
-import getCurrentUser from '../utils/getCurrentUser';
-
 class ExpertsPage extends Component {
 	constructor(props) {
 		super()
@@ -15,14 +12,6 @@ class ExpertsPage extends Component {
 	}
 
 	async componentDidMount() {
-		if (isEmpty(this.props.user)) {
-			const currentUser = await getCurrentUser();
-			this.props.updateUser(currentUser);
-			if (isEmpty(currentUser)) {
-				console.log('Not Logged In!');
-				this.props.history.push('/login');
-			}
-		}
 		const experts = await API.get('/expert/getexperts');
 		this.setState({
 			experts: experts.data
@@ -35,7 +24,7 @@ class ExpertsPage extends Component {
 			return(null);
 		}
 		return (
-			<div>
+			<div style={{minHeight : '100vh'}}>
 				{this.state.experts.map((expert) => 
 					<ExpertCard expert={expert}/>
 				)}
