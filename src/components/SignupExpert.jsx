@@ -28,6 +28,7 @@ export default class SignupExpert extends Component {
     try {
       const newUser = this.state;
 	  const { data } = await API.post('auth/register', newUser);
+	  console.log(data);
       this.props.updateUser(data);
       this.props.history.push('/');
     } catch (error) {
