@@ -83,6 +83,7 @@ class AddSlots extends Component {
     }
     else {
       delete slots[currDate][slot];
+      this.setState({ slot });
     }
   }
 

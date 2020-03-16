@@ -38,6 +38,16 @@ export default class App extends Component {
           />
           <Route 
             exact 
+            path="/" 
+            render = {(props) => (
+              <LoginForm
+                user={this.state.user}
+                updateUser={this.updateUser}
+              />
+            )}
+          />
+          <Route 
+            exact 
             path="/login" 
             render = {(props) => (
               <LoginForm

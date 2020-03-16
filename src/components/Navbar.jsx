@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import API from '../API';
 import logo from '../public/vorby-logo.png';
 import '../css/navbar.css';
@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   constructor() {
 	super();
 	this.state={
@@ -22,6 +22,8 @@ export default class Navbar extends Component {
     const { data } = await API.get('/auth/logout');
     if(data.success) {
       this.props.updateUser(undefined);
+      this.props.history.push('/login');
+      this.setState({ authBar : false })
     } else {
       console.log("ERROR LOGGING OUT");
     }
@@ -78,6 +80,11 @@ export default class Navbar extends Component {
               <NavLink className="nav-item" to="/" activeClassName="active">
                 Message
               </NavLink>
+              {this.props.user === undefined || this.props.user.type!=="EXPERT" ? null : 
+                <NavLink className="nav-item" to="/addslots" activeClassName="active">
+                  Add Slots
+                </NavLink>
+              }
               <div onClick={this.onLogout}>LOGOUT</div>
             </div>
           }
@@ -87,3 +94,5 @@ export default class Navbar extends Component {
     );
   }
 }
+
+export default withRouter(Navbar);
