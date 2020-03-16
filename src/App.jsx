@@ -8,6 +8,7 @@ import AddSlots from './components/AddSlots';
 import ExpertPage from './components/ExpertsPage';
 import ExpertApptPage from './components/ExpertApptPage';
 import UserApptPage from './components/UserApptPage';
+import Udaan from './components/Udaan';
 import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 import Footer from './components/Footer';
@@ -44,6 +45,13 @@ export default class App extends Component {
                 user={this.state.user}
                 updateUser={this.updateUser}
               />
+            )}
+          />
+          <Route 
+            exact
+            path="/udaan"
+            render = {(props) => (
+              <Udaan />
             )}
           />
           <Route 
