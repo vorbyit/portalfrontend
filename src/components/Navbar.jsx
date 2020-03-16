@@ -50,7 +50,7 @@ class Navbar extends Component {
             <NavLink className="nav-item" to="/experts" activeClassName="active">
               Advisors
             </NavLink>
-            <NavLink className="nav-item" to="/" activeClassName="active">
+            <NavLink className="nav-item" to="/udaan" activeClassName="active">
               Project Udaan
             </NavLink>
             <NavLink className="nav-item" to="/" activeClassName="active">

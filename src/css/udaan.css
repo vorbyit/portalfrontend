@@ -1,0 +1,107 @@
+@import url('https://db.onlinewebfonts.com/c/3f3f1a887702b525cda01f7cd776b241?family=Gadugi');
+@import url('https://db.onlinewebfonts.com/c/9b62dc86f936227b3f7b367bd0b6c05e?family=Tw+Cen+MT');
+@import url('https://db.onlinewebfonts.com/c/0a6ee448d1bd65c56f6cf256a7c6f20a?family=Bahnschrift');
+@import url('https://db.onlinewebfonts.com/c/1ba82d324736a8a9d4327d482c4627c4?family=Ebrima'); */
+
+/* @font-face {font-family: "Gadugi"; src: url("//db.onlinewebfonts.com/t/3f3f1a887702b525cda01f7cd776b241.eot"); src: url("//db.onlinewebfonts.com/t/3f3f1a887702b525cda01f7cd776b241.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/3f3f1a887702b525cda01f7cd776b241.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/3f3f1a887702b525cda01f7cd776b241.woff") format("woff"), url("//db.onlinewebfonts.com/t/3f3f1a887702b525cda01f7cd776b241.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/3f3f1a887702b525cda01f7cd776b241.svg#Gadugi") format("svg"); }
+@font-face {font-family: "Tw Cen MT"; src: url("//db.onlinewebfonts.com/t/9b62dc86f936227b3f7b367bd0b6c05e.eot"); src: url("//db.onlinewebfonts.com/t/9b62dc86f936227b3f7b367bd0b6c05e.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/9b62dc86f936227b3f7b367bd0b6c05e.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/9b62dc86f936227b3f7b367bd0b6c05e.woff") format("woff"), url("//db.onlinewebfonts.com/t/9b62dc86f936227b3f7b367bd0b6c05e.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/9b62dc86f936227b3f7b367bd0b6c05e.svg#Tw Cen MT") format("svg"); }
+@font-face {font-family: "Bahnschrift"; src: url("//db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.eot"); src: url("//db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.woff") format("woff"), url("//db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.svg#Bahnschrift") format("svg"); }
+@font-face {font-family: "Ebrima"; src: url("//db.onlinewebfonts.com/t/1ba82d324736a8a9d4327d482c4627c4.eot"); src: url("//db.onlinewebfonts.com/t/1ba82d324736a8a9d4327d482c4627c4.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/1ba82d324736a8a9d4327d482c4627c4.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/1ba82d324736a8a9d4327d482c4627c4.woff") format("woff"), url("//db.onlinewebfonts.com/t/1ba82d324736a8a9d4327d482c4627c4.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/1ba82d324736a8a9d4327d482c4627c4.svg#Ebrima") format("svg"); } */
+
+
+body {
+  background: #222;
+  color: white;
+}
+
+/* header {
+  height: 100vh;
+} */
+
+/* Utility */
+.current {
+  color: #ff3939;
+  cursor: default;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.Udaan {
+    margin-top: 3rem;
+    padding: 2rem;
+}
+
+.Udaan #design-bg {
+  position: absolute;
+  width: 100%;
+  height: 80vh;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.Udaan #showcase {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.Udaan #showcase #udaan-boy {
+  width: 30vw;
+  margin: auto;
+  padding-left: 1rem;
+}
+
+.Udaan #showcase .showcase-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 4rem;
+  /* justify-content: space-evenly; */
+  /* margin-right: 10vw; */
+  /* height: 100%; */
+}
+
+.Udaan #showcase .showcase-content .heading {
+  font-family: 'Roboto', sans-serif;
+  color: #74d8ff;
+  font-size: 4rem;
+  font-weight: bolder;
+  padding: 0 2rem 2rem 2rem;
+  margin: 0;
+}
+
+.Udaan #showcase .showcase-content .para {
+  font-family: 'Bahnschrift';
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 7rem;
+  line-height: 1.5;
+}
+
+.Udaan #showcase .showcase-content .buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  /* flex-direction: row; */
+  /* justify-content: space-between; */
+}
+
+.Udaan #showcase .showcase-content .buttons button {
+  background: linear-gradient(#ff3939, #801d1d);
+  padding: 1rem 0.5rem;
+  width: 45%;
+  font-family: 'Bahnschrift';
+  /* font-weight: bold; */
+  font-size: 1.5rem;
+  border-radius: 1rem;
+  border: 0;
+  /* margin: 1rem auto 0 40%; */
+}
+
+.Udaan #showcase .showcase-content .buttons #brochure {
+  width: 25%;
+}
