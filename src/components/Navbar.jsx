@@ -58,8 +58,14 @@ export default class Navbar extends Component {
               <NavLink className="nav-item" to="/login" activeClassName="active">
                 Login
               </NavLink> :
-              <button onClick={this.toggleAuthBar}>
-                <FontAwesomeIcon icon={ faUser }/>
+              <button className="btn" onClick={this.toggleAuthBar}>
+                <a href="/"><FontAwesomeIcon className="fa" style={{width:'1.875em'}} icon={ faUser }/></a>
+                <div className="dropdown-content" >
+                  <a href="#">Your Profile</a>
+                  <a href="#">Your Advisors</a>
+                  <a href="#">Message</a>
+                  <a href="#">Logout</a>
+                </div>
               </button>
             }
           </div>
