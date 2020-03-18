@@ -60,36 +60,32 @@ class Navbar extends Component {
               <NavLink className="nav-item" to="/login" activeClassName="active">
                 Login
               </NavLink> :
-              <button onClick={this.toggleAuthBar}>
-                <FontAwesomeIcon icon={ faUser }/>
+              <button className="btn" onClick={this.toggleAuthBar}>
+                <a href="/"><FontAwesomeIcon className="fa" style={{width:'1.875em'}} icon={ faUser }/></a>
+                <div className="dropdown-content" >
+                  <NavLink className="nav-item" to="/profile" activeClassName="active">
+                    Your Profile
+                  </NavLink>
+                  <NavLink className="nav-item" to="/appointments" activeClassName="active">
+                    {this.props.user !== undefined && this.props.user.type === "EXPERT" ? 
+                      <span>Appointments</span> : 
+                      <span> Your Advisors</span> 
+                    }
+                  </NavLink>
+                  <NavLink className="nav-item" to="/" activeClassName="active">
+                    Message
+                  </NavLink>
+                  {this.props.user === undefined || this.props.user.type!=="EXPERT" ? null : 
+                    <NavLink className="nav-item" to="/addslots" activeClassName="active">
+                      Add Slots
+                    </NavLink>
+                  }
+                  <div className="nav-item" onClick={this.onLogout}>Logout</div>
+                </div>
               </button>
             }
-          </div>
-          {
-            (!this.state.authBar) ? null :
-            <div>
-              <NavLink className="nav-item" to="/profile" activeClassName="active">
-                Your Profile
-              </NavLink>
-              <NavLink className="nav-item" to="/appointments" activeClassName="active">
-                {this.props.user !== undefined && this.props.user.type === "EXPERT" ? 
-                  <span>Appointments</span> : 
-                  <span> Your Advisors</span> 
-                }
-              </NavLink>
-              <NavLink className="nav-item" to="/" activeClassName="active">
-                Message
-              </NavLink>
-              {this.props.user === undefined || this.props.user.type!=="EXPERT" ? null : 
-                <NavLink className="nav-item" to="/addslots" activeClassName="active">
-                  Add Slots
-                </NavLink>
-              }
-              <div onClick={this.onLogout}>LOGOUT</div>
             </div>
-          }
-          
-        </div>
+          </div>
       </div>
     );
   }
