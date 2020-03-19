@@ -10,7 +10,6 @@ class Profile extends Component {
   constructor() {
     super();
     this.state = {
-      type : '',
       pic : '',
       name : '',
       username : '',
@@ -29,7 +28,7 @@ class Profile extends Component {
           this.props.history.push('/login');
         }
       }
-      const { data } = await API.get(`/${this.props.user.type.toLowerCase()}/profile`);
+      const { data } = await API.get(`/expert/profile`);
       this.setState( data );
       console.log(data);
     } catch (error) {
@@ -40,18 +39,16 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <div>{this.state.name}</div>
-        <div>{this.state.username}</div>
-        <div>{this.state.email}</div>
-        <div>{this.state.mobile}</div>
-				<img src={this.state.pic === 'defaultpic' ? defaultPic : this.state.pic} alt="profpic"/>
-
-        {this.props.user.type !== "EXPERT" ? null :
-          <div>
-            <div>{this.state.institute}</div>
-            <div>{this.state.branch}</div>
-            <div>{this.state.desc}</div>
-          </div>
+        {
+          Object.keys(this.state).map(key => 
+            key === 'pic' ? 
+            <img 
+              src={this.state.pic === 'defaultpic' ? defaultPic : this.state.pic} 
+              alt="profpic"
+            />
+            : key === '_id' ? null :
+             <div>{key} : {this.state[key]}</div>
+          )
         }
       </div>
     )
