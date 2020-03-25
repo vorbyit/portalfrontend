@@ -5,6 +5,8 @@ import { withRouter } from 'react-router-dom';
 import isEmpty from '../utils/isEmpty';
 import getCurrentUser from '../utils/getCurrentUser';
 
+import '../css/AddSlots.css';
+
 class AddSlots extends Component {
   constructor() {
     super();
@@ -100,14 +102,49 @@ class AddSlots extends Component {
   render() {
     return (
       <div>
+      <div className="menu">
+        <div className="txt">Thankyou for your support</div>
+        <ul>
+  <li><a  className="a active1" href="#apptments" >Appointments</a></li>
+  <li><a className="a" href="../components/Slots" target="Frame">Time Slots</a></li>
+  <li><a className="a" href="#contact">Messaging</a></li>
+  <li><a className="a" href="#about">Your Profile </a></li>
+  </ul>
+  <div className="frame" name="Frame">
+  
+  
+    
+<div className="date">
+<div className="txt1">Date:</div>       <br/>
+<div className="cards">
+    <div className="card">
+    </div>
+<div className="card">
+</div>
+<div className="card">
+</div>
+</div>
+</div>
+<div className="time">
+<div className="txt2"> Add Time limit:<input type="time"/>   to <input type="time"/></div>
+<div className="table"></div>
+
+</div> 
+
+   
+
+
+    </div>
+
+</div>
         <div>
           {/* Dates */}
-          {this.state.dates.map((date) => 
+          {/* {this.state.dates.map((date) => 
             <div id={date} onClick={this.setDate}>{date}</div>
-          )}
+          )} */}
         </div>
         <div>
-          <input 
+          {/* <input 
             value={this.state.timeFrom} 
             onChange={this.handleChange}
             type="time" 
@@ -120,16 +157,16 @@ class AddSlots extends Component {
             type="time" 
             name= "timeTo" 
             id="to"
-          />
+          /> */}
         </div>
-        {isEmpty(this.state.slots) || isEmpty(this.state.slots[this.state.currDate]) ? null :
+        {/* {isEmpty(this.state.slots) || isEmpty(this.state.slots[this.state.currDate]) ? null :
           <div>
             {Object.keys(this.state.slots[this.state.currDate]).map((slot) => 
               <div> {slot} <span id={slot} onClick={this.deleteSlot} >X</span></div>
             )}
           </div>
-        }
-        <button onClick={this.handleSubmit} type="submit">ADD SLOTS</button>
+        } */}
+        {/* <button onClick={this.handleSubmit} type="submit">ADD SLOTS</button> */}
       </div>
     )
   }

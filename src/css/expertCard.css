@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,400&display=swap');
 
 .Expert-Card {
-    width: 25%;
+    width:  max-content;
     margin: 5% 10%;
     border-radius: 1rem;
     box-shadow: 0 0 0.5rem #00000d;
@@ -228,4 +228,9 @@
 .Expert-Card .date-input input[type="radio"]:checked + label{
     background-color: #0b6283;
     color: white;
+}
+@media(max-width: 360px){
+    .Expert-Card{
+
+    }
 }

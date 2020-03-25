@@ -61,7 +61,7 @@ class Navbar extends Component {
                 Login
               </NavLink> :
               <button className="btn" onClick={this.toggleAuthBar}>
-                <a href="/"><FontAwesomeIcon className="fa" style={{width:'1.875em'}} icon={ faUser }/></a>
+                <FontAwesomeIcon className="fa" style={{width: '1.75em'}} icon={ faUser }/>
                 <div className="dropdown-content" >
                   <NavLink className="nav-item" to="/profile" activeClassName="active">
                     Your Profile

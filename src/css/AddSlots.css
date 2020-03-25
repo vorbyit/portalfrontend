@@ -1,0 +1,75 @@
+.txt{
+    margin-top: 2em;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0px 0px 6px #88888830;
+      /* width: 150%; */
+      /* margin-left: 344px; */
+      margin-top: 22px;
+  }
+  
+  li {
+    float: left;
+    padding: 0px 85px;
+  
+  }
+  
+  li .a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+.a:hover{
+      border-bottom: 3px solid;
+    border-bottom-color:#00e3ff;
+  }
+  
+
+
+.menu{
+    margin-left: 87px;
+    width: 85%;
+  }
+  .frame{
+      width: 100%;
+      height: 400px;
+  }
+
+  .date{
+    font-size: 20px;
+    padding-top: 46px;
+    float: left;
+}
+  
+
+  .date .time{
+    float: left;
+  }
+  .card {
+    border: solid;
+    width: 200px;
+    height: 54px;
+}
+ .cards{
+  float: right;
+ } 
+ .time{
+   padding-top: 46px;
+   font-size: 20px;
+   float: left;
+    margin-left: 202px;
+ }
+ .table{
+  border: solid;
+  width: 229%;
+  height: 220px;
+  margin-top: 17px;
+ }

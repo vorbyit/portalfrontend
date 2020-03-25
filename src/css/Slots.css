@@ -1,0 +1,17 @@
+.card{
+    border: solid;
+    width: 4%;
+    /* height: 6%; */
+    height: 35px;
+    padding-bottom: 3px;
+}
+.table{
+    width: 23%;
+    border: solid;
+    /* float: right; */
+    /* display: inline-block; */
+    height: 123px;
+    margin-left: 65px;
+    margin-top: -131px;
+
+}
