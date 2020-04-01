@@ -116,21 +116,30 @@ class AddSlots extends Component {
       <div>
         <div className="menu">
           <div className="txt">Thankyou for your support</div>
-          {/* <ul>
-          <li><a  className="a active1" href="#apptments" >Appointments</a></li>
-          <li><a className="a" href="../components/Slots" target="Frame">Time Slots</a></li>
-          <li><a className="a" href="#contact">Messaging</a></li>
-          <li><a className="a" href="#about">Your Profile </a></li>
-        </ul> */}
-          <div className="frame" name="Frame">
+          <ul>
+  <li><a  className="a active1" >Appointments</a></li>
+  <li><a className="a active2" >Time Slots</a></li>
+  <li><a className="a active3" >Messaging</a></li>
+  <li><a className="a active4" >Your Profile </a></li>
+  </ul>
+  <div className="frame2" name="Frame">
             <div className="date">
               <div className="txt1">Date:</div> <br />
               <div className="cards">
                 {this.state.dates.map(date => (
-                  <div className="card" id={date} onClick={this.setDate}>
+                  <div className="card b" id={date} onClick={this.setDate}>
                     {date}
                   </div>
                 ))}
+<div className="card b">
+      3rd February<br/>(Today)
+    </div>
+<div className="card1 b">
+3rd February<br/>(Tomorrow)
+</div>
+<div className="card2 b">
+3rd February<br/>(Day After Tomorrow)
+</div>
               </div>
             </div>
             <div className="time">
@@ -173,12 +182,29 @@ class AddSlots extends Component {
               </div>
               <button onClick={this.handleSubmit} type="submit">ADD SLOTS</button>
             </div>
-          </div>
-        </div>
-        <div>{/* Dates */}</div>
-        <div></div>
 
-      </div>
+
+      
+        
+  
+  
+  
+    
+
+
+    
+
+
+   
+
+
+    </div>
+
+</div>
+        
+       
+        </div>
+        
     );
   }
 }
