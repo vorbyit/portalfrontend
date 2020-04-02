@@ -114,7 +114,7 @@ class AddSlots extends Component {
   render() {
     return (
       <div>
-        <div className="menu">
+        {/* <div className="menu">
           <div className="txt">Thankyou for your support</div>
           <ul>
   <li><a  className="a active1" >Appointments</a></li>
@@ -122,6 +122,7 @@ class AddSlots extends Component {
   <li><a className="a active3" >Messaging</a></li>
   <li><a className="a active4" >Your Profile </a></li>
   </ul>
+  </div> */}
   <div className="frame2" name="Frame">
             <div className="date">
               <div className="txt1">Date:</div> <br />
@@ -183,22 +184,7 @@ class AddSlots extends Component {
               <button onClick={this.handleSubmit} type="submit">ADD SLOTS</button>
             </div>
 
-
-      
-        
-  
-  
-  
     
-
-
-    
-
-
-   
-
-
-    </div>
 
 </div>
         

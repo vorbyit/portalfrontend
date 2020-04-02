@@ -12,6 +12,7 @@ import Udaan from './components/Udaan';
 import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 import Footer from './components/Footer';
+import Menubar from './components/Menubar';
 
 import './App.css';
 
@@ -88,12 +89,23 @@ export default class App extends Component {
             exact
             path="/addslots"
             render = {(props) => (
+              <Menubar
+                user={this.state.user}
+                updateUser={this.updateUser}
+              />
+            )}
+          />
+          <Route 
+            exact
+            path="/addslots"
+            render = {(props) => (
               <AddSlots
                 user={this.state.user}
                 updateUser={this.updateUser}
               />
             )}
           />
+          
           <Route 
             exact
             path="/experts"
