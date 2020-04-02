@@ -12,6 +12,7 @@ import Udaan from './components/Udaan';
 import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 import Footer from './components/Footer';
+import MessagesPage from './components/Messaging';
 
 import './App.css';
 
@@ -129,7 +130,18 @@ export default class App extends Component {
               />
             )}
           />
+          <Route
+            exact
+            path="/chats"
+            render = {(props) => (
+              <MessagesPage 
+                user={this.state.user}
+                updateUser={this.updateUser}
+              />
+            )}
+          />
         </Router>
+        {/* <ChatBox /> */}
         <Footer />
       </div>
     )
