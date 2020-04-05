@@ -42,10 +42,12 @@
     width: 100%;
       height: 400px;
      
+     
   }
   .frame2{
       width: 100%;
       height: 400px;
+      margin-left: 95px;
       /* display: none; */
   }
 .active2:active .frame2{
@@ -95,10 +97,11 @@
    padding-top: 46px;
    font-size: 20px;
    float: left;
-    margin-left: 202px;
+   margin-left: 108px;
  }
  .table{
   border: solid;
+  border-width: thin;
   width: 229%;
   height: 220px;
   margin-top: 17px;

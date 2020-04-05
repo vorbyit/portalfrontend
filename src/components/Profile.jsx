@@ -1,7 +1,7 @@
 import React, { Component, Profiler } from 'react'
 import { withRouter } from 'react-router-dom';
 import API from '../API';
-
+import '../css/Profile.css'
 import defaultPic from '../public/defaultpic.png';
 import isEmpty from '../utils/isEmpty';
 import getCurrentUser from '../utils/getCurrentUser';
@@ -40,19 +40,26 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <div>{this.state.name}</div>
-        <div>{this.state.username}</div>
-        <div>{this.state.email}</div>
-        <div>{this.state.mobile}</div>
-				<img src={this.state.pic === 'defaultpic' ? defaultPic : this.state.pic} alt="profpic"/>
+        <div className='profile'>
+          <div className='pic'>
+        <img src={this.state.pic === 'defaultpic' ? defaultPic : this.state.pic} alt="profpic"/>
+        </div>
+        <div className='details1'>
+        Name: <span className='box'>{this.state.name}</span><br/>
+        College:<span className='box'>{this.state.username}</span><br/>
+        Branch:<span className='box'>{this.state.email}</span><br/>
+        Expertise:<span className='box'>{this.state.mobile}</span><br/>
+				
 
         {this.props.user.type !== "EXPERT" ? null :
           <div>
             <div>{this.state.institute}</div>
             <div>{this.state.branch}</div>
-            <div>{this.state.desc}</div>
+            <div className='about'><h2>Bio:</h2>{this.state.desc}</div>
           </div>
         }
+        </div>
+      </div>
       </div>
     )
   }

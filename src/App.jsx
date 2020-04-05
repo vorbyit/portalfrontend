@@ -14,7 +14,9 @@ import Profile from './components/Profile';
 import Footer from './components/Footer';
 import Menubar from './components/Menubar';
 
+
 import './App.css';
+import ExpertApptCard from './components/ExpertApptCard';
 
 
 export default class App extends Component {
@@ -120,6 +122,16 @@ export default class App extends Component {
             exact
             path="/appointments"
             render = {(props) => (
+              <Menubar
+                user={this.state.user}
+                updateUser={this.updateUser}
+              />
+            )}
+          />
+          <Route 
+            exact
+            path="/appointments"
+            render = {(props) => (
               // this.state.user==="EXPERT" ?
               <ExpertApptPage 
                 user={this.state.user}
@@ -128,6 +140,26 @@ export default class App extends Component {
               // <UserApptPage 
               //   user={this.state.user}
               //   updateUser={this.updateUser}
+              />
+            )}
+          />
+          <Route 
+            exact
+            path="/appointments"
+            render = {(props) => (
+              <ExpertApptCard
+                user={this.state.user}
+                updateUser={this.updateUser}
+              />
+            )}
+          />
+          <Route 
+            exact
+            path="/profile"
+            render = {(props) => (
+              <Menubar
+                user={this.state.user}
+                updateUser={this.updateUser}
               />
             )}
           />
