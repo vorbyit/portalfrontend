@@ -13,7 +13,7 @@ import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 import Footer from './components/Footer';
 import Menubar from './components/Menubar';
-
+import Menubar2 from './components/Menubar2';
 
 import './App.css';
 import ExpertApptCard from './components/ExpertApptCard';
@@ -107,7 +107,16 @@ export default class App extends Component {
               />
             )}
           />
-          
+          <Route 
+            exact
+            path="/experts"
+            render = {(props) => (
+              <Menubar2
+                user={this.state.user}
+                updateUser={this.updateUser}
+              />
+            )}
+          />
           <Route 
             exact
             path="/experts"

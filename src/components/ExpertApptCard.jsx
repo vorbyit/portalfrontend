@@ -24,7 +24,7 @@ import defaultPic from '../public/defaultpic.png'
 
 		return (
 			<div>
-                <div class="Expert-Card">
+                <div class="Expert-Card1">
 					<div class="info">
 					<img src="/static/media/defaultpic.b5e980bc.png" alt="profpic"/>
 						<div>

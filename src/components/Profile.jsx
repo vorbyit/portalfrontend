@@ -42,20 +42,20 @@ class Profile extends Component {
       <div>
         <div className='profile'>
           <div className='pic'>
-        <img src={this.state.pic === 'defaultpic' ? defaultPic : this.state.pic} alt="profpic"/>
+        <img className='img' src={this.state.pic === 'defaultpic' ? defaultPic : this.state.pic} alt="profpic"/>
         </div>
         <div className='details1'>
-        Name: <span className='box'>{this.state.name}</span><br/>
-        College:<span className='box'>{this.state.username}</span><br/>
-        Branch:<span className='box'>{this.state.email}</span><br/>
-        Expertise:<span className='box'>{this.state.mobile}</span><br/>
+        <div>Name: <span className='box'>{this.state.name}</span></div><br/>
+        <div>College:<span className='box'>{this.state.username}</span></div><br/>
+        <div>Email:<span className='box'>{this.state.email}</span></div><br/>
+        <div>Expertise:<span className='box'>{this.state.mobile}</span></div><br/>
 				
 
         {this.props.user.type !== "EXPERT" ? null :
           <div>
             <div>{this.state.institute}</div>
-            <div>{this.state.branch}</div>
-            <div className='about'><h2>Bio:</h2>{this.state.desc}</div>
+            <div > Branch:<span className='box'>{this.state.branch}</span></div>
+            <div className='about'><h2>Bio:</h2><div className='txt1'>{this.state.desc}</div></div>
           </div>
         }
         </div>
