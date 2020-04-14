@@ -31,10 +31,8 @@ class Profile extends Component {
           this.props.history.push("/login");
         }
       }
-      const { data } = await API.get(
-        `/expert/profile`
-      );
-      this.setState(data);
+      const { data } = await API.get(`/expert/profile`);
+      this.setState( data );
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -86,6 +84,7 @@ class Profile extends Component {
             )}
           </div>
         </div>
+
       </div>
     );
   }
