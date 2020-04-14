@@ -1,4 +1,4 @@
-import React, { Component, Profiler } from "react";
+import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import API from "../API";
 import "../css/Profile.css";
@@ -7,8 +7,8 @@ import isEmpty from "../utils/isEmpty";
 import getCurrentUser from "../utils/getCurrentUser";
 
 class Profile extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       type: "",
       pic: "",
@@ -20,8 +20,10 @@ class Profile extends Component {
   }
 
   async componentDidMount() {
+    console.log(1);
     try {
-      if (isEmpty(this.props.user)) {
+      if (this.props.user === undefined || isEmpty(this.props.user)) {
+        console.log(1, this.props.user)
         const currentUser = await getCurrentUser();
         this.props.updateUser(currentUser);
         if (isEmpty(currentUser)) {
@@ -30,7 +32,7 @@ class Profile extends Component {
         }
       }
       const { data } = await API.get(
-        `/${this.props.user.type.toLowerCase()}/profile`
+        `/expert/profile`
       );
       this.setState(data);
       console.log(data);
@@ -69,8 +71,7 @@ class Profile extends Component {
               Expertise:<span className="box">{this.state.mobile}</span>
             </div>
             <br />
-
-            {this.props.user.type !== "EXPERT" ? null : (
+            {this.state.type !== "EXPERT" ? null : (
               <div>
                 <div>{this.state.institute}</div>
                 <div>

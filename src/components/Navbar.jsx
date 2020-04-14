@@ -7,6 +7,8 @@ import '../css/navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 
+import getCurrentUser from '../utils/getCurrentUser';
+import isEmpty from '../utils/isEmpty';
 
 class Navbar extends Component {
   constructor() {
@@ -26,6 +28,17 @@ class Navbar extends Component {
       this.setState({ authBar : false })
     } else {
       console.log("ERROR LOGGING OUT");
+    }
+  }
+
+  async componentDidMount() {
+    try {
+      if (isEmpty(this.props.user)) {
+        const currentUser = await getCurrentUser();
+        this.props.updateUser(currentUser);
+      }
+    } catch (error) {
+      
     }
   }
 

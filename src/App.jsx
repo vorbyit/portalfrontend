@@ -1,5 +1,5 @@
 import React, { Component, Profiler } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
@@ -40,63 +40,76 @@ export default class App extends Component {
             user={this.state.user}
             updateUser={this.updateUser}
           />
-          <Route 
-            exact 
-            path="/" 
-            render = {(props) => (
-              <LoginForm
-                user={this.state.user}
-                updateUser={this.updateUser}
-              />
-            )}
-          />
-          <Route 
-            exact
-            path="/udaan"
-            render = {(props) => (
-              <Udaan />
-            )}
-          />
-          <Route 
-            exact 
-            path="/login" 
-            render = {(props) => (
-              <LoginForm
-                user={this.state.user}
-                updateUser={this.updateUser}
-              />
-            )}
-          />
-          <Route 
-            exact
-            path="/signup"
-            render = {(props) => (
-              <SignupForm 
-                user={this.state.user}
-                updateUser={this.updateUser}
-              />
-            )}
-          />
-          <Route 
-            exact
-            path="/signup/expert"
-            render = {(props) => (
-            <SignupExpert 
-              user={this.state.user}
-              updateUser={this.updateUser}
+          <Switch>
+            <Route 
+              exact 
+              path="/" 
+              render = {(props) => (
+                <LoginForm
+                  user={this.state.user}
+                  updateUser={this.updateUser}
+                />
+              )}
             />
-            )}
-          />
-          <Route 
-            exact
-            path="/addslots"
-            render = {(props) => (
-              <Menubar
+            <Route 
+              exact
+              path="/udaan"
+              render = {(props) => (
+                <Udaan />
+              )}
+            />
+            <Route 
+              exact 
+              path="/login" 
+              render = {(props) => (
+                <LoginForm
+                  user={this.state.user}
+                  updateUser={this.updateUser}
+                />
+              )}
+            />
+            <Route 
+              exact
+              path="/signup"
+              render = {(props) => (
+                <SignupForm 
+                  user={this.state.user}
+                  updateUser={this.updateUser}
+                />
+              )}
+            />
+            <Route 
+              exact
+              path="/signup/expert"
+              render = {(props) => (
+              <SignupExpert 
                 user={this.state.user}
                 updateUser={this.updateUser}
               />
-            )}
-          />
+              )}
+            />
+
+            <Route 
+              exact
+              path="/experts"
+              render = {(props) => (
+                <ExpertPage 
+                  user={this.state.user}
+                  updateUser={this.updateUser}
+                />
+              )}
+            />
+            <Route 
+              path="/"
+              render = {(props) => (
+                this.state.user===undefined || this.state.user.type==="EXPERT" ? 
+                <Menubar
+                  user={this.state.user}
+                  updateUser={this.updateUser}
+                /> : null
+              )}
+            /> 
+          </Switch>
           <Route 
             exact
             path="/addslots"
@@ -107,27 +120,8 @@ export default class App extends Component {
               />
             )}
           />
-          <Route 
-            exact
-            path="/experts"
-            render = {(props) => (
-              <Menubar2
-                user={this.state.user}
-                updateUser={this.updateUser}
-              />
-            )}
-          />
-          <Route 
-            exact
-            path="/experts"
-            render = {(props) => (
-              <ExpertPage 
-                user={this.state.user}
-                updateUser={this.updateUser}
-              />
-            )}
-          />
-          <Route 
+
+          {/* <Route 
             exact
             path="/appointments"
             render = {(props) => (
@@ -136,33 +130,23 @@ export default class App extends Component {
                 updateUser={this.updateUser}
               />
             )}
-          />
+          /> */}
           <Route 
             exact
             path="/appointments"
             render = {(props) => (
-              // this.state.user==="EXPERT" ?
+              // this.state.user===undefined || this.state.user.type==="EXPERT" ?
               <ExpertApptPage 
                 user={this.state.user}
                 updateUser={this.updateUser}
-              // />:
+              // /> :
               // <UserApptPage 
               //   user={this.state.user}
               //   updateUser={this.updateUser}
               />
             )}
           />
-          <Route 
-            exact
-            path="/appointments"
-            render = {(props) => (
-              <ExpertApptCard
-                user={this.state.user}
-                updateUser={this.updateUser}
-              />
-            )}
-          />
-          <Route 
+          {/* <Route 
             exact
             path="/profile"
             render = {(props) => (
@@ -171,7 +155,7 @@ export default class App extends Component {
                 updateUser={this.updateUser}
               />
             )}
-          />
+          /> */}
           <Route 
             exact
             path="/profile"
