@@ -13,6 +13,7 @@ class UserApptPage extends Component {
       wishlist : [],
       upcoming : [],
       past : [],
+      loaded: false,
     }
   }
 
@@ -31,51 +32,46 @@ class UserApptPage extends Component {
         }
       }
 
-      const { data } = API.get('/user/appointments');
-      const wishlist = data.wishlist;
-      const appts = data.appts;
-      const upcoming = [];
-      const past = [];
-      for(let i=0; i<appts.length; i++){
-          if (appts[i].slot.Date.split('T')[0]>date 
-          || (appts[i].slot.Date.split('T')[0]===date 
-          && appts[i].slot.slot > time)) {
-            upcoming.push(appts[i])
-          } 
-          else {
-            past.push(appts[i])
-          }
-      }
+      const { data } = await API.get('/user/appointments');
+      console.log(data);
+      this.setState({...data, loaded: true});
     } catch (error) {
       console.log(error);
     }
   }
 
   render() {
-    return (
-        <div>
+    if(this.state.loaded)
+      return (
           <div>
-            <h2>Wishlist</h2>
             <div>
-              {this.state.wishlist.map((appts) => 
-                <ExpertCard expert={appts}/>
-              )}
+              <h2>Wishlist</h2>
+              <div>
+                {this.state.wishlist.map((appts) => 
+                  <ExpertCard appt={true} expert={appts}/>
+                )}
+              </div>
             </div>
-          </div>
-          <div>
-            <h2>Current Advisors</h2>
             <div>
-
+              <h2>Current Advisors</h2>
+              <div>
+              {this.state.upcoming.map((appts) => 
+                  <ExpertCard appt={true} expert={appts}/>
+                )}
+              </div>
             </div>
-          </div>
-          <div>
-            <h2>Past Advisor</h2>
             <div>
-
+              <h2>Past Advisor</h2>
+              <div>
+              {this.state.prev.map((appts) => 
+                  <ExpertCard appt={true} expert={appts}/>
+                )}
+              </div>
             </div>
-          </div>
-      </div>
-    )
+        </div>
+      )
+    else
+      return(null)
   }
 }
 

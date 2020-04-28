@@ -54,7 +54,7 @@ class ExpertsPage extends Component {
               <div>
                 <h3>{param}</h3>
                 {sortParam[param].map((expert) => (
-                  <ExpertCard expert={expert} />
+                  <ExpertCard appt={false} expert={expert} />
                 ))}
               </div>
             ))}
