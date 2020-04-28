@@ -1,5 +1,5 @@
 import React, { Component, Profiler } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
@@ -12,9 +12,11 @@ import Udaan from './components/Udaan';
 import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 import Footer from './components/Footer';
-import MessagesPage from './components/Messaging';
+import Menubar from './components/Menubar';
+import Menubar2 from './components/Menubar2';
 
 import './App.css';
+import ExpertApptCard from './components/ExpertApptCard';
 
 
 export default class App extends Component {
@@ -38,53 +40,76 @@ export default class App extends Component {
             user={this.state.user}
             updateUser={this.updateUser}
           />
-          <Route 
-            exact 
-            path="/" 
-            render = {(props) => (
-              <LoginForm
-                user={this.state.user}
-                updateUser={this.updateUser}
-              />
-            )}
-          />
-          <Route 
-            exact
-            path="/udaan"
-            render = {(props) => (
-              <Udaan />
-            )}
-          />
-          <Route 
-            exact 
-            path="/login" 
-            render = {(props) => (
-              <LoginForm
-                user={this.state.user}
-                updateUser={this.updateUser}
-              />
-            )}
-          />
-          <Route 
-            exact
-            path="/signup"
-            render = {(props) => (
-              <SignupForm 
-                user={this.state.user}
-                updateUser={this.updateUser}
-              />
-            )}
-          />
-          <Route 
-            exact
-            path="/signup/expert"
-            render = {(props) => (
-            <SignupExpert 
-              user={this.state.user}
-              updateUser={this.updateUser}
+          <Switch>
+            <Route 
+              exact 
+              path="/" 
+              render = {(props) => (
+                <LoginForm
+                  user={this.state.user}
+                  updateUser={this.updateUser}
+                />
+              )}
             />
-            )}
-          />
+            <Route 
+              exact
+              path="/udaan"
+              render = {(props) => (
+                <Udaan />
+              )}
+            />
+            <Route 
+              exact 
+              path="/login" 
+              render = {(props) => (
+                <LoginForm
+                  user={this.state.user}
+                  updateUser={this.updateUser}
+                />
+              )}
+            />
+            <Route 
+              exact
+              path="/signup"
+              render = {(props) => (
+                <SignupForm 
+                  user={this.state.user}
+                  updateUser={this.updateUser}
+                />
+              )}
+            />
+            <Route 
+              exact
+              path="/signup/expert"
+              render = {(props) => (
+              <SignupExpert 
+                user={this.state.user}
+                updateUser={this.updateUser}
+              />
+              )}
+            />
+
+            <Route 
+              exact
+              path="/experts"
+              render = {(props) => (
+                <ExpertPage 
+                  user={this.state.user}
+                  updateUser={this.updateUser}
+                />
+              )}
+            />
+            <Route 
+              path="/"
+              render = {(props) => (
+                this.state.user===undefined || this.state.user.type==="EXPERT" ? 
+                <Menubar
+                  user={this.state.user}
+                  updateUser={this.updateUser}
+                /> : null
+              )}
+            /> 
+          </Switch>
           <Route 
             exact
             path="/addslots"
@@ -95,16 +120,17 @@ export default class App extends Component {
               />
             )}
           />
-          <Route 
+
+          {/* <Route 
             exact
-            path="/experts"
+            path="/appointments"
             render = {(props) => (
-              <ExpertPage 
+              <Menubar
                 user={this.state.user}
                 updateUser={this.updateUser}
               />
             )}
-          />
+          /> */}
           <Route 
             exact
             path="/appointments"
@@ -120,6 +146,16 @@ export default class App extends Component {
               />
             )}
           />
+          {/* <Route 
+            exact
+            path="/profile"
+            render = {(props) => (
+              <Menubar
+                user={this.state.user}
+                updateUser={this.updateUser}
+              />
+            )}
+          /> */}
           <Route 
             exact
             path="/profile"
@@ -130,7 +166,7 @@ export default class App extends Component {
               />
             )}
           />
-          <Route
+          {/* <Route
             exact
             path="/chats"
             render = {(props) => (
@@ -139,7 +175,7 @@ export default class App extends Component {
                 updateUser={this.updateUser}
               />
             )}
-          />
+          /> */}
         </Router>
         {/* <ChatBox /> */}
         <Footer />

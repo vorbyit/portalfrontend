@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import ExpertCard from "./ExpertCard";
 import API from "../API";
 
-import isEmpty from '../utils/isEmpty';
+import isEmpty from "../utils/isEmpty";
 
 class ExpertsPage extends Component {
   constructor(props) {
@@ -11,31 +11,31 @@ class ExpertsPage extends Component {
     this.state = {
       experts: {},
       sortBy: "institution",
-		};
+    };
 
-		this.setSort=this.setSort.bind(this)
-	}
+    this.setSort = this.setSort.bind(this);
+  }
 
   async componentDidMount() {
     const experts = await API.get("/expert/getexperts");
     this.setState({
-      experts: experts.data
-		});
-		this.setSort=this.setSort.bind(this);
+      experts: experts.data,
+    });
+    this.setSort = this.setSort.bind(this);
   }
 
   setSort(e) {
-	this.setState({
-		sortBy : e.target.id,
-	})
+    this.setState({
+      sortBy: e.target.id,
+    });
   }
 
   render() {
     if (isEmpty(this.state.experts)) {
       return null;
-		}
-		const sortParam = this.state.experts[this.state.sortBy];
-    return ( 
+    }
+    const sortParam = this.state.experts[this.state.sortBy];
+    return (
       <div style={{ minHeight: "100vh" }}>
         <div className="sortBy">
           <span id="expertise" onClick={this.setSort}>
