@@ -149,6 +149,7 @@ export default class App extends Component {
           {/* <Route 
             exact
             path="/profile"
+
             render = {(props) => (
               <Menubar
                 user={this.state.user}
@@ -167,6 +168,7 @@ export default class App extends Component {
             )}
           />
           {/* <Route
+
             exact
             path="/chats"
             render = {(props) => (
