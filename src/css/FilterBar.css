@@ -1,0 +1,32 @@
+
+.FilterBar{
+  /* margin-left: 87px; */
+  margin: 2rem auto;
+  width: 85%;
+}
+
+.FilterBar  .logo1{
+  /* float:left; */
+}
+
+.FilterBar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0px 0px 6px #88888830;
+    display: flex;
+    justify-content: space-around;
+}
+  
+.FilterBar li {
+    padding: 0.5rem 0;
+    margin-left: -9%;
+
+}
+
+.FilterBar li:hover {
+  cursor: pointer;
+}
+

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import API from "../API";
 import logo from "../public/vorby-logo.png";
-import "../css/Menubar2.css";
+// import "../css/Menubar2.css";
 import logo2 from "../public/logo2.svg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
