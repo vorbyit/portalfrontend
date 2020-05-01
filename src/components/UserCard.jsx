@@ -43,10 +43,9 @@ export default class UserCard extends Component {
 		return (
 		  <div className="user-card-container">
 			<div className="user-image">
-			  <div
-				className="image"
-				style={{ backgroundImage: `url(${userPic})` }}
-			  ></div>
+			  <div className="image">
+				  <img src={userPic} alt="UserPic"/>
+			  </div>
 			</div>
 			<div className="content">
 			  <div className="user-info">

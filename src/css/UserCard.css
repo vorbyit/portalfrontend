@@ -36,10 +36,6 @@
     width: 200px;
     display: inline-block;
     margin: 0 auto;
-    /*background-image: url("./UserPic.png");*/
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     border-radius: 50%;
     border: 10px solid #99ddda;
   }
@@ -96,18 +92,18 @@
     font-size: 1.6rem;
     height: 4.625rem;
   }
-  
+    
   .btn-success {
-    width: 11.25em;
-    background-color: #0B6283;
+    width: 6em;
+    background-color: #0B6283;  
   }
   
   .btn-approve {
     width: 6em;
-    background-color: green
+    background-color: rgb(25, 133, 25)
   }
   
   .btn-reject {
     width: 6em;
-    background-color: red;
-  }  
+    background-color: rgb(202, 42, 42);
+  }
