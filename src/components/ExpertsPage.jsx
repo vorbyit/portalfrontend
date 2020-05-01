@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+
+import FilterBar from './FilterBar';
 import ExpertCard from "./ExpertCard";
 import API from "../API";
 
@@ -37,7 +39,7 @@ class ExpertsPage extends Component {
     const sortParam = this.state.experts[this.state.sortBy];
     return (
       <div style={{ minHeight: "100vh" }}>
-        <div className="sortBy">
+        {/* <div className="sortBy">
           <span id="expertise" onClick={this.setSort}>
             Expertise
           </span>
@@ -47,7 +49,8 @@ class ExpertsPage extends Component {
           <span id="exam" onClick={this.setSort}>
             Exam
           </span>
-        </div>
+        </div> */}
+        <FilterBar filters={['expertise', 'institution', 'exam']} sortBy={this.setSort}/>
         {sortParam === undefined ? null : (
           <div>
             {Object.keys(sortParam).map((param) => (

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+
 import API from '../API';
 import ExpertCard from './ExpertCard';
+import FilterBar from './FilterBar';
 
 import isEmpty from '../utils/isEmpty';
 import getCurrentUser from '../utils/getCurrentUser';
@@ -13,10 +15,17 @@ class UserApptPage extends Component {
       wishlist : [],
       upcoming : [],
       past : [],
+      sortBy: "upcoming",
       loaded: false,
     }
+    this.setSort=this.setSort.bind(this);
   }
 
+  setSort(e) {
+    this.setState({
+      sortBy: e.target.id,
+    });
+  }
 
   async componentDidMount() {
     const d = new Date();
@@ -44,15 +53,15 @@ class UserApptPage extends Component {
     if(this.state.loaded)
       return (
           <div>
+            <FilterBar filters={['wishlist', 'upcoming', 'past']} sortBy={this.setSort}/>
             <div>
-              <h2>Wishlist</h2>
               <div>
-                {this.state.wishlist.map((appts) => 
+                {this.state[this.state.sortBy].map((appts) => 
                   <ExpertCard appt={true} expert={appts}/>
                 )}
               </div>
             </div>
-            <div>
+            {/* <div>
               <h2>Current Advisors</h2>
               <div>
               {this.state.upcoming.map((appts) => 
@@ -67,7 +76,7 @@ class UserApptPage extends Component {
                   <ExpertCard appt={true} expert={appts}/>
                 )}
               </div>
-            </div>
+            </div> */}
         </div>
       )
     else
