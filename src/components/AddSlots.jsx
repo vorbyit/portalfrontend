@@ -7,6 +7,8 @@ import getCurrentUser from "../utils/getCurrentUser";
 
 import "../css/AddSlots.css";
 
+import '../css/AddSlots.css';
+
 class AddSlots extends Component {
   constructor() {
     super();
