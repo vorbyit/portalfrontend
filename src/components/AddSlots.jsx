@@ -7,8 +7,6 @@ import getCurrentUser from "../utils/getCurrentUser";
 
 import "../css/AddSlots.css";
 
-import '../css/AddSlots.css';
-
 class AddSlots extends Component {
   constructor() {
     super();
@@ -18,7 +16,7 @@ class AddSlots extends Component {
       dates: [],
       currDate: undefined,
       timeFrom: "00:00",
-      timeTo: "11:59",
+      timeTo: "11:59"
     };
     this.generateDates = this.generateDates.bind(this);
     this.setDate = this.setDate.bind(this);
@@ -56,7 +54,10 @@ class AddSlots extends Component {
       let s = new Date(d.setDate(d.getDate() + 1)).toISOString();
       s = s.slice(0, s.indexOf("T")).split("-");
       dates.push(
-        [s[1], s[2], s[0]].toLocaleString().replace(",", "/").replace(",", "/")
+        [s[1], s[2], s[0]]
+          .toLocaleString()
+          .replace(",", "/")
+          .replace(",", "/")
       );
     }
     this.setState({ dates, currDate: dates[0] });
@@ -71,8 +72,8 @@ class AddSlots extends Component {
 
     let { timeFrom, timeTo, currDate, slots } = this.state;
     slots[currDate] = {};
-    timeFrom = timeFrom.split(":").map((t) => parseInt(t, 10));
-    timeTo = timeTo.split(":").map((t) => parseInt(t, 10));
+    timeFrom = timeFrom.split(":").map(t => parseInt(t, 10));
+    timeTo = timeTo.split(":").map(t => parseInt(t, 10));
     const lowLim = timeFrom[0] * 2 + Math.round(timeFrom[1] / 60);
     const upLim = timeTo[0] * 2 + Math.round(timeTo[1] / 60);
     for (let i = lowLim; i < upLim; i++) {
@@ -113,84 +114,70 @@ class AddSlots extends Component {
   render() {
     return (
       <div>
-        {/* <div className="menu">
+        <div className="menu">
           <div className="txt">Thankyou for your support</div>
-          <ul>
-  <li><a  className="a active1" >Appointments</a></li>
-  <li><a className="a active2" >Time Slots</a></li>
-  <li><a className="a active3" >Messaging</a></li>
-  <li><a className="a active4" >Your Profile </a></li>
-  </ul>
-  </div> */}
-        <div className="frame2" name="Frame">
-          <div className="date">
-            <div className="txt1">Date:</div> <br />
-            <div className="cards">
-              {this.state.dates.map((date) => (
-                <div className="card b" id={date} onClick={this.setDate}>
-                  {date}
-                </div>
-              ))}
-              <div className="card b">
-                3rd February
-                <br />
-                (Today)
-              </div>
-              <div className="card1 b">
-                3rd February
-                <br />
-                (Tomorrow)
-              </div>
-              <div className="card2 b">
-                3rd February
-                <br />
-                (Day After Tomorrow)
+          {/* <ul>
+          <li><a  className="a active1" href="#apptments" >Appointments</a></li>
+          <li><a className="a" href="../components/Slots" target="Frame">Time Slots</a></li>
+          <li><a className="a" href="#contact">Messaging</a></li>
+          <li><a className="a" href="#about">Your Profile </a></li>
+        </ul> */}
+          <div className="frame" name="Frame">
+            <div className="date">
+              <div className="txt1">Date:</div> <br />
+              <div className="cards">
+                {this.state.dates.map(date => (
+                  <div className="card" id={date} onClick={this.setDate}>
+                    {date}
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
-          <div className="time">
-            <div className="txt2">
-              {" "}
-              Add Time limit: &nbsp;
-              <input
-                value={this.state.timeFrom}
-                onChange={this.handleChange}
-                type="time"
-                name="timeFrom"
-                id="from"
-              />
-              to &nbsp;
-              <input
-                value={this.state.timeTo}
-                onChange={this.handleChange}
-                type="time"
-                name="timeTo"
-                id="to"
-              />
+            <div className="time">
+              <div className="txt2">
+                {" "}
+                Add Time limit: &nbsp;
+                <input
+                  value={this.state.timeFrom}
+                  onChange={this.handleChange}
+                  type="time"
+                  name="timeFrom"
+                  id="from"
+                />
+                to &nbsp;
+                <input
+                  value={this.state.timeTo}
+                  onChange={this.handleChange}
+                  type="time"
+                  name="timeTo"
+                  id="to"
+                />
+              </div>
+              <div className="table">
+                {isEmpty(this.state.slots) ||
+                isEmpty(this.state.slots[this.state.currDate]) ? null : (
+                  <div>
+                    {Object.keys(this.state.slots[this.state.currDate]).map(
+                      slot => (
+                        <div>
+                          {" "}
+                          {slot}{" "}
+                          <span id={slot} onClick={this.deleteSlot}>
+                            X
+                          </span>
+                        </div>
+                      )
+                    )}
+                  </div>
+                )}
+              </div>
+              <button onClick={this.handleSubmit} type="submit">ADD SLOTS</button>
             </div>
-            <div className="table">
-              {isEmpty(this.state.slots) ||
-              isEmpty(this.state.slots[this.state.currDate]) ? null : (
-                <div>
-                  {Object.keys(this.state.slots[this.state.currDate]).map(
-                    (slot) => (
-                      <div>
-                        {" "}
-                        {slot}{" "}
-                        <span id={slot} onClick={this.deleteSlot}>
-                          X
-                        </span>
-                      </div>
-                    )
-                  )}
-                </div>
-              )}
-            </div>
-            <button onClick={this.handleSubmit} type="submit">
-              ADD SLOTS
-            </button>
           </div>
         </div>
+        <div>{/* Dates */}</div>
+        <div></div>
+
       </div>
     );
   }
