@@ -63,6 +63,17 @@
   .date .time{
     float: left;
   }
+
+  .cards{
+    margin:4px, 4px; 
+    padding:4px;  
+    width: 249px;
+    height: 168px;
+    overflow-x: hidden; 
+    overflow-x: auto; 
+    text-align:justify; 
+  }
+
   .card {
     border: solid;
     width: 200px;

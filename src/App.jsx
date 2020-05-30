@@ -83,6 +83,7 @@ export default class App extends Component {
               path="/signup/expert"
               render = {(props) => (
               <SignupExpert 
+
                 user={this.state.user}
                 updateUser={this.updateUser}
               />
@@ -131,6 +132,7 @@ export default class App extends Component {
               />
             )}
           /> */}
+
           <Route 
             exact
             path="/appointments"
@@ -146,9 +148,11 @@ export default class App extends Component {
               />
             )}
           />
+
           {/* <Route 
             exact
             path="/profile"
+
 
             render = {(props) => (
               <Menubar
@@ -161,6 +165,7 @@ export default class App extends Component {
             exact
             path="/profile"
             render = {(props) => (
+
               <Profile 
                 user={this.state.user}
                 updateUser={this.updateUser}
@@ -168,6 +173,7 @@ export default class App extends Component {
             )}
           />
           {/* <Route
+
 
             exact
             path="/chats"
