@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react'
 import API from '../API';
 
@@ -43,10 +44,9 @@ export default class UserCard extends Component {
 		return (
 		  <div className="user-card-container">
 			<div className="user-image">
-			  <div
-				className="image"
-				style={{ backgroundImage: `url(${userPic})` }}
-			  ></div>
+			  <div className="image">
+				  <img src={userPic} alt="User Avatar"/>
+			  </div>
 			</div>
 			<div className="content">
 			  <div className="user-info">
