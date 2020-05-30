@@ -43,12 +43,18 @@
     border: 0.1rem solid #0b6283;
 }
 
-.Expert-Card .info button {
+.Expert-Card .info .btn-container {
+    display: flex;
+    padding: 2%;
+}
+
+.Expert-Card .info .btn-container .book-slot-btn {
     border: none;
     border-radius: 2rem;
     background-color: #0b6283;
     height: 3rem;
-    width: 80%;
+    flex-grow: 2;
+    margin-right: 0.5rem;
     color: white;
     font-size: 1.2  rem;
     cursor: pointer;
@@ -56,7 +62,15 @@
     transition-duration: 0.1s;
 }
 
-.Expert-Card .info button:hover {
+.Expert-Card .info .btn-container .fav-btn {
+    height: 3rem;
+    width: 3rem;
+    background: url('../public/fav-button.svg');
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.Expert-Card .info .book-slot-btn:hover, .Expert-Card .info .fav-btn:hover {
     transform: scale(1.05);
 }
 
