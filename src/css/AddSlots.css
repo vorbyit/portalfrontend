@@ -63,6 +63,7 @@
   .date .time{
     float: left;
   }
+
   .cards{
     margin:4px, 4px; 
     padding:4px;  
@@ -72,6 +73,7 @@
     overflow-x: auto; 
     text-align:justify; 
   }
+
   .card {
     border: solid;
     width: 200px;

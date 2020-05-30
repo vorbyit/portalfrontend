@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import "../css/ExpertsPage.css";
+
+
 import FilterBar from './FilterBar';
 import ExpertCard from "./ExpertCard";
 import API from "../API";
 
 import isEmpty from "../utils/isEmpty";
+
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 const responsive = {
@@ -28,6 +30,7 @@ const responsive = {
   }
 };
 
+
 class ExpertsPage extends Component {
   constructor(props) {
     super();
@@ -35,6 +38,11 @@ class ExpertsPage extends Component {
       experts: {},
       sortBy: "institution",
     };
+
+
+    this.setSort = this.setSort.bind(this);
+  }
+
 
     this.setSort = this.setSort.bind(this);
   }
@@ -75,6 +83,7 @@ class ExpertsPage extends Component {
         {sortParam === undefined ? null : (
           <div>
             {Object.keys(sortParam).map((param) => (
+
               <div >
                 <h3 className="param">{param}</h3><br/>
                 
@@ -103,6 +112,7 @@ class ExpertsPage extends Component {
                 ))}
                 </Carousel>
               
+
               </div>
             ))}
           </div>

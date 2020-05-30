@@ -13,6 +13,9 @@ class ExpertApptPage extends Component {
       unapproved: [],
       upcoming: [],
       past: [],
+
+      sortBy: "upcoming",
+
     };
     this.approveSlot = this.approveSlot.bind(this);
     this.rejectSlot = this.rejectSlot.bind(this);

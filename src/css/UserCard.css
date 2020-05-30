@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    height: 100vh;
+  }
+  
+  .user-card-container {
+    position: relative;
+    top: 50px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 350px;
+    border: 1px solid black;
+    border-radius: 21px;
+    text-align: center;
+    box-shadow: 0 5px 6px #000000;
+    margin-bottom: 50px;
+  }
+  
+  .user-image {
+    position: relative;
+    width: 100%;
+    background: url("../public/user_card_design.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .image {
+    position: relative;
+    z-index: 11;
+    top: 50px;
+    height: 200px;
+    width: 200px;
+    display: inline-block;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 10px solid #99ddda;
+  }
+  
+  .content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;  
+    margin-top: 54px;
+  }
+  
+  .user-info {
+    font-size: 1.25rem;
+    color: #707070;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .user-info div {
+    display: inline-block;
+  }
+  
+  .user-info div {
+    padding-bottom: 26px;
+  }
+  
+  .slot-info {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 26px;
+    font-size: 1.25em;
+  }
+  
+  .pending {
+    font-size: 1.25em;
+    margin-bottom: 26px;
+  }
+  
+  .btn-panel {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin-bottom: 26px;
+  }
+  
+  .btn {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 37px;
+    color: #F9EAEA;
+    font-size: 1.6rem;
+    height: 4.625rem;
+  }
+  
+  .btn-success {
+    width: 6em;
+    background-color: #0B6283;
+  }
+  
+  .btn-approve {
+    width: 6em;
+    background-color: rgb(25, 133, 25)
+  }
+  
+  .btn-reject {
+    width: 6em;
+    background-color: rgb(202, 42, 42);
+  }  

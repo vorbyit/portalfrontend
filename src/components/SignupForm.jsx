@@ -82,7 +82,7 @@ class SignupForm extends Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="cnfpassword">Conform Password</label>
+              <label htmlFor="cnfpassword">Confirm Password</label>
               <input
                 type="password"
                 name="cnfpassword"

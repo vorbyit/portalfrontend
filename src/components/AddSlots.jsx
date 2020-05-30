@@ -16,7 +16,9 @@ class AddSlots extends Component {
       dates: [],
       currDate: undefined,
       timeFrom: "00:00",
-      timeTo: "11:59"
+
+      timeTo: "11:59",
+
     };
     this.generateDates = this.generateDates.bind(this);
     this.setDate = this.setDate.bind(this);
@@ -54,10 +56,9 @@ class AddSlots extends Component {
       let s = new Date(d.setDate(d.getDate() + 1)).toISOString();
       s = s.slice(0, s.indexOf("T")).split("-");
       dates.push(
-        [s[1], s[2], s[0]]
-          .toLocaleString()
-          .replace(",", "/")
-          .replace(",", "/")
+
+        [s[1], s[2], s[0]].toLocaleString().replace(",", "/").replace(",", "/")
+
       );
     }
     this.setState({ dates, currDate: dates[0] });
@@ -72,8 +73,10 @@ class AddSlots extends Component {
 
     let { timeFrom, timeTo, currDate, slots } = this.state;
     slots[currDate] = {};
-    timeFrom = timeFrom.split(":").map(t => parseInt(t, 10));
-    timeTo = timeTo.split(":").map(t => parseInt(t, 10));
+
+    timeFrom = timeFrom.split(":").map((t) => parseInt(t, 10));
+    timeTo = timeTo.split(":").map((t) => parseInt(t, 10));
+
     const lowLim = timeFrom[0] * 2 + Math.round(timeFrom[1] / 60);
     const upLim = timeTo[0] * 2 + Math.round(timeTo[1] / 60);
     for (let i = lowLim; i < upLim; i++) {
@@ -114,6 +117,7 @@ class AddSlots extends Component {
   render() {
     return (
       <div>
+
         <div className="menu">
           <div className="txt">Thankyou for your support</div>
           {/* <ul>
@@ -177,6 +181,7 @@ class AddSlots extends Component {
         </div>
         <div>{/* Dates */}</div>
         <div></div>
+
 
       </div>
     );

@@ -83,6 +83,7 @@ export default class App extends Component {
               path="/signup/expert"
               render = {(props) => (
               <SignupExpert 
+
                 user={this.state.user}
                 updateUser={this.updateUser}
               />
@@ -131,24 +132,28 @@ export default class App extends Component {
               />
             )}
           /> */}
+
           <Route 
             exact
             path="/appointments"
             render = {(props) => (
-              // this.state.user===undefined || this.state.user.type==="EXPERT" ?
+              this.state.user===undefined || this.state.user.type==="EXPERT" ?
               <ExpertApptPage 
                 user={this.state.user}
                 updateUser={this.updateUser}
-              // /> :
-              // <UserApptPage 
-              //   user={this.state.user}
-              //   updateUser={this.updateUser}
+              /> :
+              <UserApptPage 
+                user={this.state.user}
+                updateUser={this.updateUser}
               />
             )}
           />
+
           {/* <Route 
             exact
             path="/profile"
+
+
             render = {(props) => (
               <Menubar
                 user={this.state.user}
@@ -160,13 +165,27 @@ export default class App extends Component {
             exact
             path="/profile"
             render = {(props) => (
+
               <Profile 
                 user={this.state.user}
                 updateUser={this.updateUser}
               />
             )}
           />
+          {/* <Route
+
+
+            exact
+            path="/chats"
+            render = {(props) => (
+              <MessagesPage 
+                user={this.state.user}
+                updateUser={this.updateUser}
+              />
+            )}
+          /> */}
         </Router>
+        {/* <ChatBox /> */}
         <Footer />
       </div>
     )

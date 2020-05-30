@@ -1,5 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react'
 import API from '../API';
+
+import "../css/UserCard.css"
 
 export default class UserCard extends Component {
 	constructor(props) {
@@ -36,24 +39,52 @@ export default class UserCard extends Component {
 	}
 
 	render() {
-		const d = Date()
+		const d = Date();
+		const userPic = this.props.appt.pic;
 		return (
-			<div>
-				<div>{this.props.appt.pic}</div>
+		  <div className="user-card-container">
+			<div className="user-image">
+			  <div className="image">
+				  <img src={userPic} alt="User Avatar"/>
+			  </div>
+			</div>
+			<div className="content">
+			  <div className="user-info">
 				<div>{this.props.appt.name}</div>
 				<div>{this.props.appt.education}</div>
-				<div>{this.props.slot.Date.split('T')[0]}</div>
+			  </div>
+			  <div className="slot-info">
+				<div>{this.props.slot.Date.split("T")[0]}</div>
 				<div>{this.props.slot.slot}</div>
-				{!this.props.slot.approved ? this.props.user.type !== "EXPERT" ? 
-					<div>APPROVAL PENDING</div>
-				: 
-					<div>
-						<button id={this.props.slot._id} onClick={this.onApprove}>Approve</button>
-						<button id={this.props.slot._id} onClick={this.onReject}>Reject</button>
-					</div> :
-					<button>Message</button>
-				}
+			  </div>
+			  {!this.props.slot.approved ? (
+				this.props.user.type !== "EXPERT" ? (
+				  <div>APPROVAL PENDING</div>
+				) : (
+				  <div className="btn-panel">
+					<button
+					  id={this.props.slot._id}
+					  className="btn btn-approve"
+					  onClick={this.onApprove}
+					>
+					  Approve
+					</button>
+					<button
+					  id={this.props.slot._id}
+					  className="btn btn-reject"
+					  onClick={this.onReject}
+					>
+					  Reject
+					</button>
+				  </div>
+				)
+			  ) : (
+				<div className="btn-panel">
+				  <button className="btn btn-success">Message</button>
+				</div>
+			  )}
 			</div>
-		)
-	}
+		  </div>
+		);
+	}	
 }
