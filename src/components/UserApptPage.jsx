@@ -54,6 +54,7 @@ class UserApptPage extends Component {
       return (
           <div>
             <FilterBar filters={['wishlist', 'upcoming', 'past']} sortBy={this.setSort}/>
+            
             <div>
               <div>
                 {this.state[this.state.sortBy].map((appts) => 

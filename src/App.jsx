@@ -100,16 +100,7 @@ export default class App extends Component {
                 />
               )}
             />
-            <Route 
-              path="/"
-              render = {(props) => (
-                this.state.user===undefined || this.state.user.type==="EXPERT" ? 
-                <Menubar
-                  user={this.state.user}
-                  updateUser={this.updateUser}
-                /> : null
-              )}
-            /> 
+            
           </Switch>
           <Route 
             exact
@@ -122,22 +113,24 @@ export default class App extends Component {
             )}
           />
 
-          {/* <Route 
+          <Route 
             exact
             path="/appointments"
             render = {(props) => (
-              <Menubar
-                user={this.state.user}
-                updateUser={this.updateUser}
-              />
+              this.state.user===undefined || this.state.user.type==="EXPERT" ?
+              null:<Menubar
+              user={this.state.user}
+              updateUser={this.updateUser}
+            />
             )}
-          /> */}
+          />
 
           <Route 
             exact
             path="/appointments"
             render = {(props) => (
               this.state.user===undefined || this.state.user.type==="EXPERT" ?
+              
               <ExpertApptPage 
                 user={this.state.user}
                 updateUser={this.updateUser}
@@ -149,18 +142,7 @@ export default class App extends Component {
             )}
           />
 
-          {/* <Route 
-            exact
-            path="/profile"
-
-
-            render = {(props) => (
-              <Menubar
-                user={this.state.user}
-                updateUser={this.updateUser}
-              />
-            )}
-          /> */}
+          
           <Route 
             exact
             path="/profile"

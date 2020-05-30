@@ -4,6 +4,8 @@ import isEmpty from "../utils/isEmpty";
 import "../css/expertCard.css";
 
 import defaultPic from "../public/defaultpic.png";
+import blueheart from "../public/Group-169.png";
+
 
 export default class ExpertCard extends Component {
   constructor(props) {
