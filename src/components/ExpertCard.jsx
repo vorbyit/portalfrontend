@@ -82,7 +82,10 @@ export default class ExpertCard extends Component {
             <h3>{expert.name}</h3>
             <h3>{expert.institution}</h3>
             <h3>{expert.branch}</h3>
-            <button onClick={this.handleSubmit}>BOOK SLOT</button>
+            <div className="btn-container">
+            <button className="book-slot-btn" onClick={this.handleSubmit}>BOOK SLOT</button>
+            <div className="fav-btn"></div>
+            </div>
           </div>
         </div>
         {!this.state.showDetails ? null : (
