@@ -16,6 +16,8 @@ class Profile extends Component {
       username: "",
       email: "",
       mobile: "",
+      call_count:0,
+      amount:0
     };
   }
 
@@ -32,7 +34,8 @@ class Profile extends Component {
         }
       }
       const { data } = await API.get(`/expert/profile`);
-      this.setState( data );
+      this.setState( data.expert );
+      this.setState({call_count:data.expert_data.call_count,amount:data.expert_data.amount})
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -67,6 +70,14 @@ class Profile extends Component {
             <br />
             <div>
               Expertise:<span className="box">{this.state.mobile}</span>
+            </div>
+            <br />
+            <div>
+              Call count:<span className="box">{this.state.call_count}</span>
+            </div>
+            <br />
+            <div>
+              Amount earned:<span className="box">{this.state.amount}</span>
             </div>
             <br />
             {this.state.type !== "EXPERT" ? null : (
