@@ -42,10 +42,6 @@ class ExpertsPage extends Component {
 
     this.setSort = this.setSort.bind(this);
   }
-
-
-    this.setSort = this.setSort.bind(this);
-  }
   
   async componentDidMount() {
     const experts = await API.get("/expert/getexperts");

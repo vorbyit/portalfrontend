@@ -12,18 +12,20 @@ export default class ExpertCard extends Component {
     this.state = {
       currDate: isEmpty(expert.slots) ? null : Object.keys(expert.slots)[0],
       bookSlot: undefined,
-      showDetails: false
+      showDetails: false,
+      faved: false,
     };
     this.setDate = this.setDate.bind(this);
     this.bookSlot = this.bookSlot.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.minimizeCard = this.minimizeCard.bind(this);
+    this.handleFav = this.handleFav.bind(this);
   }
 
   setDate(evt) {
     const date = evt.target.id;
     this.setState({
-      currDate: date
+      currDate: date,
     });
   }
 
@@ -33,14 +35,14 @@ export default class ExpertCard extends Component {
       console.log("BOOKED");
     } else {
       this.setState({
-        bookSlot: slot
+        bookSlot: slot,
       });
     }
   }
 
   minimizeCard() {
     this.setState({
-      showDetails: false
+      showDetails: false,
     });
   }
 
@@ -49,7 +51,7 @@ export default class ExpertCard extends Component {
     console.log(this.state);
     if (this.state.showDetails === false) {
       this.setState({
-        showDetails: true
+        showDetails: true,
       });
     } else if (this.state.bookSlot === undefined) {
       console.log("Select SLOT");
@@ -57,10 +59,15 @@ export default class ExpertCard extends Component {
       const slot = await API.post("/slots/bookslot", {
         date: this.state.currDate,
         slot: this.state.bookSlot,
-        expertId: this.props.expert._id
+        expertId: this.props.expert._id,
       });
       console.log(slot);
     }
+  }
+
+  handleFav(evt) {
+    evt.preventDefault();
+    this.setState({ faved: !this.state.faved });
   }
 
   render() {
@@ -83,8 +90,33 @@ export default class ExpertCard extends Component {
             <h3>{expert.institution}</h3>
             <h3>{expert.branch}</h3>
             <div className="btn-container">
-            <button className="book-slot-btn" onClick={this.handleSubmit}>BOOK SLOT</button>
-            <div className="fav-btn"></div>
+              <button className="book-slot-btn" onClick={this.handleSubmit}>
+                BOOK SLOT
+              </button>
+              <button className="fav-btn" onClick={this.handleFav}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 65.54 65.81"
+                >
+                  <title>Fav Button</title>
+                  <g id="Layer_2" data-name="Layer 2">
+                    <g id="Layer_1-2" data-name="Layer 1">
+                      <path
+                        id="Path_340"
+                        data-name="Path 340"
+                        className={!this.state.faved ? "cls-1-uncheck" : "cls-1-check"}
+                        d="M12.75,6.57c14.33-10.9,34.91-7.93,46,6.62s8.41,35.17-5.91,46.06-34.91,7.92-46-6.62S-1.58,17.46,12.75,6.57Z"
+                      />
+                      <path
+                        id="Icon_awesome-heart"
+                        data-name="Icon awesome-heart"
+                        className="cls-2"
+                        d="M45,21.81a8,8,0,0,0-11,.62L32.85,23.6l-1.14-1.21a8,8,0,0,0-10.94-1A8.43,8.43,0,0,0,19.7,33.28c.09.11.18.22.28.32L31.14,45.53a1.85,1.85,0,0,0,2.6.1l.06-.06L45.36,34a8.42,8.42,0,0,0,0-11.92Z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </button>
             </div>
           </div>
         </div>
@@ -124,14 +156,16 @@ export default class ExpertCard extends Component {
               <div className="slots">
                 <h2>Slots Available</h2>
                 <div className="slots=input">
-                  {Object.keys(expert.slots[this.state.currDate]).map(slot => (
-                    <label id={slot} onClick={this.bookSlot}>
-                      {slot}
-                    </label>
-                  ))}
+                  {Object.keys(expert.slots[this.state.currDate]).map(
+                    (slot) => (
+                      <label id={slot} onClick={this.bookSlot}>
+                        {slot}
+                      </label>
+                    )
+                  )}
                 </div>
                 <div className="date-input">
-                  {Object.keys(expert.slots).map(date => (
+                  {Object.keys(expert.slots).map((date) => (
                     <label id={date} onClick={this.setDate}>
                       {date}
                     </label>
