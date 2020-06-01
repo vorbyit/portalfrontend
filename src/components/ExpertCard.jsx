@@ -65,9 +65,13 @@ export default class ExpertCard extends Component {
     }
   }
 
-  handleFav(evt) {
+  async handleFav(evt) {
     evt.preventDefault();
     this.setState({ faved: !this.state.faved });
+    const expert = await API.post("/expert/wishlist", {
+      expertId: this.props.expert._id
+    });
+    console.log(expert);
   }
 
   render() {
