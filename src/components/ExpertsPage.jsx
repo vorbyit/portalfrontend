@@ -6,6 +6,8 @@ import FilterBar from './FilterBar';
 import ExpertCard from "./ExpertCard";
 import API from "../API";
 
+import "../css/carousel-styles.css"
+
 import isEmpty from "../utils/isEmpty";
 
 import Carousel from 'react-multi-carousel';
@@ -18,7 +20,7 @@ const responsive = {
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 2
+    items: 3
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
