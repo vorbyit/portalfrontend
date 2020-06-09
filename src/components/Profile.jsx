@@ -18,7 +18,11 @@ class Profile extends Component {
       email: "",
       mobile: "",
       call_count:0,
-      amount:0
+      amount:0,
+      name_disabled : true,
+      username_disabled : true,
+      email_disabled : true,
+      mobile_disabled : true
     };
   }
 
@@ -43,6 +47,36 @@ class Profile extends Component {
     }
   }
 
+  handlemouseover(e) {
+     console.log(e.target.name);
+     if(e.target.name=="name")
+     this.setState({name_disabled:false});
+     else if(e.target.name=="username")
+     this.setState({username_disabled:false});
+     else if(e.target.name=="email")
+     this.setState({email_disabled:false});
+     else if(e.target.name=="mobile")
+     this.setState({mobile_disabled:false});
+
+  }
+
+  async handleChange(e) {
+      console.log(e.target.value);
+      var param = e.target.name;
+      var var1 = e.target.value
+      
+      try {
+        const { data } = await API.post('expert/edit', {
+          property : param , value : var1
+        });
+        console.log(data);
+        this.setState({name:data.name,username:data.username,email:data.email,mobile:data.mobile});
+      } catch (error) {
+        console.log(error);
+      }
+      
+  }
+
   render() {
     return (
       <div>
@@ -59,19 +93,27 @@ class Profile extends Component {
           </div>
           <div className="details1">
             <div>
-              Name: <span className="box">{this.state.name}</span>
+              Name: <input type="text" name="name" placeholder={this.state.name} disabled = {this.state.name_disabled} className="box" onMouseOver={(e)=>{
+                this.handlemouseover(e)}} onChange = {(e) => {
+                  this.handleChange(e)}}/>
             </div>
             <br />
             <div>
-              College:<span className="box">{this.state.username}</span>
+              College:<input type="text" name="username" placeholder={this.state.username} disabled = {this.state.username_disabled} className="box" onMouseOver={(e)=>{
+                this.handlemouseover(e)}} onChange = {(e) => {
+                  this.handleChange(e)}}/>
             </div>
             <br />
             <div>
-              Email:<span className="box">{this.state.email}</span>
+              Email:<input type="text" name="email" placeholder={this.state.email} disabled = {this.state.email_disabled} className="box" onMouseOver={(e)=>{
+                this.handlemouseover(e)}} onChange = {(e) => {
+                  this.handleChange(e)}}/>
             </div>
             <br />
             <div>
-              Expertise:<span className="box">{this.state.mobile}</span>
+              Expertise:<input type="text" name="mobile" placeholder={this.state.mobile} disabled = {this.state.mobile_disabled} className="box" onMouseOver={(e)=>{
+                this.handlemouseover(e)}} onChange = {(e) => {
+                  this.handleChange(e)}}/>
             </div>
             <br />
             
