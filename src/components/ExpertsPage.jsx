@@ -44,6 +44,7 @@ class ExpertsPage extends Component {
 
     this.setSort = this.setSort.bind(this);
   }
+
   
   async componentDidMount() {
     const experts = await API.get("/expert/getexperts");
@@ -92,8 +93,7 @@ class ExpertsPage extends Component {
                 responsive={responsive}
                 ssr={true} // means to render carousel on server-side.
                 infinite={true}
-                autoPlay={this.props.deviceType !== "mobile" ? true : false}
-                autoPlaySpeed={1000}
+      
                 keyBoardControl={true}
                 customTransition="all .5"
                 transitionDuration={500}
