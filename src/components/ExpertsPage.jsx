@@ -6,6 +6,8 @@ import FilterBar from './FilterBar';
 import ExpertCard from "./ExpertCard";
 import API from "../API";
 
+import "../css/carousel-styles.css"
+
 import isEmpty from "../utils/isEmpty";
 
 import Carousel from 'react-multi-carousel';
@@ -18,7 +20,7 @@ const responsive = {
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 2
+    items: 3
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
@@ -43,8 +45,6 @@ class ExpertsPage extends Component {
     this.setSort = this.setSort.bind(this);
   }
 
-
-  
   
   async componentDidMount() {
     const experts = await API.get("/expert/getexperts");
@@ -93,8 +93,7 @@ class ExpertsPage extends Component {
                 responsive={responsive}
                 ssr={true} // means to render carousel on server-side.
                 infinite={true}
-                autoPlay={this.props.deviceType !== "mobile" ? true : false}
-                autoPlaySpeed={1000}
+      
                 keyBoardControl={true}
                 customTransition="all .5"
                 transitionDuration={500}
