@@ -5,6 +5,7 @@ import "../css/Profile.css";
 import defaultPic from "../public/defaultpic.png";
 import isEmpty from "../utils/isEmpty";
 import getCurrentUser from "../utils/getCurrentUser";
+import Chart from "react-google-charts";
 
 class Profile extends Component {
   constructor(props) {
@@ -16,6 +17,8 @@ class Profile extends Component {
       username: "",
       email: "",
       mobile: "",
+      call_count:0,
+      amount:0
     };
   }
 
@@ -32,7 +35,8 @@ class Profile extends Component {
         }
       }
       const { data } = await API.get(`/expert/profile`);
-      this.setState( data );
+      this.setState( data.expert );
+      this.setState({call_count:data.expert_data.call_count,amount:data.expert_data.amount})
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -41,6 +45,7 @@ class Profile extends Component {
 
   render() {
     return (
+      <div>
       <div>
         <div className="profile">
           <div className="pic">
@@ -69,6 +74,7 @@ class Profile extends Component {
               Expertise:<span className="box">{this.state.mobile}</span>
             </div>
             <br />
+            
             {this.state.type !== "EXPERT" ? null : (
               <div>
                 <div>{this.state.institute}</div>
@@ -84,6 +90,56 @@ class Profile extends Component {
             )}
           </div>
         </div>
+
+      </div>
+      <div className="details2">
+        <div>
+        <div className="div1">
+         No. of students guided
+       </div>
+
+       <div className = "div2">
+       {this.state.call_count}
+       </div>
+       </div>
+
+       <div>
+       <div className="div1">
+         Amount Earned
+       </div>
+       <div className = "div2">
+       {this.state.amount}
+       </div>
+       </div>
+       
+      </div>
+
+
+       <div className="chart">
+        
+       <Chart
+  width={'500px'}
+  height={'300px'}
+  chartType="Bar"
+  loader={<div>Loading Chart</div>}
+  data={[
+    ['Week', 'Amount'],
+    ['Week 1', 1000],
+    ['Week 2', 600],
+    ['Week 3', 660],
+    ['Week 4', 250],
+  ]}
+  options={{
+      hAxis: { title: 'Week', minValue: 1, maxValue: 7 },
+      vAxis: { title: 'Amount', minValue: 0, maxValue: 1000 },
+      legend: 'none',
+    
+  }}
+  // For tests
+  rootProps={{ 'data-testid': '2' }}
+/>
+
+       </div>
 
       </div>
     );
