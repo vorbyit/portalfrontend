@@ -5,10 +5,6 @@
   width: 85%;
 }
 
-.FilterBar .logo1{
-  /* float:left; */
-}
-
 .FilterBar ul {
     list-style-type: none;
     margin: 0;
@@ -23,10 +19,20 @@
 .FilterBar li {
     padding: 0.5rem 0;
     margin-left: -9%;
+    display: inline-block;
+}
 
+.FilterBar li:focus {
+  border-bottom: 2px solid blue;
+  outline: none;
+}
+
+.FilterBar li img {
+  position: relative;
+  top: 0.30rem;
 }
 
 .FilterBar li:hover {
+  opacity: 50%;
   cursor: pointer;
 }
-

@@ -7,6 +7,8 @@ import getCurrentUser from "../utils/getCurrentUser";
 
 import "../css/AddSlots.css";
 
+let selectedDate = null;
+
 class AddSlots extends Component {
   constructor() {
     super();
@@ -14,11 +16,9 @@ class AddSlots extends Component {
       bookedSlots: {},
       slots: {},
       dates: [],
-      currDate: undefined,
+      currDate: null,
       timeFrom: "00:00",
-
       timeTo: "11:59",
-
     };
     this.generateDates = this.generateDates.bind(this);
     this.setDate = this.setDate.bind(this);
@@ -56,16 +56,20 @@ class AddSlots extends Component {
       let s = new Date(d.setDate(d.getDate() + 1)).toISOString();
       s = s.slice(0, s.indexOf("T")).split("-");
       dates.push(
-
         [s[1], s[2], s[0]].toLocaleString().replace(",", "/").replace(",", "/")
-
       );
     }
-    this.setState({ dates, currDate: dates[0] });
+    this.setState({ dates });
   }
 
   setDate(evt) {
+    evt.preventDefault();
+    if (this.state.currDate) {
+      selectedDate.classList.remove("card-selected");
+    }
     this.setState({ currDate: evt.target.id });
+    evt.target.classList.add("card-selected");
+    selectedDate = evt.target;
   }
 
   async handleChange(evt) {
@@ -117,20 +121,19 @@ class AddSlots extends Component {
   render() {
     return (
       <div>
-
         <div className="menu">
-          <div className="txt">Thankyou for your support</div>
+          <div className="txt">Thank you for your support</div>
           {/* <ul>
           <li><a  className="a active1" href="#apptments" >Appointments</a></li>
           <li><a className="a" href="../components/Slots" target="Frame">Time Slots</a></li>
           <li><a className="a" href="#contact">Messaging</a></li>
           <li><a className="a" href="#about">Your Profile </a></li>
-        </ul> */}
+          </ul> */}
           <div className="frame" name="Frame">
             <div className="date">
               <div className="txt1">Date:</div> <br />
               <div className="cards">
-                {this.state.dates.map(date => (
+                {this.state.dates.map((date) => (
                   <div className="card" id={date} onClick={this.setDate}>
                     {date}
                   </div>
@@ -162,7 +165,7 @@ class AddSlots extends Component {
                 isEmpty(this.state.slots[this.state.currDate]) ? null : (
                   <div>
                     {Object.keys(this.state.slots[this.state.currDate]).map(
-                      slot => (
+                      (slot) => (
                         <div>
                           {" "}
                           {slot}{" "}
@@ -175,14 +178,14 @@ class AddSlots extends Component {
                   </div>
                 )}
               </div>
-              <button onClick={this.handleSubmit} type="submit">ADD SLOTS</button>
+              <button onClick={this.handleSubmit} type="submit">
+                ADD SLOTS
+              </button>
             </div>
           </div>
         </div>
         <div>{/* Dates */}</div>
         <div></div>
-
-
       </div>
     );
   }
