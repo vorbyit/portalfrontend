@@ -119,10 +119,12 @@ export default class App extends Component {
             path="/appointments"
             render = {(props) => (
               this.state.user===undefined || this.state.user.type==="EXPERT" ?
-              null:<Menubar
+
+              <Menubar
               user={this.state.user}
               updateUser={this.updateUser}
-            />
+            />:null
+
             )}
           />
 
@@ -135,13 +137,25 @@ export default class App extends Component {
               <ExpertApptPage 
                 user={this.state.user}
                 updateUser={this.updateUser}
-              /> :
+              /> :null
+              
+            )}
+          />
+
+          <Route 
+            exact
+            path="/advisors"
+            render = {(props) => (
+              this.state.user===undefined || this.state.user.type==="USER" ?
+              
               <UserApptPage 
                 user={this.state.user}
                 updateUser={this.updateUser}
-              />
+              /> :null
+              
             )}
           />
+
 
           
           <Route 

@@ -50,7 +50,7 @@ class UserApptPage extends Component {
   }
 
   render() {
-    if(this.state.loaded)
+    // if(this.state.loaded)
       return (
           <div>
             <FilterBar filters={['wishlist', 'upcoming', 'past']} sortBy={this.setSort}/>
@@ -80,8 +80,8 @@ class UserApptPage extends Component {
             </div> */}
         </div>
       )
-    else
-      return(null)
+    // else
+    //   return(null)
   }
 }
 
