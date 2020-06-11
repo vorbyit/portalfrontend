@@ -13,7 +13,7 @@ import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 import Footer from './components/Footer';
 import Menubar from './components/Menubar';
-import Menubar2 from './components/Menubar2';
+
 import Messaging from './components/Messaging';
 
 import './App.css';
