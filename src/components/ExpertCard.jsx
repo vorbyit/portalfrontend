@@ -77,9 +77,8 @@ export default class ExpertCard extends Component {
   }
 
   render() {
-    const { expert } = this.props;
-
-    return (
+    const { expert } = this.props;  
+        return (
       <div
         className={
           !this.state.showDetails ? "Expert-Card" : "Expert-Card EC-details"
