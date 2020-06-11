@@ -14,6 +14,7 @@ import Profile from './components/Profile';
 import Footer from './components/Footer';
 import Menubar from './components/Menubar';
 import Menubar2 from './components/Menubar2';
+import Messaging from './components/Messaging';
 
 import './App.css';
 import ExpertApptCard from './components/ExpertApptCard';
@@ -154,18 +155,18 @@ export default class App extends Component {
               />
             )}
           />
-          {/* <Route
+          <Route
 
 
             exact
             path="/chats"
             render = {(props) => (
-              <MessagesPage 
+              <Messaging 
                 user={this.state.user}
                 updateUser={this.updateUser}
               />
             )}
-          /> */}
+          /> 
         </Router>
         {/* <ChatBox /> */}
         <Footer />
