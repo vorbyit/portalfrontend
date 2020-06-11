@@ -38,7 +38,7 @@ export default class Messaging extends Component {
   render() {
     return (
       <div>
-        <div>
+       <div>
           {this.state.chats.map((chat, i) => (
             <div id={i}>
               {this.props.user.type === "Expert" ? (
