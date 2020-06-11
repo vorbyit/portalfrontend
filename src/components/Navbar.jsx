@@ -79,12 +79,12 @@ class Navbar extends Component {
                   <NavLink className="nav-item" to="/profile" activeClassName="active">
                     Your Profile
                   </NavLink>
-                  <NavLink className="nav-item" to="/appointments" activeClassName="active">
+                  
                     {this.props.user !== undefined && this.props.user.type === "EXPERT" ? 
-                      <span>Appointments</span> : 
-                      <span> Your Advisors</span> 
+                      <NavLink className="nav-item" to="/appointments" activeClassName="active"><span>Appointments</span></NavLink> : 
+                      <NavLink className="nav-item" to="/advisors" activeClassName="active"><span> Your Advisors</span> </NavLink>
                     }
-                  </NavLink>
+                  
                   <NavLink className="nav-item" to="/chats" activeClassName="active">
                     Message
                   </NavLink>
