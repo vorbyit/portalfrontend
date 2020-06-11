@@ -18,21 +18,17 @@
   
 .FilterBar li {
     padding: 0.5rem 0;
+    border-bottom: 2px solid white;
     margin-left: -9%;
     display: inline-block;
 }
 
-.FilterBar li:focus {
-  border-bottom: 2px solid blue;
-  outline: none;
+.FilterBar li+li:hover, .FilterBar .filter-selected {
+  border-bottom: 2px solid #0b6283;
+  cursor: pointer;
 }
 
 .FilterBar li img {
   position: relative;
   top: 0.30rem;
-}
-
-.FilterBar li:hover {
-  opacity: 50%;
-  cursor: pointer;
 }
