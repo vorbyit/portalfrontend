@@ -118,10 +118,12 @@ export default class App extends Component {
             path="/appointments"
             render = {(props) => (
               this.state.user===undefined || this.state.user.type==="EXPERT" ?
+
               <Menubar
               user={this.state.user}
               updateUser={this.updateUser}
             />:null
+
             )}
           />
 
@@ -138,6 +140,7 @@ export default class App extends Component {
               
             )}
           />
+
           <Route 
             exact
             path="/advisors"
@@ -151,6 +154,7 @@ export default class App extends Component {
               
             )}
           />
+
 
           
           <Route 
