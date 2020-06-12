@@ -13,6 +13,7 @@
     "axios": "^0.19.2",
     "mustache": "^4.0.1",
     "react": "^16.13.1",
+    "react-chatbox-component": "0.0.5",
     "react-dom": "^16.13.1",
     "react-google-charts": "^3.0.15",
     "react-multi-carousel": "^2.5.5",
