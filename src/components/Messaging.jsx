@@ -3,8 +3,10 @@ import API from "../API";
 
 import getCurrentUser from "../utils/getCurrentUser";
 import isEmpty from "../utils/isEmpty";
+
 import 'react-chatbox-component/dist/style.css';
 import {ChatBox} from 'react-chatbox-component';
+
 
 
 export default class Messaging extends Component {
@@ -19,6 +21,7 @@ export default class Messaging extends Component {
   }
 
   async componentDidMount() {
+
 
 
    this.state.messages = [
@@ -79,6 +82,7 @@ export default class Messaging extends Component {
     return (
       <div>
 
+
      <ChatBox
       messages={this.state.messages}
       user={this.state.user}
@@ -86,6 +90,7 @@ export default class Messaging extends Component {
     />
 
        {/*<div>
+
           {this.state.chats.map((chat, i) => (
             <div id={i}>
               {this.props.user.type === "Expert" ? (
