@@ -160,13 +160,13 @@ class AddSlots extends Component {
                   id="to"
                 />
               </div>
-              <div className="table">
+              <div className="table-container">
                 {isEmpty(this.state.slots) ||
                 isEmpty(this.state.slots[this.state.currDate]) ? null : (
-                  <div>
+                  <div className="table">
                     {Object.keys(this.state.slots[this.state.currDate]).map(
                       (slot) => (
-                        <div>
+                        <div className="time-slots">
                           {" "}
                           {slot}{" "}
                           <span id={slot} onClick={this.deleteSlot}>
