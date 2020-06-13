@@ -9,11 +9,11 @@
     background-color: #fff;
     box-shadow: 0px 0px 6px #88888830;
       /* width: 150%; */
-      /* margin-left: 344px; */
-      /* margin-top: 22px;
+/* margin-left: 344px; */
+/* margin-top: 22px;
   } */
-   
-  /* li {
+
+/* li {
     float: left;
     padding: 0px 85px;
   
@@ -26,7 +26,7 @@
     padding: 14px 16px;
     text-decoration: none;
   } */
-  
+
 /* .a:hover{
       border-bottom: 3px solid;
     border-bottom-color:#00e3ff;
@@ -38,48 +38,57 @@
     margin-left: 87px;
     width: 85%;
   } */
-  .frame{
-    width: 100%;
-      height: 400px;
-     
-     
-  }
-  .frame2{
-      width: 100%;
-      height: 400px;
-      margin-left: 95px;
-      /* display: none; */
-  }
-.active2:active .frame2{
+.frame {
+  width: 100%;
+  height: 400px;
+}
+
+.frame2 {
+  width: 100%;
+  height: 400px;
+  margin-left: 95px;
+  /* display: none; */
+}
+
+.active2:active .frame2 {
   display: block;
 }
-  .date{
-    font-size: 20px;
-    padding-top: 46px;
-    float: left;
+
+.date {
+  font-size: 20px;
+  padding-top: 46px;
+  float: left;
 }
-  
 
-  .date .time{
-    float: left;
-  }
-
-  .cards{
-    margin:4px, 4px; 
-    padding:4px;  
-    width: 249px;
-    height: 168px;
-    overflow-x: hidden; 
-    overflow-x: auto; 
-    text-align:justify; 
-  }
-
-  .card {
-    border: solid;
-    width: 200px;
-    height: 54px;
-    border-width: thin;
+.date .time {
+  float: left;
 }
+
+.cards {
+  margin: 4px, 4px;
+  padding: 4px;
+  width: 249px;
+  height: 168px;
+  overflow-x: hidden;
+  overflow-x: auto;
+  text-align: justify;
+}
+
+.card {
+  width: 200px;
+  height: 54px;
+}
+
+.card-selected {
+  background-color: #0b6283;
+}
+
+.card:hover {
+  border-style: solid;
+  border-color: #707070;
+  border-width: thin;  
+}
+
 .card1 {
   border: solid;
   width: 200px;
@@ -87,10 +96,12 @@
   margin-top: 20px;
   border-width: thin;
 }
-.b:hover{
+
+.b:hover {
   background-color: #0b6283;
   color: white;
 }
+
 .card2 {
   border: solid;
   width: 200px;
@@ -98,22 +109,35 @@
   margin-top: 20px;
   border-width: thin;
 }
-.b{
+
+.b {
   text-align: center;
 }
- .cards{
+
+.cards {
   float: right;
- } 
- .time{
-   padding-top: 46px;
-   font-size: 20px;
-   float: left;
-   margin-left: 108px;
- }
- .table{
+}
+
+.time {
+  padding-top: 46px;
+  font-size: 20px;
+  float: left;
+  margin-left: 108px;
+}
+
+.table-container {
   border: solid;
   border-width: thin;
   width: 229%;
   height: 220px;
   margin-top: 17px;
- }
+}
+
+.table-container .table {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(3, 33%);
+  grid-auto-columns: repeat(auto-fill, 50px);
+  width: 20%;
+}
