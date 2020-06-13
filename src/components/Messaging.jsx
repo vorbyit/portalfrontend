@@ -7,6 +7,11 @@ import 'react-chatbox-component/dist/style.css';
 import {ChatBox} from 'react-chatbox-component';
 
 
+import 'react-chatbox-component/dist/style.css';
+import {ChatBox} from 'react-chatbox-component';
+
+
+
 export default class Messaging extends Component {
   constructor() {
     super();

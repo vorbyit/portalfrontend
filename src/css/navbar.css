@@ -11,24 +11,12 @@
   z-index: 1;
 }
 
-#navbar button{
-  background-color: #0b6283;
-  height: 89px;
-    /* width: 11%; */
-    border-color: #0b628300;
-    box-shadow: none;
-    /* margin-right: -33px; */
-    margin-right: 28px;
-    margin-top: -12px;
-}
-
 #navbar .logo img {
   height: 4.5rem;
   width: auto;
   margin: 1.5rem 1rem 1rem 2rem;
   padding: 1rem;
 }
-
 
 #navbar .list-wrap {
   display: flex;
@@ -38,7 +26,7 @@
 #navbar .list-wrap .nav-item {
   display: block;
   color: #fff;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: bold;
   font-size: 1.1rem;
   padding: 2rem;
@@ -49,42 +37,42 @@
   color: #21d5cf;
 }
 
-#navbar .fa{
-  background-color:#0b6283 ;
-    height: 86px;
-    width: 11%;
-    border-color: #0b6283;
-    box-shadow: none;
-    margin-right: -3px;
-    color: white;
-    font-size: 1.75rem;
-    margin-right: 17px;
-    padding-left: 21px;
-    padding-top: 20px;
-
+#navbar .user-icon-container {
+  margin-right: 28px;
+  margin-top: -12px;
 }
-#navbar .btn:hover .fa{
+
+#navbar .fa {  
+  height: 86px;
+  box-shadow: none;
+  margin-right: -3px;
+  color: white;
+  font-size: 1.75rem;
+  margin-right: 17px;
+  padding-left: 21px;
+  padding-top: 25px;
+}
+
+#navbar .user-icon-container:hover {
   background-color: white;
+}
+
+#navbar .user-icon-container:hover path {
   color: #0b6283;
 }
 
-#navbar .btn:hover{
-  background-color: white;
-}
-
-#navbar .btn:hover .dropdown-content{
+#navbar .user-icon-container:hover .dropdown-content {
   display: block;
 }
 
 #navbar .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: white;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  margin-left: -88px;
-  margin-top: 1px;
+  margin-left: -96px;
 }
 
 #navbar .dropdown-content .nav-item {

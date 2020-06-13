@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,400&display=swap");
 
 .Expert-Card {
-  width: max-content;
+  width: initial;
   margin: 5% 10%;
   border-radius: 1rem;
   display: flex;
@@ -18,7 +18,7 @@
 }
 
 .Expert-Card:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   box-shadow: 0 0 1.5rem #00000d;
 }
 
@@ -37,7 +37,6 @@
 
 .Expert-Card .info img {
   border-radius: 50%;
-  width: 80%;
   border: 0.1rem solid #0b6283;
 }
 
