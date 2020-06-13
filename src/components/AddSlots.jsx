@@ -134,7 +134,7 @@ class AddSlots extends Component {
               <div className="txt1">Date:</div> <br />
               <div className="cards">
                 {this.state.dates.map((date) => (
-                  <div className="card" id={date} onClick={this.setDate}>
+                  <div className="date-card" id={date} onClick={this.setDate}>
                     {date}
                   </div>
                 ))}
