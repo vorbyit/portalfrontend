@@ -120,7 +120,7 @@ class AddSlots extends Component {
 
   render() {
     return (
-      <div>
+      <div className="add-slots-container">
         <div className="menu">
           <div className="txt">Thank you for your support</div>
           {/* <ul>
