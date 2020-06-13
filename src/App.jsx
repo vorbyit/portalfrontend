@@ -13,7 +13,8 @@ import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 import Footer from './components/Footer';
 import Menubar from './components/Menubar';
-import Menubar2 from './components/Menubar2';
+
+import Messaging from './components/Messaging';
 
 import './App.css';
 import ExpertApptCard from './components/ExpertApptCard';
@@ -118,10 +119,12 @@ export default class App extends Component {
             path="/appointments"
             render = {(props) => (
               this.state.user===undefined || this.state.user.type==="EXPERT" ?
-              null:<Menubar
+
+              <Menubar
               user={this.state.user}
               updateUser={this.updateUser}
-            />
+            />:null
+
             )}
           />
 
@@ -134,13 +137,25 @@ export default class App extends Component {
               <ExpertApptPage 
                 user={this.state.user}
                 updateUser={this.updateUser}
-              /> :
+              /> :null
+              
+            )}
+          />
+
+          <Route 
+            exact
+            path="/advisors"
+            render = {(props) => (
+              this.state.user===undefined || this.state.user.type==="USER" ?
+              
               <UserApptPage 
                 user={this.state.user}
                 updateUser={this.updateUser}
-              />
+              /> :null
+              
             )}
           />
+
 
           
           <Route 
@@ -154,18 +169,18 @@ export default class App extends Component {
               />
             )}
           />
-          {/* <Route
+          <Route
 
 
             exact
             path="/chats"
             render = {(props) => (
-              <MessagesPage 
+              <Messaging 
                 user={this.state.user}
                 updateUser={this.updateUser}
               />
             )}
-          /> */}
+          /> 
         </Router>
         {/* <ChatBox /> */}
         <Footer />
