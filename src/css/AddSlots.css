@@ -1,3 +1,4 @@
+
 .table{
   
     display: grid;
@@ -8,26 +9,17 @@
 .frame {
   width: 100%;
   height: 400px;
+
 }
 
-.frame2 {
+.frame {
   width: 100%;
   height: 400px;
-  margin-left: 95px;
-  /* display: none; */
-}
-
-.active2:active .frame2 {
-  display: block;
 }
 
 .date {
   font-size: 20px;
   padding-top: 46px;
-  float: left;
-}
-
-.date .time {
   float: left;
 }
 
@@ -41,48 +33,19 @@
   text-align: justify;
 }
 
-.card {
+.date-card {
   width: 200px;
   height: 54px;
+}
+
+.date-card:hover {
+  border-style: solid;
+  border-color: #707070;
+  border-width: thin;
 }
 
 .card-selected {
   background-color: #0b6283;
-}
-
-.card:hover {
-  border-style: solid;
-  border-color: #707070;
-  border-width: thin;  
-}
-
-.card1 {
-  border: solid;
-  width: 200px;
-  height: 54px;
-  margin-top: 20px;
-  border-width: thin;
-}
-
-.b:hover {
-  background-color: #0b6283;
-  color: white;
-}
-
-.card2 {
-  border: solid;
-  width: 200px;
-  height: 54px;
-  margin-top: 20px;
-  border-width: thin;
-}
-
-.b {
-  text-align: center;
-}
-
-.cards {
-  float: right;
 }
 
 .time {

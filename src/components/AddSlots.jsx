@@ -120,7 +120,7 @@ class AddSlots extends Component {
 
   render() {
     return (
-      <div>
+      <div className="add-slots-container">
         <div className="menu">
           <div className="txt">Thank you for your support</div>
           {/* <ul>
@@ -134,7 +134,7 @@ class AddSlots extends Component {
               <div className="txt1">Date:</div> <br />
               <div className="cards">
                 {this.state.dates.map((date) => (
-                  <div className="card" id={date} onClick={this.setDate}>
+                  <div className="date-card" id={date} onClick={this.setDate}>
                     {date}
                   </div>
                 ))}

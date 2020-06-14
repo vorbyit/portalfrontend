@@ -6,6 +6,7 @@ import isEmpty from "../utils/isEmpty";
 
 import 'react-chatbox-component/dist/style.css';
 import {ChatBox} from 'react-chatbox-component';
+import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -23,8 +24,32 @@ export default class Messaging extends Component {
   async componentDidMount() {
 
 
+    try {
+      if (isEmpty(this.props.user)) {
+        const currentUser = await getCurrentUser();
+        this.props.updateUser(currentUser);
+        console.log(this.props);
+        if (isEmpty(currentUser)) {
+          console.log("Not Logged In!");
+          this.props.history.push("/login");
+        }
+      }
 
-   this.state.messages = [
+     
+    } catch (error) {
+      console.log(error);
+    }
+
+    const { data } = await API.post("chats",{
+      sender : this.props.user._id,
+      receiver : "5e6d030b88a29b5268906fe6",
+      message : ""
+    });
+    console.log(data);
+
+    this.setState({messages : data.messageList});
+
+   /*this.setState({messages : [
       {
         "text": "Hello there",
         "id": "1",
@@ -41,27 +66,14 @@ export default class Messaging extends Component {
           "uid": "user2",
         },
       },
-    ]
+    ]});*/
 
-    this.state.user = {
-      "uid" : "user1"
+    this.setState({user : {
+      "uid" : this.props.user._id
     }
+  });
 
-    try {
-      if (isEmpty(this.props.user)) {
-        const currentUser = await getCurrentUser();
-        this.props.updateUser(currentUser);
-        console.log(this.props);
-        if (isEmpty(currentUser)) {
-          console.log("Not Logged In!");
-          this.props.history.push("/login");
-        }
-      }
 
-     
-    } catch (error) {
-      console.log(error);
-    }
   }
 
  async handlechat(e){
@@ -72,6 +84,7 @@ export default class Messaging extends Component {
       message : e
     });
     console.log(data);
+    this.setState({messages : data.messageList});
     this.setState({
       chats: data,
       currChat: 0
@@ -82,7 +95,6 @@ export default class Messaging extends Component {
     return (
       <div>
 
-
      <ChatBox
       messages={this.state.messages}
       user={this.state.user}
@@ -90,7 +102,6 @@ export default class Messaging extends Component {
     />
 
        {/*<div>
-
           {this.state.chats.map((chat, i) => (
             <div id={i}>
               {this.props.user.type === "Expert" ? (
