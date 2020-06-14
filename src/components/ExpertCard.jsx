@@ -12,15 +12,17 @@ export default class ExpertCard extends Component {
       currDate: isEmpty(expert.slots) ? null : Object.keys(expert.slots)[0],
       bookSlot: undefined,
       showDetails: false,
-      faved: false,
+      faved: false
+     
     };
     this.setDate = this.setDate.bind(this);
     this.bookSlot = this.bookSlot.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.minimizeCard = this.minimizeCard.bind(this);
     this.handleFav = this.handleFav.bind(this);
+    
   }
-
+  
   setDate(evt) {
     const date = evt.target.id;
     this.setState({
@@ -74,6 +76,7 @@ export default class ExpertCard extends Component {
   }
 
   render() {
+
     const { expert } = this.props;
     return (
       <div
@@ -93,14 +96,19 @@ export default class ExpertCard extends Component {
             <h3>{expert.institution}</h3>
             <h3>{expert.branch}</h3>
             <div className="btn-container">
+              
               <button className="book-slot-btn" onClick={this.handleSubmit}>
                 BOOK SLOT
               </button>
-              <button className="fav-btn" onClick={this.handleFav}>
+              
+              <button className="fav-btn" onClick={this.handleFav}
+               hidden={this.props.user !== undefined && this.props.user.type === "EXPERT"? 'true':'false'}
+               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 65.54 65.81"
                 >
+                  
                   <title>Fav Button</title>
                   <g id="Layer_2" data-name="Layer 2">
                     <g id="Layer_1-2" data-name="Layer 1">
@@ -122,6 +130,7 @@ export default class ExpertCard extends Component {
                   </g>
                 </svg>
               </button>
+                  
             </div>
           </div>
         </div>

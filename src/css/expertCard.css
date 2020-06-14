@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,400&display=swap");
 
 .Expert-Card {
+  width: initial;
   margin: 5% 10%;
   border-radius: 1rem;
   font-family: "Roboto", sans-serif;
