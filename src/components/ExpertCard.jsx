@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import API from "../API";
 import isEmpty from "../utils/isEmpty";
 import "../css/expertCard.css";
-
 import defaultPic from "../public/defaultpic.png";
-import blueheart from "../public/Group-169.png";
-
 
 export default class ExpertCard extends Component {
   constructor(props) {
@@ -71,14 +68,14 @@ export default class ExpertCard extends Component {
     evt.preventDefault();
     this.setState({ faved: !this.state.faved });
     const expert = await API.post("/expert/wishlist", {
-      expertId: this.props.expert._id
+      expertId: this.props.expert._id,
     });
     console.log(expert);
   }
 
   render() {
-    const { expert } = this.props;  
-        return (
+    const { expert } = this.props;
+    return (
       <div
         className={
           !this.state.showDetails ? "Expert-Card" : "Expert-Card EC-details"
@@ -86,11 +83,12 @@ export default class ExpertCard extends Component {
       >
         <div className="info">
           <img
+            className="Expert-avatar"
             src={expert.pic === "defaultpic" ? defaultPic : expert.pic}
             alt="profpic"
           />
 
-          <div>
+          <div className="Expert-info">
             <h3>{expert.name}</h3>
             <h3>{expert.institution}</h3>
             <h3>{expert.branch}</h3>
@@ -109,7 +107,9 @@ export default class ExpertCard extends Component {
                       <path
                         id="Path_340"
                         data-name="Path 340"
-                        className={!this.state.faved ? "cls-1-uncheck" : "cls-1-check"}
+                        className={
+                          !this.state.faved ? "cls-1-uncheck" : "cls-1-check"
+                        }
                         d="M12.75,6.57c14.33-10.9,34.91-7.93,46,6.62s8.41,35.17-5.91,46.06-34.91,7.92-46-6.62S-1.58,17.46,12.75,6.57Z"
                       />
                       <path
@@ -127,40 +127,53 @@ export default class ExpertCard extends Component {
         </div>
         {!this.state.showDetails ? null : (
           <div className="details">
-            <button onClick={this.minimizeCard}>X</button>
+            <button className="collapse-btn" onClick={this.minimizeCard}>
+              X
+            </button>
             <div className="description">
-              <h1>Description</h1>
-              <p>{expert.desc}</p>
+              <h2>Description</h2>
+              {/* <p>{expert.desc}</p> */}
+              <p>
+                Burst all your myths about college! Introducing project Udaan, a
+                platform where you can access one to one session with
+                counselors, mentors and seniors to know it all. No page left
+                unturned. Burst all your myths about college! Introducing
+                project Udaan, a platform where you can access one to one
+                session with counselors, mentors and seniors to know it all. No
+                page left unturned.
+              </p>
             </div>
             <div className="form">
               <div class="duration">
                 <h2>Select Call Duration</h2>
                 <div class="duration-input">
-                  <input
-                    type="radio"
-                    name="duration"
-                    id="30min"
-                    value="30"
-                    checked
-                  />
-                  <label for="30min">
-                    {" "}
-                    <span>30 min&nbsp;</span> <span>100 Rs</span>
-                  </label>
-
-                  <input type="radio" name="duration" id="60min" value="60" />
-                  <label for="60min">
-                    {" "}
-                    <span>60 min&nbsp;</span> <span>200 Rs</span>
-                  </label>
+                  <div>
+                    <input
+                      type="radio"
+                      name="duration"
+                      id="30min"
+                      value="30"
+                      checked
+                    />
+                    <label for="30min">
+                      {" "}
+                      <span>30 min&nbsp;</span> <span>100 Rs</span>
+                    </label>
+                  </div>
+                  <div>
+                    <input type="radio" name="duration" id="60min" value="60" />
+                    <label for="60min">
+                      {" "}
+                      <span>60 min&nbsp;</span> <span>200 Rs</span>
+                    </label>
+                  </div>
                 </div>
               </div>
-              <div></div>
             </div>
             {isEmpty(expert.slots) ? null : (
               <div className="slots">
                 <h2>Slots Available</h2>
-                <div className="slots=input">
+                <div className="slots-input">
                   {Object.keys(expert.slots[this.state.currDate]).map(
                     (slot) => (
                       <label id={slot} onClick={this.bookSlot}>
@@ -176,9 +189,10 @@ export default class ExpertCard extends Component {
                     </label>
                   ))}
                 </div>
+                <div>Slots</div>
               </div>
             )}
-            <div>Slots</div>
+            
           </div>
         )}
       </div>
