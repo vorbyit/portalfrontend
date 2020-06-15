@@ -5,6 +5,7 @@ import { withRouter, Link } from 'react-router-dom';
 import getCurrentUser from "../utils/getCurrentUser";
 import isEmpty from "../utils/isEmpty";
 import Razorpay from 'razorpay';
+import {Helmet} from "react-helmet";
 
 class Payment extends Component {
   constructor() {
@@ -19,12 +20,12 @@ class Payment extends Component {
   }
 
  async componentDidMount() {
-    const script = document.createElement("script");
+  const script = document.createElement("script");
 
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.async = true;
+  script.src = "https://checkout.razorpay.com/v1/checkout.js";
+  script.async = true;
 
-    document.body.appendChild(script);
+  document.body.appendChild(script);
 
   }
   paymentHandler(e) {
@@ -33,15 +34,18 @@ class Payment extends Component {
     const  payment_amount  = this.state.payment_amount;
     const self = this;
     const options = {
-      key_id: "rzp_test_4JLpoFGA17xkZq",
-      key_secret:"89CUTDzmDYbIYqgpUabjGtav",
-      amount: 50000,
+      key: "rzp_test_4JLpoFGA17xkZq",
+      amount: payment_amount*100,
       name: 'Payments',
       description: 'Donate yourself some time',
 
-      handler(response) {
+      async handler(response) {
         const paymentId = response.razorpay_payment_id;
-        const url ="http://localhost:3000/payment"+paymentId+'/'+payment_amount;
+        const payment_data =await API.post('/payment/status',{
+          payment_id:paymentId
+        })
+        console.log(payment_data)
+        const url ="http://localhost:3000/payment/"+paymentId+'/'+payment_amount;
         // Using my server endpoints to capture the payment
         fetch(url, {
           method: 'get',
@@ -49,9 +53,10 @@ class Payment extends Component {
             "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
           }
         })
-        .then(resp =>  resp.json())
+       // .then(resp=>resp.json())
         .then(function (data) {
           console.log('Request succeeded with JSON response', data);
+
           self.setState({
             refund_id: response.razorpay_payment_id
           });
@@ -72,7 +77,7 @@ class Payment extends Component {
         color: '#9D50BB',
       },
     };
-    const rzp1 = new Razorpay(options);
+    const rzp1 = new window.Razorpay(options);
 
     rzp1.open();
   }
@@ -108,6 +113,7 @@ class Payment extends Component {
             
   <div className="wrapper">
         <div className="payments">
+        
           <div className="payments-title">
             <h1>Test Payments</h1>
           </div>
