@@ -14,8 +14,12 @@ import Profile from './components/Profile';
 import Footer from './components/Footer';
 import Menubar from './components/Menubar';
 
-
 import Messaging from './components/Messaging';
+
+import Payment from './components/Payment';
+import ExpertCard from './components/ExpertCard';
+
+import PaymentStatus from './components/PaymentStatus';
 
 
 
@@ -101,6 +105,19 @@ export default class App extends Component {
                 <ExpertPage 
                   user={this.state.user}
                   updateUser={this.updateUser}
+                 
+                />
+              )}
+            />
+
+            <Route 
+              exact
+              path = "/experts"
+              render = {(props) => (
+                <ExpertCard
+                  user={this.state.user}
+                  updateUser={this.updateUser}
+                  
                 />
               )}
             />
@@ -184,6 +201,33 @@ export default class App extends Component {
               />
             )}
           /> 
+
+          <Route
+
+
+          exact
+          path="/payment"
+          render = {(props) => (
+            <Payment
+              user={this.state.user}
+              updateUser={this.updateUser}
+            />
+          )}
+          /> 
+
+            <Route
+
+
+            exact
+            path="/payment/status"
+            render = {(props) => (
+              <PaymentStatus
+                user={this.state.user}
+                updateUser={this.updateUser}
+              />
+            )}
+            /> 
+
         </Router>
         {/* <ChatBox /> */}
         <Footer />

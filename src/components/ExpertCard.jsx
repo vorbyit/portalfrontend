@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import API from "../API";
+import { withRouter, Link } from 'react-router-dom';
 import isEmpty from "../utils/isEmpty";
 import "../css/expertCard.css";
+
 import defaultPic from "../public/defaultpic.png";
 
-export default class ExpertCard extends Component {
+class ExpertCard extends Component {
   constructor(props) {
     super(props);
     const { expert } = props;
@@ -73,6 +75,12 @@ export default class ExpertCard extends Component {
       expertId: this.props.expert._id,
     });
     console.log(expert);
+  }
+
+   handlePayment(e)
+  {
+    console.log(e.target.value);
+    this.props.history.push('/payment');
   }
 
   render() {
@@ -208,3 +216,4 @@ export default class ExpertCard extends Component {
     );
   }
 }
+export default withRouter(ExpertCard);
