@@ -3,8 +3,10 @@ import API from "../API";
 import { withRouter, Link } from 'react-router-dom';
 import isEmpty from "../utils/isEmpty";
 import "../css/expertCard.css";
-
+import getCurrentUser from '../utils/getCurrentUser';
 import defaultPic from "../public/defaultpic.png";
+import blueheart from "../public/Group-169.png";
+
 
 class ExpertCard extends Component {
   constructor(props) {
@@ -14,17 +16,15 @@ class ExpertCard extends Component {
       currDate: isEmpty(expert.slots) ? null : Object.keys(expert.slots)[0],
       bookSlot: undefined,
       showDetails: false,
-      faved: false
-     
+      faved: false,
     };
     this.setDate = this.setDate.bind(this);
     this.bookSlot = this.bookSlot.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.minimizeCard = this.minimizeCard.bind(this);
     this.handleFav = this.handleFav.bind(this);
-    
   }
-  
+
   setDate(evt) {
     const date = evt.target.id;
     this.setState({
@@ -72,7 +72,7 @@ class ExpertCard extends Component {
     evt.preventDefault();
     this.setState({ faved: !this.state.faved });
     const expert = await API.post("/expert/wishlist", {
-      expertId: this.props.expert._id,
+      expertId: this.props.expert._id
     });
     console.log(expert);
   }
@@ -84,9 +84,8 @@ class ExpertCard extends Component {
   }
 
   render() {
-
-    const { expert } = this.props;
-    return (
+    const { expert } = this.props;  
+        return (
       <div
         className={
           !this.state.showDetails ? "Expert-Card" : "Expert-Card EC-details"
@@ -94,38 +93,30 @@ class ExpertCard extends Component {
       >
         <div className="info">
           <img
-            className="Expert-avatar"
             src={expert.pic === "defaultpic" ? defaultPic : expert.pic}
             alt="profpic"
           />
 
-          <div className="Expert-info">
+          <div>
             <h3>{expert.name}</h3>
             <h3>{expert.institution}</h3>
             <h3>{expert.branch}</h3>
             <div className="btn-container">
-              
               <button className="book-slot-btn" onClick={this.handleSubmit}>
                 BOOK SLOT
               </button>
-              
-              <button className="fav-btn" onClick={this.handleFav}
-               hidden={this.props.user !== undefined && this.props.user.type === "EXPERT"? 'true':'false'}
-               >
+              <button className="fav-btn" onClick={this.handleFav}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 65.54 65.81"
                 >
-                  
                   <title>Fav Button</title>
                   <g id="Layer_2" data-name="Layer 2">
                     <g id="Layer_1-2" data-name="Layer 1">
                       <path
                         id="Path_340"
                         data-name="Path 340"
-                        className={
-                          !this.state.faved ? "cls-1-uncheck" : "cls-1-check"
-                        }
+                        className={!this.state.faved ? "cls-1-uncheck" : "cls-1-check"}
                         d="M12.75,6.57c14.33-10.9,34.91-7.93,46,6.62s8.41,35.17-5.91,46.06-34.91,7.92-46-6.62S-1.58,17.46,12.75,6.57Z"
                       />
                       <path
@@ -138,59 +129,45 @@ class ExpertCard extends Component {
                   </g>
                 </svg>
               </button>
-                  
             </div>
           </div>
         </div>
         {!this.state.showDetails ? null : (
           <div className="details">
-            <button className="collapse-btn" onClick={this.minimizeCard}>
-              X
-            </button>
+            <button onClick={this.minimizeCard}>X</button>
             <div className="description">
-              <h2>Description</h2>
-              {/* <p>{expert.desc}</p> */}
-              <p>
-                Burst all your myths about college! Introducing project Udaan, a
-                platform where you can access one to one session with
-                counselors, mentors and seniors to know it all. No page left
-                unturned. Burst all your myths about college! Introducing
-                project Udaan, a platform where you can access one to one
-                session with counselors, mentors and seniors to know it all. No
-                page left unturned.
-              </p>
+              <h1>Description</h1>
+              <p>{expert.desc}</p>
             </div>
             <div className="form">
               <div class="duration">
                 <h2>Select Call Duration</h2>
                 <div class="duration-input">
-                  <div>
-                    <input
-                      type="radio"
-                      name="duration"
-                      id="30min"
-                      value="30"
-                      checked
-                    />
-                    <label for="30min">
-                      {" "}
-                      <span>30 min&nbsp;</span> <span>100 Rs</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input type="radio" name="duration" id="60min" value="60" />
-                    <label for="60min">
-                      {" "}
-                      <span>60 min&nbsp;</span> <span>200 Rs</span>
-                    </label>
-                  </div>
+                  <input
+                    type="radio"
+                    name="duration"
+                    id="30min"
+                    value="30"
+                    checked
+                  />
+                  <label for="30min">
+                    {" "}
+                    <span>30 min&nbsp;</span> <button value="100" onClick={(e) => this.handlePayment(e)}>100 Rs</button>
+                  </label>
+
+                  <input type="radio" name="duration" id="60min" value="60" />
+                  <label for="60min">
+                    {" "}
+                    <span>60 min&nbsp;</span> <span>200 Rs</span>
+                  </label>
                 </div>
               </div>
+              <div></div>
             </div>
             {isEmpty(expert.slots) ? null : (
               <div className="slots">
                 <h2>Slots Available</h2>
-                <div className="slots-input">
+                <div className="slots=input">
                   {Object.keys(expert.slots[this.state.currDate]).map(
                     (slot) => (
                       <label id={slot} onClick={this.bookSlot}>
@@ -206,10 +183,9 @@ class ExpertCard extends Component {
                     </label>
                   ))}
                 </div>
-                <div>Slots</div>
               </div>
             )}
-            
+            <div>Slots</div>
           </div>
         )}
       </div>
