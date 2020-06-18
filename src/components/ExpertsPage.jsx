@@ -4,6 +4,7 @@ import FilterBar from "./FilterBar";
 import ExpertCard from "./ExpertCard";
 import API from "../API";
 import "../css/carousel-styles.css";
+import "../css/experts-page.css";
 import isEmpty from "../utils/isEmpty";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -36,8 +37,11 @@ class ExpertsPage extends Component {
     this.state = {
       experts: {},
       sortBy: "institution",
+      showDetailsFor: null,
     };
     this.setSort = this.setSort.bind(this);
+    this.minimizeCard = this.minimizeCard.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   async componentDidMount() {
@@ -45,6 +49,31 @@ class ExpertsPage extends Component {
     this.setState({
       experts: experts.data,
     });
+  }
+
+  minimizeCard() {
+    this.setState({
+      showDetailsFor: null,
+    });
+  }
+
+  async handleSubmit(date, slot, expertId, evt) {
+    console.log(this.state);
+    evt.preventDefault();
+    if (!this.state.showDetailsFor) {
+      this.setState({
+        showDetailsFor: expertId,
+      });
+    } else if (this.state.bookSlot === undefined) {
+      console.log("Select SLOT");
+    } else {
+      const bookedSlot = await API.post("/slots/bookslot", {
+        date,
+        slot,
+        expertId,
+      });
+      console.log(bookedSlot);
+    }
   }
 
   setSort(e) {
@@ -92,7 +121,13 @@ class ExpertsPage extends Component {
                   itemClass="carousel-item-padding-40-px"
                 >
                   {sortParam[param].map((expert) => (
-                    <ExpertCard appt={false} expert={expert} />
+                    <ExpertCard
+                      appt={false}
+                      expert={expert}
+                      handleSubmit={this.handleSubmit}
+                      minimizeCard={this.minimizeCard}
+                      showDetailsFor={this.state.showDetailsFor}
+                    />
                   ))}
                 </Carousel>
               </div>

@@ -14,13 +14,13 @@ class ExpertCard extends Component {
     this.state = {
       currDate: isEmpty(expert.slots) ? null : Object.keys(expert.slots)[0],
       bookSlot: undefined,
-      showDetails: false,
+      //showDetails: false,
       faved: false,
     };
     this.setDate = this.setDate.bind(this);
     this.bookSlot = this.bookSlot.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.minimizeCard = this.minimizeCard.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    // this.minimizeCard = this.minimizeCard.bind(this);
     this.handleFav = this.handleFav.bind(this);
   }
 
@@ -42,30 +42,30 @@ class ExpertCard extends Component {
     }
   }
 
-  minimizeCard() {
-    this.setState({
-      showDetails: false,
-    });
-  }
+  // minimizeCard() {
+  //   this.setState({
+  //     showDetails: false,
+  //   });
+  // }
 
-  async handleSubmit(evt) {
-    evt.preventDefault();
-    console.log(this.state);
-    if (this.state.showDetails === false) {
-      this.setState({
-        showDetails: true,
-      });
-    } else if (this.state.bookSlot === undefined) {
-      console.log("Select SLOT");
-    } else {
-      const slot = await API.post("/slots/bookslot", {
-        date: this.state.currDate,
-        slot: this.state.bookSlot,
-        expertId: this.props.expert._id,
-      });
-      console.log(slot);
-    }
-  }
+  // async handleSubmit(evt) {
+  //   evt.preventDefault();
+  //   console.log(this.state);
+  //   if (this.state.showDetails === false) {
+  //     this.setState({
+  //       showDetails: true,
+  //     });
+  //   } else if (this.state.bookSlot === undefined) {
+  //     console.log("Select SLOT");
+  //   } else {
+  //     const slot = await API.post("/slots/bookslot", {
+  //       date: this.state.currDate,
+  //       slot: this.state.bookSlot,
+  //       expertId: this.props.expert._id,
+  //     });
+  //     console.log(slot);
+  //   }
+  // }
 
   async handleFav(evt) {
     evt.preventDefault();
@@ -86,7 +86,7 @@ class ExpertCard extends Component {
     return (
       <div
         className={
-          !this.state.showDetails ? "Expert-Card" : "Expert-Card EC-details"
+          !(this.props.showDetailsFor === expert._id) ? "Expert-Card" : "Expert-Card EC-details"
         }
       >
         <div className="info">
@@ -99,7 +99,7 @@ class ExpertCard extends Component {
             <h3>{expert.institution}</h3>
             <h3>{expert.branch}</h3>
             <div className="btn-container">
-              <button className="book-slot-btn" onClick={this.handleSubmit}>
+              <button className="book-slot-btn" onClick={(evt) => this.props.handleSubmit(this.state.currDate, this.state.bookSlot, this.props.expert._id, evt)}>
                 BOOK SLOT
               </button>
               <button className="fav-btn" onClick={this.handleFav}>
@@ -131,9 +131,9 @@ class ExpertCard extends Component {
             </div>
           </div>
         </div>
-        {!this.state.showDetails ? null : (
+        {!(this.props.showDetailsFor === expert._id) ? null : (
           <div className="details">
-            <button onClick={this.minimizeCard}>X</button>
+            <button onClick={this.props.minimizeCard}>X</button>
             <div className="description">
               <h1>Description</h1>
               <p>{expert.desc}</p>
