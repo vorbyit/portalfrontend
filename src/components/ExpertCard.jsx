@@ -80,8 +80,12 @@ class ExpertCard extends Component {
    handlePayment(e)
   {
     console.log(e.target.value);
-    this.props.history.push('/payment');
+    this.props.history.push({
+     pathname: '/payment',
+     data : this.props.expert._id
+    });
   }
+  
 
   render() {
     const { expert } = this.props;  
