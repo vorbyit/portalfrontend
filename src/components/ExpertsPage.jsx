@@ -14,7 +14,7 @@ const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 2,
+    items: 4,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -45,7 +45,6 @@ class ExpertsPage extends Component {
     this.setState({
       experts: experts.data,
     });
-    this.setSort = this.setSort.bind(this);
   }
 
   setSort(e) {
@@ -65,17 +64,6 @@ class ExpertsPage extends Component {
     const sortParam = this.state.experts[this.state.sortBy];
     return (
       <div style={{ minHeight: "100vh" }}>
-        {/* <div className="sortBy">
-          <span id="expertise" onClick={this.setSort}>
-            Expertise
-          </span>
-          <span id="institution" onClick={this.setSort}>
-            Institution
-          </span>
-          <span id="exam" onClick={this.setSort}>
-            Exam
-          </span>
-        </div> */}
         <FilterBar
           filters={["expertise", "institution", "exam"]}
           sortBy={this.setSort}

@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import API from "../API";
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link } from "react-router-dom";
 import isEmpty from "../utils/isEmpty";
 import "../css/expertCard.css";
-import getCurrentUser from '../utils/getCurrentUser';
+import getCurrentUser from "../utils/getCurrentUser";
 import defaultPic from "../public/defaultpic.png";
 import blueheart from "../public/Group-169.png";
-
 
 class ExpertCard extends Component {
   constructor(props) {
@@ -72,20 +71,19 @@ class ExpertCard extends Component {
     evt.preventDefault();
     this.setState({ faved: !this.state.faved });
     const expert = await API.post("/expert/wishlist", {
-      expertId: this.props.expert._id
+      expertId: this.props.expert._id,
     });
     console.log(expert);
   }
 
-   handlePayment(e)
-  {
+  handlePayment(e) {
     console.log(e.target.value);
-    this.props.history.push('/payment');
+    this.props.history.push("/payment");
   }
 
   render() {
-    const { expert } = this.props;  
-        return (
+    const { expert } = this.props;
+    return (
       <div
         className={
           !this.state.showDetails ? "Expert-Card" : "Expert-Card EC-details"
@@ -96,7 +94,6 @@ class ExpertCard extends Component {
             src={expert.pic === "defaultpic" ? defaultPic : expert.pic}
             alt="profpic"
           />
-
           <div>
             <h3>{expert.name}</h3>
             <h3>{expert.institution}</h3>
@@ -116,7 +113,9 @@ class ExpertCard extends Component {
                       <path
                         id="Path_340"
                         data-name="Path 340"
-                        className={!this.state.faved ? "cls-1-uncheck" : "cls-1-check"}
+                        className={
+                          !this.state.faved ? "cls-1-uncheck" : "cls-1-check"
+                        }
                         d="M12.75,6.57c14.33-10.9,34.91-7.93,46,6.62s8.41,35.17-5.91,46.06-34.91,7.92-46-6.62S-1.58,17.46,12.75,6.57Z"
                       />
                       <path
@@ -152,7 +151,10 @@ class ExpertCard extends Component {
                   />
                   <label for="30min">
                     {" "}
-                    <span>30 min&nbsp;</span> <button value="100" onClick={(e) => this.handlePayment(e)}>100 Rs</button>
+                    <span>30 min&nbsp;</span>{" "}
+                    <button value="100" onClick={(e) => this.handlePayment(e)}>
+                      100 Rs
+                    </button>
                   </label>
 
                   <input type="radio" name="duration" id="60min" value="60" />
