@@ -66,6 +66,7 @@ class Payment extends Component {
             userID : userID,
             expertID : expertID
           })
+          console.log(response);
         }
         const url ="http://localhost:3000/payment/"+paymentId+'/'+payment_amount;
         // Using my server endpoints to capture the payment

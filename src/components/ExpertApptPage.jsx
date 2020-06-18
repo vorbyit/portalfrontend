@@ -15,6 +15,7 @@ class ExpertApptPage extends Component {
       past: [],
 
       sortBy: "upcoming",
+      appointments : []
 
     };
     this.approveSlot = this.approveSlot.bind(this);
@@ -34,7 +35,12 @@ class ExpertApptPage extends Component {
           this.props.history.push("/experts");
         }
       }
-      const { data } = await API.get("/expert/appointments");
+    console.log(this.props.user._id);
+      const { data } = await API.post("/expert/appointments",{
+        expertID:this.props.user._id
+      });
+      console.log(data);
+      this.setState({appointments:data});
       const upcoming = [];
       const past = [];
       const unapproved = [];
