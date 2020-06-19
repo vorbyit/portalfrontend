@@ -49,11 +49,11 @@ class ExpertApptPage extends Component {
       const time = d.toTimeString();
 
       for (let i = 0; i < data.length; i++) {
-        if (!data[i].slot.approved) {
+        if (!data[i].slot[0].approved) {
           unapproved.push(data[i]);
         } else if (
-          data[i].slot.Date.split("T")[0] > date ||
-          (data[i].slot.Date.split("T")[0] === date && data[i].slot.slot > time)
+          data[i].slot[0].Date.split("T")[0] > date ||
+          (data[i].slot[0].Date.split("T")[0] === date && data[i].slot[0].slot > time)
         ) {
           upcoming.push(data[i]);
         } else {

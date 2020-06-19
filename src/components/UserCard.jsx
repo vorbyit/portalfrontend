@@ -54,8 +54,8 @@ export default class UserCard extends Component {
 				<div>{this.props.appt.education}</div>
 			  </div>
 			  <div className="slot-info">
-				<div>{this.props.slot.Date.split("T")[0]}</div>
-				<div>{this.props.slot.slot}</div>
+				<div>{this.props.slot[0].Date.split("T")[0]}</div>
+				<div>{this.props.slot[0].slot}</div>
 			  </div>
 			  {!this.props.slot.approved ? (
 				this.props.user.type !== "EXPERT" ? (
