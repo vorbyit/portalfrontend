@@ -87,8 +87,6 @@ class ExpertCard extends Component {
      data : this.props.expert._id
     });
   }
-  
-
   render() {
     const { expert ,faved } = this.props;  
         return (
