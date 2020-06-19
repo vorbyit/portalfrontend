@@ -27,10 +27,23 @@ class Payment extends Component {
 
   document.body.appendChild(script);
 
+  try {
+    if (isEmpty(this.props.user)) {
+      const currentUser = await getCurrentUser();
+      this.props.updateUser(currentUser);
+      console.log(this.props);
+    }
+
+   
+  } catch (error) {
+    console.log(error);
+  }
+
   }
   paymentHandler(e) {
     e.preventDefault();
-
+    const expertID = this.props.location.data;
+    const userID = this.props.user._id;
     const  payment_amount  = this.state.payment_amount;
     const self = this;
     const options = {
@@ -45,6 +58,17 @@ class Payment extends Component {
           payment_id:paymentId
         })
         console.log(payment_data)
+
+        if(payment_data.data.status=="captured")
+        {
+          console.log(expertID);
+          console.log(userID);
+          const response =await API.post('/payment/success',{
+            userID : userID,
+            expertID : expertID
+          })
+          console.log(response);
+        }
         const url ="http://localhost:3000/payment/"+paymentId+'/'+payment_amount;
         // Using my server endpoints to capture the payment
         fetch(url, {
@@ -113,7 +137,9 @@ class Payment extends Component {
             
   <div className="wrapper">
         <div className="payments">
-        
+        <Helmet>
+              <script src="https://checkout.razorpay.com/v1/checkout.js" type="text/javascript" />
+            </Helmet>
           <div className="payments-title">
             <h1>Test Payments</h1>
           </div>
