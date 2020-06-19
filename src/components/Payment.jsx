@@ -58,6 +58,7 @@ class Payment extends Component {
           payment_id:paymentId
         })
         console.log(payment_data)
+
         if(payment_data.data.status=="captured")
         {
           console.log(expertID);
@@ -139,7 +140,6 @@ class Payment extends Component {
         <Helmet>
               <script src="https://checkout.razorpay.com/v1/checkout.js" type="text/javascript" />
             </Helmet>
-
           <div className="payments-title">
             <h1>Test Payments</h1>
           </div>
