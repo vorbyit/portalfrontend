@@ -62,9 +62,12 @@ class UserApptPage extends Component {
         }
       }
 
-      const { data } = await API.get('/user/appointments');
+      const { data } = await API.post('/user/appointments',{
+        userID: this.props.user._id
+      });
       console.log(data);
       this.setState({...data, loaded: true});
+      console.log(this.state);
     } catch (error) {
       console.log(error);
     }
