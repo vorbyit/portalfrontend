@@ -11,7 +11,8 @@ import blueheart from "../public/Group-169.png";
 class ExpertCard extends Component {
   constructor(props) {
     super(props);
-    const { expert } = props;
+    const { expert , user ,faved} = props;
+
     this.state = {
       currDate: isEmpty(expert.slots) ? null : Object.keys(expert.slots)[0],
       bookSlot: undefined,
@@ -71,10 +72,11 @@ class ExpertCard extends Component {
   async handleFav(evt) {
     evt.preventDefault();
     this.setState({ faved: !this.state.faved });
-    const expert = await API.post("/expert/wishlist", {
-      expertId: this.props.expert._id
+    const data = await API.post("/expert/wishlist", {
+      expertId: this.props.expert._id,
+      userId : this.props.user._id
     });
-    console.log(expert);
+    console.log(data);
   }
 
    handlePayment(e)
@@ -86,7 +88,7 @@ class ExpertCard extends Component {
     });
   }
   render() {
-    const { expert } = this.props;  
+    const { expert ,faved } = this.props;  
         return (
       <div
         className={
@@ -118,7 +120,7 @@ class ExpertCard extends Component {
                       <path
                         id="Path_340"
                         data-name="Path 340"
-                        className={!this.state.faved ? "cls-1-uncheck" : "cls-1-check"}
+                        className={(faved && !this.state.faved)? "cls-1-uncheck" : "cls-1-check"}
                         d="M12.75,6.57c14.33-10.9,34.91-7.93,46,6.62s8.41,35.17-5.91,46.06-34.91,7.92-46-6.62S-1.58,17.46,12.75,6.57Z"
                       />
                       <path

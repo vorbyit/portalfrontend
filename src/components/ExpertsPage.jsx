@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import FilterBar from "./FilterBar";
 import ExpertCard from "./ExpertCard";
+import getCurrentUser from '../utils/getCurrentUser';
 import API from "../API";
 import "../css/carousel-styles.css";
 import isEmpty from "../utils/isEmpty";
@@ -36,16 +37,26 @@ class ExpertsPage extends Component {
     this.state = {
       experts: {},
       sortBy: "institution",
+      user : {},
+      faved : []
     };
     this.setSort = this.setSort.bind(this);
   }
 
   async componentDidMount() {
+    const userdata = await getCurrentUser();
+    this.setState({user:userdata})
+    const userId = userdata._id;
+    const faved = await API.post('/expert/faved',{
+      userId:userId
+    })
+    this.setState({faved:faved.data});
     const experts = await API.get("/expert/getexperts");
     this.setState({
       experts: experts.data,
     });
     this.setSort = this.setSort.bind(this);
+
   }
 
   setSort(e) {
@@ -59,9 +70,11 @@ class ExpertsPage extends Component {
   }
 
   render() {
-    if (isEmpty(this.state.experts)) {
+    if ((isEmpty(this.state.experts))&&(isEmpty(this.state.user))&&(isEmpty(this.state.faved))) {
       return null;
     }
+    console.log(this.state.user);
+    console.log(this.state.faved);
     const sortParam = this.state.experts[this.state.sortBy];
     return (
       <div style={{ minHeight: "100vh" }}>
@@ -104,7 +117,7 @@ class ExpertsPage extends Component {
                   itemClass="carousel-item-padding-40-px"
                 >
                   {sortParam[param].map((expert) => (
-                    <ExpertCard appt={false} expert={expert} />
+                    <ExpertCard appt={false} expert={expert} user={this.state.user} faved={!this.state.faved.includes(expert._id)} />
                   ))}
                 </Carousel>
               </div>
