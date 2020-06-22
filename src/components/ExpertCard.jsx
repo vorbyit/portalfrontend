@@ -70,6 +70,14 @@ class ExpertCard extends Component {
     }
   }
 
+  handleMessage() {
+
+    this.props.history.push({
+      pathname: '/chats',
+      data : this.props.expert._id
+     });
+  }
+
   async handleFav(evt) {
     evt.preventDefault();
     this.setState({ faved: !this.state.faved });
@@ -109,7 +117,7 @@ class ExpertCard extends Component {
             <div className="btn-container">
               {!slot_ready ? (<button className="book-slot-btn" onClick={this.handleSubmit}>
                 BOOK SLOT
-              </button>) : (<button className="book-slot-btn" >
+              </button>) : (<button className="book-slot-btn" onClick={this.handleMessage}>
                 MESSAGE
               </button>)}
               

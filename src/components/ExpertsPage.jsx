@@ -59,7 +59,15 @@ class ExpertsPage extends Component {
       userId:userId
     })
     console.log(slot_ready)
-    this.setState({slot_ready:slot_ready.data});
+    const myexperts = slot_ready.data.filter(expert => 
+      expert!=="Nothing"
+    )[0];
+    let msgexperts = [];
+    for (let i in myexperts){
+      msgexperts.push(i);
+    }
+    console.log(msgexperts);
+    this.setState({slot_ready:msgexperts});
 
     const experts = await API.get("/expert/getexperts");
     this.setState({

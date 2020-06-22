@@ -42,7 +42,7 @@ export default class Messaging extends Component {
 
     const { data } = await API.post("chats",{
       sender : this.props.user._id,
-      receiver : "5e6d030b88a29b5268906fe6",
+      receiver : this.props.location.data,
       message : ""
     });
     console.log(data);
@@ -80,7 +80,7 @@ export default class Messaging extends Component {
     console.log(e);
     const { data } = await API.post("chats",{
       sender : this.props.user._id,
-      receiver : "5e6d030b88a29b5268906fe6",
+      receiver : this.props.location.data,
       message : e
     });
     console.log(data);

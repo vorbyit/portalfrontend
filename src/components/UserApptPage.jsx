@@ -38,6 +38,7 @@ class UserApptPage extends Component {
       past : [],
       sortBy: "upcoming",
       loaded: false,
+      slot_ready : []
     }
     this.setSort=this.setSort.bind(this);
   }
@@ -67,6 +68,21 @@ class UserApptPage extends Component {
       });
       console.log(data);
       this.setState({...data, loaded: true});
+
+      const slot_ready = await API.post('/expert/ready',{
+        userId:this.props.user._id
+      })
+      console.log(slot_ready)
+      const myexperts = slot_ready.data.filter(expert => 
+        expert!=="Nothing"
+      )[0];
+      let msgexperts = [];
+      for (let i in myexperts){
+        msgexperts.push(i);
+      }
+      console.log(msgexperts);
+      this.setState({slot_ready:msgexperts});      
+
       console.log(this.state);
     } catch (error) {
       console.log(error);
@@ -75,6 +91,8 @@ class UserApptPage extends Component {
 
   render() {
     // if(this.state.loaded)
+    if(isEmpty(this.state.slot_ready))
+    return null;
       return (
           <div>
             <FilterBar filters={['wishlist', 'upcoming', 'past']} sortBy={this.setSort}/>
@@ -98,7 +116,7 @@ class UserApptPage extends Component {
                   itemClass="carousel-item-padding-40-px"
                 >
                 {this.state[this.state.sortBy].map((appts) => 
-                  <ExpertCard appt={true} expert={appts}/>
+                  <ExpertCard appt={true} expert={appts} slot_ready={this.state.slot_ready.includes(appts._id)}/>
                 )}
                 </Carousel>
               </div>
