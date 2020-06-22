@@ -45,8 +45,8 @@ class ExpertsPage extends Component {
   }
 
   async componentDidMount() {
-    console.log("01:25"<"01:46");
-    console.log("01:55">"01:46");
+    console.log("00:00"<"00:03");
+    console.log("00:30">"00:03");
     const userdata = await getCurrentUser();
     this.setState({user:userdata})
     const userId = userdata._id;

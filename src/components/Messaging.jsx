@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from "../API";
-
+import { withRouter, Link } from 'react-router-dom';
 import getCurrentUser from "../utils/getCurrentUser";
 import isEmpty from "../utils/isEmpty";
 
@@ -10,7 +10,7 @@ import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
 
 
-export default class Messaging extends Component {
+class Messaging extends Component {
   constructor() {
     super();
     this.state = {
@@ -46,6 +46,7 @@ export default class Messaging extends Component {
       message : ""
     });
     console.log(data);
+    console.log(this.props);
 
     this.setState({messages : data.messageList});
 
@@ -119,3 +120,4 @@ export default class Messaging extends Component {
     );
   }
 }
+export default withRouter(Messaging);

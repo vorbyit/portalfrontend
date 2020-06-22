@@ -23,6 +23,7 @@ class ExpertCard extends Component {
     this.setDate = this.setDate.bind(this);
     this.bookSlot = this.bookSlot.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleMessage = this.handleMessage.bind(this);
     this.minimizeCard = this.minimizeCard.bind(this);
     this.handleFav = this.handleFav.bind(this);
   }
