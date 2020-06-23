@@ -11,17 +11,19 @@ import blueheart from "../public/Group-169.png";
 class ExpertCard extends Component {
   constructor(props) {
     super(props);
-    const { expert , user ,faved} = props;
+    const { expert , user ,faved , slot_ready} = props;
+    console.log(expert);
 
     this.state = {
       currDate: isEmpty(expert.slots) ? null : Object.keys(expert.slots)[0],
       bookSlot: undefined,
       showDetails: false,
-      faved: false,
+      faved: false
     };
     this.setDate = this.setDate.bind(this);
     this.bookSlot = this.bookSlot.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleMessage = this.handleMessage.bind(this);
     this.minimizeCard = this.minimizeCard.bind(this);
     this.handleFav = this.handleFav.bind(this);
   }
@@ -69,6 +71,14 @@ class ExpertCard extends Component {
     }
   }
 
+  handleMessage() {
+
+    this.props.history.push({
+      pathname: '/chats',
+      data : this.props.expert._id
+     });
+  }
+
   async handleFav(evt) {
     evt.preventDefault();
     this.setState({ faved: !this.state.faved });
@@ -88,7 +98,7 @@ class ExpertCard extends Component {
     });
   }
   render() {
-    const { expert ,faved } = this.props;  
+    const { expert ,faved , slot_ready } = this.props;  
         return (
       <div
         className={
@@ -106,9 +116,12 @@ class ExpertCard extends Component {
             <h3>{expert.institution}</h3>
             <h3>{expert.branch}</h3>
             <div className="btn-container">
-              <button className="book-slot-btn" onClick={this.handleSubmit}>
+              {!slot_ready ? (<button className="book-slot-btn" onClick={this.handleSubmit}>
                 BOOK SLOT
-              </button>
+              </button>) : (<button className="book-slot-btn" onClick={this.handleMessage}>
+                MESSAGE
+              </button>)}
+              
               <button className="fav-btn" onClick={this.handleFav}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

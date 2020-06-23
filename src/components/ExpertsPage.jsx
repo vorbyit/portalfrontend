@@ -38,12 +38,15 @@ class ExpertsPage extends Component {
       experts: {},
       sortBy: "institution",
       user : {},
-      faved : []
+      faved : [],
+      slot_ready : []
     };
     this.setSort = this.setSort.bind(this);
   }
 
   async componentDidMount() {
+    console.log("00:00"<"00:03");
+    console.log("00:30">"00:03");
     const userdata = await getCurrentUser();
     this.setState({user:userdata})
     const userId = userdata._id;
@@ -51,6 +54,21 @@ class ExpertsPage extends Component {
       userId:userId
     })
     this.setState({faved:faved.data});
+
+    const slot_ready = await API.post('/expert/ready',{
+      userId:userId
+    })
+    console.log(slot_ready)
+    const myexperts = slot_ready.data.filter(expert => 
+      expert!=="Nothing"
+    )[0];
+    let msgexperts = [];
+    for (let i in myexperts){
+      msgexperts.push(i);
+    }
+    console.log(msgexperts);
+    this.setState({slot_ready:msgexperts});
+
     const experts = await API.get("/expert/getexperts");
     this.setState({
       experts: experts.data,
@@ -70,7 +88,7 @@ class ExpertsPage extends Component {
   }
 
   render() {
-    if ((isEmpty(this.state.experts))&&(isEmpty(this.state.user))&&(isEmpty(this.state.faved))) {
+    if ((isEmpty(this.state.experts))&&(isEmpty(this.state.user))&&(isEmpty(this.state.faved))&&(isEmpty(this.state.slot_ready))) {
       return null;
     }
     console.log(this.state.user);
@@ -117,7 +135,7 @@ class ExpertsPage extends Component {
                   itemClass="carousel-item-padding-40-px"
                 >
                   {sortParam[param].map((expert) => (
-                    <ExpertCard appt={false} expert={expert} user={this.state.user} faved={!this.state.faved.includes(expert._id)} />
+                    <ExpertCard appt={false} expert={expert} user={this.state.user} faved={!this.state.faved.includes(expert._id)} slot_ready={this.state.slot_ready.includes(expert._id)} />
                   ))}
                 </Carousel>
               </div>
