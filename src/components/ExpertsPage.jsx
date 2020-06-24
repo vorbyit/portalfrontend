@@ -60,6 +60,11 @@ class ExpertsPage extends Component {
     const slot_ready = await API.post("/expert/ready", {
       userId: userId,
     });
+
+    const faved = await API.post('/expert/faved',{
+      userId:userId
+    });
+
     console.log(slot_ready);
     const myexperts = slot_ready.data.filter(
       (expert) => expert !== "Nothing"
