@@ -8,10 +8,14 @@ import defaultPic from "../public/defaultpic.png";
 class ExpandedExpertCard extends Component {
   constructor(props) {
     super(props);
-    const { expert } = props || null;
+    const { expert } = props;
 
     this.state = {
-      currDate: expert ? isEmpty(expert.slots) ? null : Object.keys(expert.slots)[0] : null,
+      currDate: expert
+        ? isEmpty(expert.slots)
+          ? null
+          : Object.keys(expert.slots)[0]
+        : null,
       bookSlot: undefined,
     };
 
@@ -70,7 +74,6 @@ class ExpandedExpertCard extends Component {
     const expert = this.props.expert;
     return !show ? null : (
       <React.Fragment>
-        {/* <div>Hello</div> */}
         <div className="Expert-Card EC-details">
           <div className="info">
             <img
@@ -84,13 +87,13 @@ class ExpandedExpertCard extends Component {
               <h3>{expert.branch}</h3>
               <div className="btn-container">
                 <button className="book-slot-btn" onClick={this.handleSubmit}>
-                  PROCEED TO PAY
+                  BOOK SLOT
                 </button>
               </div>
             </div>
           </div>
           <div className="details">
-            <button onClick={this.minimizeCard}>X</button>
+            <button onClick={(e) => this.props.minimizeCard(e)}>X</button>
             <div className="description">
               <h1>Description</h1>
               <p>{expert.desc}</p>
@@ -127,13 +130,15 @@ class ExpandedExpertCard extends Component {
               <div className="slots">
                 <h2>Slots Available</h2>
                 <div className="slots-input">
-                  {Object.keys(expert.slots[this.state.currDate]).map(
-                    (slot) => (
-                      <label id={slot} onClick={this.bookSlot}>
-                        {slot}
-                      </label>
-                    )
-                  )}
+                  {!expert.slots[this.state.currDate]
+                    ? null
+                    : Object.keys(expert.slots[this.state.currDate]).map(
+                        (slot) => (
+                          <label id={slot} onClick={this.bookSlot}>
+                            {slot}
+                          </label>
+                        )
+                      )}
                 </div>
                 <div className="date-input">
                   {Object.keys(expert.slots).map((date) => (

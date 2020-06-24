@@ -14,7 +14,8 @@ import groupExperts from "../utils/groupExperts";
 
 let selectedFilter = null,
   expertsUngrouped = null,
-  index = null;
+  index = null,
+  btnNode = null;
 
 const responsive = {
   superLargeDesktop: {
@@ -39,7 +40,8 @@ const responsive = {
 class ExpertsPage extends Component {
   constructor(props) {
     super();
-    this.myRef = React.createRef();
+    this.expandAreaRef = React.createRef();
+    this.mainPageRef = React.createRef();
     this.state = {
       experts: {},
       sortBy: "institution",
@@ -50,6 +52,7 @@ class ExpertsPage extends Component {
     };
     this.setSort = this.setSort.bind(this);
     this.toggleExpansion = this.toggleExpansion.bind(this);
+    this.collapseCard = this.collapseCard.bind(this);
   }
 
   async componentDidMount() {
@@ -61,8 +64,8 @@ class ExpertsPage extends Component {
       userId: userId,
     });
 
-    const faved = await API.post('/expert/faved',{
-      userId:userId
+    const faved = await API.post("/expert/faved", {
+      userId: userId,
     });
 
     console.log(slot_ready);
@@ -92,6 +95,20 @@ class ExpertsPage extends Component {
     index = expertsUngrouped.findIndex((expert) => expert._id === expertId);
     expertsUngrouped[index].expand = true;
     this.setState({ expand: true });
+    this.expandAreaRef.current.classList.add("expansion-area");
+    this.mainPageRef.current.classList.add("grayed-out");
+    btnNode = e.target;
+    window.scrollTo(0,0);
+  }
+
+  collapseCard(e) {
+    e.preventDefault();
+    expertsUngrouped[index].expand = false;
+    index = null;
+    this.setState({ expand: false });
+    this.expandAreaRef.current.classList.remove("expansion-area");
+    this.mainPageRef.current.classList.remove("grayed-out");
+    btnNode.scrollIntoView();
   }
 
   setSort(e) {
@@ -116,15 +133,18 @@ class ExpertsPage extends Component {
     const sortParam = this.state.experts[this.state.sortBy];
     return (
       <React.Fragment>
-        <div ref={this.myRef} className="expansion-area">
+        <div ref={this.expandAreaRef}>
+          {!this.state.expand ? null : (
           <ExpandedExpertCard
             showCard={this.state.expand}
             expert={expertsUngrouped[index]}
             appt={false}
             user={this.state.user}
+            minimizeCard={this.collapseCard}
           />
+          )}
         </div>
-        <div style={{ minHeight: "100vh" }}>
+        <div className="main-page" ref={this.mainPageRef}>
           <FilterBar
             filters={["expertise", "institution", "exam"]}
             sortBy={this.setSort}
@@ -133,7 +153,7 @@ class ExpertsPage extends Component {
             <div>
               {Object.keys(sortParam).map((param) => (
                 <div>
-                  <h3 className="param">{param}</h3>
+                  <h3 className="param"><span>{param}</span></h3>
                   <br />
 
                   <Carousel

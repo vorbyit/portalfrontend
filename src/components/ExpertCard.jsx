@@ -54,7 +54,7 @@ class ExpertCard extends Component {
               </button>
 
               {!slot_ready ? null : (
-                <button className="book-slot-btn" onClick={this.handleMessage}>
+                <button className="msg-btn" onClick={this.handleMessage}>
                   MESSAGE
                 </button>
               )}
