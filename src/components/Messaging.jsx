@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from "../API";
-
+import { withRouter, Link } from 'react-router-dom';
 import getCurrentUser from "../utils/getCurrentUser";
 import isEmpty from "../utils/isEmpty";
 
@@ -10,7 +10,7 @@ import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
 
 
-export default class Messaging extends Component {
+class Messaging extends Component {
   constructor() {
     super();
     this.state = {
@@ -42,10 +42,11 @@ export default class Messaging extends Component {
 
     const { data } = await API.post("chats",{
       sender : this.props.user._id,
-      receiver : "5e6d030b88a29b5268906fe6",
+      receiver : this.props.location.data,
       message : ""
     });
     console.log(data);
+    console.log(this.props);
 
     this.setState({messages : data.messageList});
 
@@ -80,7 +81,7 @@ export default class Messaging extends Component {
     console.log(e);
     const { data } = await API.post("chats",{
       sender : this.props.user._id,
-      receiver : "5e6d030b88a29b5268906fe6",
+      receiver : this.props.location.data,
       message : e
     });
     console.log(data);
@@ -119,3 +120,4 @@ export default class Messaging extends Component {
     );
   }
 }
+export default withRouter(Messaging);

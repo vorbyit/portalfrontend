@@ -11,6 +11,14 @@ class ExpertCard extends Component {
       faved: false,
     };
     this.handleFav = this.handleFav.bind(this);
+    this.handleMessage = this.handleMessage.bind(this);
+  }
+
+  handleMessage() {
+    this.props.history.push({
+      pathname: "/chats",
+      data: this.props.expert._id,
+    });
   }
 
   async handleFav(evt) {
@@ -24,7 +32,7 @@ class ExpertCard extends Component {
   }
 
   render() {
-    const { expert, faved } = this.props;
+    const { expert, faved, slot_ready } = this.props;
     return (
       <div className="Expert-Card">
         <div className="info">
@@ -38,9 +46,19 @@ class ExpertCard extends Component {
             <h3>{expert.institution}</h3>
             <h3>{expert.branch}</h3>
             <div className="btn-container">
-              <button className="book-slot-btn" onClick={(e) => this.props.trigger(e, expert._id)}>
-                BOOK SLOT
+              <button
+                className="book-slot-btn"
+                onClick={(e) => this.props.trigger(e, expert._id)}
+              >
+                VIEW DETAILS
               </button>
+
+              {!slot_ready ? null : (
+                <button className="book-slot-btn" onClick={this.handleMessage}>
+                  MESSAGE
+                </button>
+              )}
+
               <button className="fav-btn" onClick={this.handleFav}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

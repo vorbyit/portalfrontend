@@ -45,6 +45,7 @@ class ExpertsPage extends Component {
       sortBy: "institution",
       user: {},
       faved: [],
+      slot_ready: [],
       expand: false,
     };
     this.setSort = this.setSort.bind(this);
@@ -52,11 +53,23 @@ class ExpertsPage extends Component {
   }
 
   async componentDidMount() {
+    console.log("00:00" < "00:03");
+    console.log("00:30" > "00:03");
     const userdata = await getCurrentUser();
     const userId = userdata._id;
-    const faved = await API.post("/expert/faved", {
+    const slot_ready = await API.post("/expert/ready", {
       userId: userId,
     });
+    console.log(slot_ready);
+    const myexperts = slot_ready.data.filter(
+      (expert) => expert !== "Nothing"
+    )[0];
+    let msgexperts = [];
+    for (let i in myexperts) {
+      msgexperts.push(i);
+    }
+    console.log(msgexperts);
+
     expertsUngrouped = await API.get("/expert/getexperts");
     expertsUngrouped = expertsUngrouped.data;
     expertsUngrouped.forEach((expert) => (expert.expand = false));
@@ -65,6 +78,7 @@ class ExpertsPage extends Component {
       user: userdata,
       faved: faved.data,
       experts: groupExperts(expertsUngrouped),
+      slot_ready: msgexperts,
     });
   }
 
@@ -89,7 +103,8 @@ class ExpertsPage extends Component {
     if (
       isEmpty(this.state.experts) &&
       isEmpty(this.state.user) &&
-      isEmpty(this.state.faved)
+      isEmpty(this.state.faved) &&
+      isEmpty(this.state.slot_ready)
     ) {
       return null;
     }
@@ -138,6 +153,7 @@ class ExpertsPage extends Component {
                         expert={expert}
                         user={this.state.user}
                         faved={!this.state.faved.includes(expert._id)}
+                        slot_ready={this.state.slot_ready.includes(expert._id)}
                         trigger={this.toggleExpansion}
                       />
                     ))}
