@@ -40,7 +40,6 @@ class ExpertCard extends Component {
             src={expert.pic === "defaultpic" ? defaultPic : expert.pic}
             alt="profpic"
           />
-
           <div>
             <h3>{expert.name}</h3>
             <h3>{expert.institution}</h3>
