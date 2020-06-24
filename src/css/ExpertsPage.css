@@ -5,3 +5,12 @@
 .react-multiple-carousel__arrow--left {
     left: 1% !important;
 }
+
+.expansion-area {
+    position: absolute;
+    z-index: 1000;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+}

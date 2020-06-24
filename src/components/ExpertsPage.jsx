@@ -2,14 +2,19 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import FilterBar from "./FilterBar";
 import ExpertCard from "./ExpertCard";
-import getCurrentUser from '../utils/getCurrentUser';
+import ExpandedExpertCard from "./ExpandedExpertCard";
+import getCurrentUser from "../utils/getCurrentUser";
 import API from "../API";
-import "../css/carousel-styles.css";
+import "../css/ExpertsPage.css";
+import "../utils/groupExperts";
 import isEmpty from "../utils/isEmpty";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import groupExperts from "../utils/groupExperts";
 
-let selectedFilter = null;
+let selectedFilter = null,
+  expertsUngrouped = null,
+  index = null;
 
 const responsive = {
   superLargeDesktop: {
@@ -34,29 +39,40 @@ const responsive = {
 class ExpertsPage extends Component {
   constructor(props) {
     super();
+    this.myRef = React.createRef();
     this.state = {
       experts: {},
       sortBy: "institution",
-      user : {},
-      faved : []
+      user: {},
+      faved: [],
+      expand: false,
     };
     this.setSort = this.setSort.bind(this);
+    this.toggleExpansion = this.toggleExpansion.bind(this);
   }
 
   async componentDidMount() {
     const userdata = await getCurrentUser();
-    this.setState({user:userdata})
     const userId = userdata._id;
-    const faved = await API.post('/expert/faved',{
-      userId:userId
-    })
-    this.setState({faved:faved.data});
-    const experts = await API.get("/expert/getexperts");
-    this.setState({
-      experts: experts.data,
+    const faved = await API.post("/expert/faved", {
+      userId: userId,
     });
-    this.setSort = this.setSort.bind(this);
+    expertsUngrouped = await API.get("/expert/getexperts");
+    expertsUngrouped = expertsUngrouped.data;
+    expertsUngrouped.forEach((expert) => (expert.expand = false));
+    console.log(expertsUngrouped);
+    this.setState({
+      user: userdata,
+      faved: faved.data,
+      experts: groupExperts(expertsUngrouped),
+    });
+  }
 
+  toggleExpansion(e, expertId) {
+    e.preventDefault();
+    index = expertsUngrouped.findIndex((expert) => expert._id === expertId);
+    expertsUngrouped[index].expand = true;
+    this.setState({ expand: true });
   }
 
   setSort(e) {
@@ -70,61 +86,68 @@ class ExpertsPage extends Component {
   }
 
   render() {
-    if ((isEmpty(this.state.experts))&&(isEmpty(this.state.user))&&(isEmpty(this.state.faved))) {
+    if (
+      isEmpty(this.state.experts) &&
+      isEmpty(this.state.user) &&
+      isEmpty(this.state.faved)
+    ) {
       return null;
     }
-    console.log(this.state.user);
-    console.log(this.state.faved);
     const sortParam = this.state.experts[this.state.sortBy];
     return (
-      <div style={{ minHeight: "100vh" }}>
-        {/* <div className="sortBy">
-          <span id="expertise" onClick={this.setSort}>
-            Expertise
-          </span>
-          <span id="institution" onClick={this.setSort}>
-            Institution
-          </span>
-          <span id="exam" onClick={this.setSort}>
-            Exam
-          </span>
-        </div> */}
-        <FilterBar
-          filters={["expertise", "institution", "exam"]}
-          sortBy={this.setSort}
-        />
-        {sortParam === undefined ? null : (
-          <div>
-            {Object.keys(sortParam).map((param) => (
-              <div>
-                <h3 className="param">{param}</h3>
-                <br />
+      <React.Fragment>
+        <div ref={this.myRef} className="expansion-area">
+          <ExpandedExpertCard
+            showCard={this.state.expand}
+            expert={expertsUngrouped[index]}
+            appt={false}
+            user={this.state.user}
+          />
+        </div>
+        <div style={{ minHeight: "100vh" }}>
+          <FilterBar
+            filters={["expertise", "institution", "exam"]}
+            sortBy={this.setSort}
+          />
+          {sortParam === undefined ? null : (
+            <div>
+              {Object.keys(sortParam).map((param) => (
+                <div>
+                  <h3 className="param">{param}</h3>
+                  <br />
 
-                <Carousel
-                  swipeable={true}
-                  draggable={true}
-                  showDots={true}
-                  responsive={responsive}
-                  ssr={true} // means to render carousel on server-side.
-                  infinite={true}
-                  keyBoardControl={true}
-                  customTransition="all .5"
-                  transitionDuration={500}
-                  containerClass="carousel-container"
-                  removeArrowOnDeviceType={["tablet", "mobile"]}
-                  deviceType={this.props.deviceType}
-                  dotListClass="custom-dot-list-style"
-                  itemClass="carousel-item-padding-40-px"
-                >
-                  {sortParam[param].map((expert) => (
-                    <ExpertCard appt={false} expert={expert} user={this.state.user} faved={!this.state.faved.includes(expert._id)} />
-                  ))}
-                </Carousel>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+                  <Carousel
+                    swipeable={true}
+                    draggable={true}
+                    showDots={true}
+                    responsive={responsive}
+                    ssr={true} // means to render carousel on server-side.
+                    infinite={true}
+                    keyBoardControl={true}
+                    customTransition="all .5"
+                    transitionDuration={500}
+                    containerClass="carousel-container"
+                    removeArrowOnDeviceType={["tablet", "mobile"]}
+                    deviceType={this.props.deviceType}
+                    dotListClass="custom-dot-list-style"
+                    itemClass="carousel-item-padding-40-px"
+                  >
+                    {sortParam[param].map((expert) => (
+                      <ExpertCard
+                        appt={false}
+                        expert={expert}
+                        user={this.state.user}
+                        faved={!this.state.faved.includes(expert._id)}
+                        trigger={this.toggleExpansion}
+                      />
+                    ))}
+                  </Carousel>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </React.Fragment>
     );
   }
 }
