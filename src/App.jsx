@@ -21,7 +21,7 @@ import ExpertCard from './components/ExpertCard';
 
 import PaymentStatus from './components/PaymentStatus';
 
-
+import Index from './pages/index/index'
 
 import './App.css';
 import ExpertApptCard from './components/ExpertApptCard';
@@ -161,6 +161,18 @@ export default class App extends Component {
               
             )}
           />
+
+           <Route 
+            exact
+            path="/meeting"
+            render = {(props) => (
+              <Index
+                user={this.state.user}
+                updateUser={this.updateUser}
+              />
+              
+            )}
+          /> 
 
           <Route 
             exact
