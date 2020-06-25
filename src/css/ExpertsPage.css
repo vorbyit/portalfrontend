@@ -1,0 +1,23 @@
+.react-multiple-carousel__arrow--right {
+    right: 1% !important;
+}
+
+.react-multiple-carousel__arrow--left {
+    left: 1% !important;
+}
+
+.expansion-area {
+    z-index: 1000;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grayed-out {
+    display: none;    
+}
+
+.main-page .param {
+    margin-left: 12px;
+}
