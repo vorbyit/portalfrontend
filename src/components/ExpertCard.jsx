@@ -45,15 +45,13 @@ class ExpertCard extends Component {
             <h3>{expert.institution}</h3>
             <h3>{expert.branch}</h3>
             <div className="btn-container">
-              <button
+            {!slot_ready ? (<button
                 className="book-slot-btn"
                 onClick={(e) => this.props.trigger(e, expert._id)}
               >
                 VIEW DETAILS
-              </button>
-
-              {!slot_ready ? null : (
-                <button className="msg-btn" onClick={this.handleMessage}>
+              </button>) : (
+                <button className="book-slot-btn" onClick={this.handleMessage}>
                   MESSAGE
                 </button>
               )}

@@ -7,8 +7,9 @@ import isEmpty from "../utils/isEmpty";
 import 'react-chatbox-component/dist/style.css';
 import {ChatBox} from 'react-chatbox-component';
 import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
+import "../css/Messaging.css"
 
-
+import VideoCallImg from "../public/icons8-video-call-40.png";
 
 class Messaging extends Component {
   constructor() {
@@ -19,6 +20,11 @@ class Messaging extends Component {
       messages : [],
       user : {},
     };
+    this.handleVideoCall = this.handleVideoCall.bind(this);
+  }
+
+  handleVideoCall() {
+    this.props.history.push('/meeting');
   }
 
   async componentDidMount() {
@@ -102,6 +108,9 @@ class Messaging extends Component {
       onSubmit={(e) => this.handlechat(e)}
     />
 
+    <div className="videodiv">
+      <button className="video-btn" onClick={this.handleVideoCall}><img src={VideoCallImg} /></button>
+      </div>
        {/*<div>
           {this.state.chats.map((chat, i) => (
             <div id={i}>
@@ -115,8 +124,7 @@ class Messaging extends Component {
           ))}
         </div>
         <div></div>*/}
-
-      </div>
+        </div>
     );
   }
 }
