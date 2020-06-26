@@ -140,13 +140,13 @@ class Profile extends Component {
          No. of students guided
        </div>
 
-       <div className = "div2">
+       <div className = "div1">
        {this.state.call_count}
        </div>
        </div>
 
        <div>
-       <div className="div1">
+       <div className="div2">
          Amount Earned
        </div>
        <div className = "div2">
@@ -158,7 +158,7 @@ class Profile extends Component {
 
 
        <div className="chart">
-        
+        <div className="chart1">
        <Chart
   width={'500px'}
   height={'300px'}
@@ -180,6 +180,7 @@ class Profile extends Component {
   // For tests
   rootProps={{ 'data-testid': '2' }}
 />
+</div>
 
        </div>
 

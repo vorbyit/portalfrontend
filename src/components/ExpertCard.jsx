@@ -44,6 +44,7 @@ class ExpertCard extends Component {
             <h3>{expert.name}</h3>
             <h3>{expert.institution}</h3>
             <h3>{expert.branch}</h3>
+            {!(this.props.user.type==="USER") ? null :(
             <div className="btn-container">
             {!slot_ready ? (<button
                 className="book-slot-btn"
@@ -84,7 +85,7 @@ class ExpertCard extends Component {
                   </g>
                 </svg>
               </button>
-            </div>
+            </div>)}
           </div>
         </div>
       </div>

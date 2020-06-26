@@ -13,10 +13,8 @@ class Payment extends Component {
     
     this.state = {
         payment_amount: 0,
-        refund_id: 0
       };
       this.paymentHandler = this.paymentHandler.bind(this);
-      this.refundHandler = this.refundHandler.bind(this);
   }
 
  async componentDidMount() {
@@ -106,31 +104,6 @@ class Payment extends Component {
     rzp1.open();
   }
 
-  refundHandler(e) {
-    e.preventDefault();
-    const { refund_id } = this.state;
-    const url = "http://localhost:3000/payment/refund/"+refund_id;
-
-    // Using my server endpoints to initiate the refund
-    fetch(url, {
-      method: 'get',
-      headers: {
-        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-      }
-    })
-    .then(resp =>  resp.json())
-    .then(function (data) {
-      console.log('Request succeeded with JSON response', data);
-      alert("Refund Succeeded", )
-    })
-    .catch(function (error) {
-      console.log('Request failed', error);
-    });
-
-  }
-
-  
-
     render(){
         const { payment_amount, refund_id } = this.state;
         return(
@@ -161,29 +134,6 @@ class Payment extends Component {
               />
               <p>
                 <button type="submit">Pay Now</button>
-              </p>
-            </form>
-          </div>
-        </div>
-        <div className="refunds">
-          <div className="refunds-title">
-            <h1>Test Refunds</h1>
-          </div>
-          <div className="refunds-form">
-            <form action="#" onSubmit={this.refundHandler}>
-              <p>
-                <label htmlFor="refund_amount" className="refund_amount">
-                  Payment Transaction ID
-                </label>
-              </p>
-              <input
-                value={refund_id}
-                type="text"
-                className="refund_amount"
-                onChange={e => this.setState({ refund_id: e.target.value })}
-              />
-              <p>
-                <button type="submit">Refund Now</button>
               </p>
             </form>
           </div>

@@ -6,13 +6,15 @@
 }
 
 .chart{
-    margin-left: 500px;
+    text-align: center;
+}
+
+.chart1{
+    display: inline-block; 
 }
 
 .details2{
         background-color: #0b6283;
-        top: 0;
-        left: 0;
         width: 100%;
         height: 9rem;
         display: flex;
@@ -22,25 +24,22 @@
 }
 .div1{
         color: antiquewhite;
-        font-size: medium;
+        font-size: large;
         width: fit-content;
-        float: left;
-        margin-right: 180px;
-        margin-left: 180px;
-    margin-top: 24px;
-    margin-bottom: 22px;
-
+        top: 0px;
+        left: 0px;
+        margin-top: 10%;
+        margin-left:10%;
 }
 
 .div2{
     color: antiquewhite;
-    font-size: xx-large;
+    font-size: large;
     width: fit-content;
-    margin-right: 200px;
-    margin-left: 200px;
-margin-top: 24px;
-margin-bottom: 22px;
-
+    top: 0px;
+    left: 0px;
+    margin-top: 15%;
+    margin-left:15%;
 }
 
 

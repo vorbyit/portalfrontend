@@ -55,10 +55,18 @@ class Navbar extends Component {
             >
               Advisors
             </NavLink>
-            <NavLink className="nav-item" to="/udaan" activeClassName="active">
+
+            <NavLink className="nav-item" to={{
+              pathname:"/udaan",
+              scroll:false  }} 
+              activeClassName="active">
               Project Udaan
             </NavLink>
-            <NavLink className="nav-item" to="/" activeClassName="active">
+
+            <NavLink className="nav-item" to={{
+              pathname:"/udaan",
+              scroll:true  }}
+               activeClassName="active">
               Contact Us
             </NavLink>
             {this.props.user === undefined ? (

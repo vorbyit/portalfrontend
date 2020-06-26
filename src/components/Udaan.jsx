@@ -1,12 +1,48 @@
-import React from "react";
+import React,{Component} from "react";
 import '../css/udaan.css'
 import curve from '../public/curve.png';
 import undaanBoy from '../public/udaan-boy.png';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { withRouter } from "react-router-dom";
 
-export default function udaan() {
+class Udaan extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+        scroll:false
+      };
+      this.pageEnd = React.createRef();
+      this.scrollToBottom = this.scrollToBottom.bind(this);
+  }
+
+ async componentDidMount() {
+
+  try {
+    console.log(this.props.location.scroll)
+    if(this.props.location.scroll==true)
+    {
+      console.log("Scroll");
+    //this.scrollToBottom();
+    //window.scrollTo(0,5000);
+    this.props.scrolldown();
+    }
+    }
+    
+    catch (error) {
+       console.log(error);
+  }
+
+  }
+
+  scrollToBottom(){
+    console.log("Scroll");
+    this.pageEnd.current.scrollIntoView({ behavior: "smooth" });
+  }
+
+render(){
   return (
     <div className="Udaan">
       <img src={curve} alt="" id="design-bg" />
@@ -45,6 +81,10 @@ export default function udaan() {
           </div>
         </div>
       </div>
+      <div  ref={this.pageEnd}>
+        </div>
     </div>
   );
 }
+}
+export default withRouter(Udaan)
