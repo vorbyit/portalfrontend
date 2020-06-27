@@ -45,6 +45,17 @@ class ExpandedExpertCard extends Component {
       console.log("BOOKED");
     } else {
       this.setState({ choosenSlot: slot, });
+<<<<<<< HEAD
+=======
+    }
+  }
+
+  async handleSubmit(evt) {
+    evt.preventDefault();
+    if (this.state.choosenSlot === null) {
+      alert("Select SLOT");
+      return;
+>>>>>>> 123b5ff31c11fc48894ab67647d48b53fcbc1bdd
     }
   }
 

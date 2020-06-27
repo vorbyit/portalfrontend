@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,400&display=swap");
 
-.Expert-Card {
+.Expert-Card, .EC-details {
   width: initial;
   margin: 5% 10%;
   border-radius: 1rem;
@@ -45,7 +45,7 @@
   height: 3rem;
   flex-grow: 2;
   margin-right: 0.5rem;
-  color: white;
+  color: #ecf9ff;
   font-size: 1.2 rem;
   cursor: pointer;
   transition: ease;
@@ -99,50 +99,46 @@
   padding: 2%;
 }
 
+.EC-details .details .close-btn {
+  background-color: white;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+}
+
 .EC-details .duration {
   margin-bottom: 1.75rem;
 }
 
-.EC-details .duration-input {
-  height: max-content;
-  display: flex;
+.EC-details .duration .duration-btn-container {
   width: 100%;
-  justify-content: flex-start;
+  height: 2.5rem;
+  display: flex;
 }
 
-.EC-details .duration-input div {
-  margin-right: 10rem;
-}
-
-.EC-details .duration-input input[type="radio"] {
-  display: none;
-}
-
-.EC-details .duration-input label {
-  vertical-align: middle;
-  text-align: center;
+.EC-details .duration .duration-btn-container .duration-btn {
+  margin-right: 8rem;
+  border: 1px solid black;
+  padding: 0 1rem;
+  color: inherit;
+  background-color: white;
   cursor: pointer;
-  color: #707070;
-  box-shadow: 0 0 0.5rem #0d0d0d;
-  height: 2rem;
-  width: 9rem;
 }
 
-.EC-details .duration-input label span {
-  padding: 0.5rem;
-}
-
-.EC-details .duration-input label span:nth-child(2) {
+.EC-details .duration .duration-btn-container .btn-selected {
   background-color: #0b6283;
-  color: white;
+  color: #ecf9ff;
+}
+
+.EC-details .duration .duration-btn-container button:focus {
+  outline: none;
+}
+
+.EC-details .duration .duration-btn-container .duration-btn span:nth-child(2) {
   display: inline-block;
-  border-right: solid #0b6283 0.3rem;
+  margin: 0 1rem;  
 }
 
-.EC-details .duration-input input[type="radio"]:checked + label {
-  background-color: #0b6283;
-  color: white;
-}
 
 .EC-details .slots {
   height: 10rem;
@@ -166,11 +162,6 @@
   background-color: #555;
 }
 
-.EC-details .slots .input {
-  display: flex;
-  justify-content: space-between;
-}
-
 .EC-details .slots-input {
   left: 50%;
   top: 50%;
@@ -179,12 +170,6 @@
   overflow: scroll;
   overflow-x: hidden;
   padding: 1rem;
-}
-  
-.EC-details .slots-input input[type="radio"] {
-  visibility: hidden;
-  height: 0;
-  width: 0;
 }
 
 .EC-details .slots-input label {
@@ -207,6 +192,11 @@
 
 .EC-details .slots-input label:nth-child(even) {
   float: right;
+}
+
+.EC-details .slots-input .slot-selected {
+  background-color: #0b6283;
+  color: #ecf9ff;
 }
 
 .EC-details .date-input {
