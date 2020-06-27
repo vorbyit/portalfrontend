@@ -47,3 +47,7 @@ border-bottom-color:#00e3ff;
     margin-left: 87px;
     width: 85%;
   }
+
+  .navbar-light {
+    background-color: rgb(236, 238, 243)
+}
