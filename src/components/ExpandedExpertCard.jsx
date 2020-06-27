@@ -19,11 +19,12 @@ class ExpandedExpertCard extends Component {
           ? null
           : Object.keys(expert.slots)[0]
         : null,
-      bookSlot: undefined,
+      durationIndex: 1,
+      choosenSlot: null,
     };
 
     this.setDate = this.setDate.bind(this);
-    this.bookSlot = this.bookSlot.bind(this);
+    this.chooseSlot = this.chooseSlot.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.paymentHandler = this.paymentHandler.bind(this);
   }
@@ -35,33 +36,20 @@ class ExpandedExpertCard extends Component {
     });
   }
 
-  bookSlot(evt) {
+  chooseSlot(evt) {
     const slot = evt.target.id;
     if (this.props.expert.slots[this.state.currDate][slot] !== null) {
       console.log("BOOKED");
     } else {
-      this.setState({
-        bookSlot: slot,
-      });
+      this.setState({ choosenSlot: slot, });
     }
   }
 
   async handleSubmit(evt) {
     evt.preventDefault();
-    console.log(this.state);
-    if (this.state.showDetails === false) {
-      this.setState({
-        showDetails: true,
-      });
-    } else if (this.state.bookSlot === undefined) {
-      console.log("Select SLOT");
-    } else {
-      const slot = await API.post("/slots/bookslot", {
-        date: this.state.currDate,
-        slot: this.state.bookSlot,
-        expertId: this.props.expert._id,
-      });
-      console.log(slot);
+    if (this.state.choosenSlot === null) {
+      alert("Select SLOT");
+      return;
     }
   }
 
@@ -159,6 +147,19 @@ class ExpandedExpertCard extends Component {
       data: this.props.expert._id,
       amount : e.target.value
     });
+    // const slot = await API.post("/slots/bookslot", {
+    //   date: this.state.currDate,
+    //   slot: this.state.bookSlot,
+    //   expertId: this.props.expert._id,
+    // });
+  }
+
+  toggleDuration(e, btnNo) {
+    e.preventDefault();
+    if (btnNo === this.state.durationIndex) {
+      return;
+    }
+    this.setState({ durationIndex: btnNo, });
   }
 
   render() {
@@ -172,20 +173,19 @@ class ExpandedExpertCard extends Component {
               src={expert.pic === "defaultpic" ? defaultPic : expert.pic}
               alt="profpic"
             />
-
             <div>
               <h3>{expert.name}</h3>
               <h3>{expert.institution}</h3>
               <h3>{expert.branch}</h3>
               <div className="btn-container">
-                <button className="book-slot-btn" onClick={this.handleSubmit}>
-                  BOOK SLOT
+                <button className="book-slot-btn" onClick={(e) => this.handleSubmit(e)}>
+                  PROCEED TO PAY
                 </button>
               </div>
             </div>
           </div>
           <div className="details">
-            <button onClick={(e) => this.props.minimizeCard(e)}>X</button>
+            <button className="close-btn" onClick={(e) => this.props.minimizeCard(e)}>X</button>
             <div className="description">
               <h1>Description</h1>
               <p>{expert.desc}</p>
@@ -219,7 +219,6 @@ class ExpandedExpertCard extends Component {
                   </label>
                 </div>
               </div>
-              <div></div>
             </div>
             {isEmpty(expert.slots) ? null : (
               <div className="slots">
@@ -228,12 +227,13 @@ class ExpandedExpertCard extends Component {
                   {!expert.slots[this.state.currDate]
                     ? null
                     : Object.keys(expert.slots[this.state.currDate]).map(
-                        (slot) => (
-                          <label id={slot} onClick={this.bookSlot}>
-                            {slot}
-                          </label>
-                        )
-                      )}
+                      (slot) => (
+                        <label id={slot} className={this.state.choosenSlot === slot ? "slot-selected" : null} onClick={(e) => this.chooseSlot(e)}>
+                          {slot}
+                        </label>
+                      )
+                    )
+                  }
                 </div>
                 <div className="date-input">
                   {Object.keys(expert.slots).map((date) => (
