@@ -34,11 +34,23 @@ export default class App extends Component {
       user : undefined,
     }
     this.updateUser = this.updateUser.bind(this);
+    this.scrolldown = this.scrolldown.bind(this);
   }
 
   async updateUser(user) {
     this.setState({ user });
   }
+
+  async scrolldown() {
+    var body = document.body,
+    html = document.documentElement;
+
+var height = Math.max( body.scrollHeight, body.offsetHeight, 
+                       html.clientHeight, html.scrollHeight, html.offsetHeight );
+    window.scrollTo(0,height);
+  }
+
+
 
   render() {
     return (
@@ -63,7 +75,7 @@ export default class App extends Component {
               exact
               path="/udaan"
               render = {(props) => (
-                <Udaan />
+                <Udaan scrolldown={this.scrolldown}/>
               )}
             />
             <Route 
