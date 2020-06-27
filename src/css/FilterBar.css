@@ -3,6 +3,8 @@
   /* margin-left: 87px; */
   margin: 2rem auto;
   width: 85%;
+  justify-content: space-around;
+  display: flex;
 }
 
 .FilterBar ul {

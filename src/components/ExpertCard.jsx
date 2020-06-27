@@ -32,6 +32,12 @@ class ExpertCard extends Component {
   }
 
   render() {
+    console.log(this.props);
+    let usertype = false;
+    if(this.props.user===undefined)
+    usertype = true;
+    else if(this.props.user.type==='USER')
+    usertype = true;
     const { expert, faved, slot_ready } = this.props;
     return (
       <div className="Expert-Card">
@@ -44,7 +50,7 @@ class ExpertCard extends Component {
             <h3>{expert.name}</h3>
             <h3>{expert.institution}</h3>
             <h3>{expert.branch}</h3>
-            {!(this.props.user.type==="USER") ? null :(
+            {!usertype ? null :(
             <div className="btn-container">
             {!slot_ready ? (<button
                 className="book-slot-btn"
