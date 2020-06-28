@@ -134,7 +134,7 @@ class Profile extends Component {
         </div>
 
       </div>
-      <div className="details2">
+      {this.state.type!=="EXPERT" ? null : (<div className="details2">
         <div>
         <div className="div1">
          No. of students guided
@@ -154,10 +154,10 @@ class Profile extends Component {
        </div>
        </div>
        
-      </div>
+      </div>)}
 
-
-       <div className="chart">
+      {this.state.type!=="EXPERT" ? null : 
+       (<div className="chart">
         <div className="chart1">
        <Chart
   width={'500px'}
@@ -182,7 +182,7 @@ class Profile extends Component {
 />
 </div>
 
-       </div>
+       </div>)}
 
       </div>
     );

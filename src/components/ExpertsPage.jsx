@@ -182,7 +182,7 @@ class ExpertsPage extends Component {
                         appt={false}
                         expert={expert}
                         user={this.state.user}
-                        faved={!this.state.faved.includes(expert._id)}
+                        faved={this.state.faved.includes(expert._id)}
                         slot_ready={this.state.slot_ready.includes(expert._id)}
                         trigger={this.toggleExpansion}
                       />

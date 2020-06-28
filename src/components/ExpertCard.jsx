@@ -7,8 +7,9 @@ import defaultPic from "../public/defaultpic.png";
 class ExpertCard extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props.faved)
     this.state = {
-      faved: false,
+      faved: this.props.faved,
     };
     this.handleFav = this.handleFav.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
@@ -75,7 +76,7 @@ class ExpertCard extends Component {
                         id="Path_340"
                         data-name="Path 340"
                         className={
-                          faved && !this.state.faved
+                          !this.state.faved
                             ? "cls-1-uncheck"
                             : "cls-1-check"
                         }
