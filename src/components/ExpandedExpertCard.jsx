@@ -1,9 +1,14 @@
+
+  
 import React, { Component } from "react";
 import API from "../API";
 import { withRouter } from "react-router-dom";
 import isEmpty from "../utils/isEmpty";
 import "../css/expertCard.css";
 import defaultPic from "../public/defaultpic.png";
+import getCurrentUser from "../utils/getCurrentUser";
+import Razorpay from 'razorpay';
+import {Helmet} from "react-helmet";
 
 class ExpandedExpertCard extends Component {
   constructor(props) {
@@ -24,6 +29,7 @@ class ExpandedExpertCard extends Component {
     this.chooseSlot = this.chooseSlot.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleDuration = this.toggleDuration.bind(this);
+    this.paymentHandler = this.paymentHandler.bind(this);
   }
 
   setDate(evt) {
@@ -39,8 +45,107 @@ class ExpandedExpertCard extends Component {
       console.log("BOOKED");
     } else {
       this.setState({ choosenSlot: slot, });
+<<<<<<< HEAD
+=======
     }
   }
+
+  async handleSubmit(evt) {
+    evt.preventDefault();
+    if (this.state.choosenSlot === null) {
+      alert("Select SLOT");
+      return;
+>>>>>>> 123b5ff31c11fc48894ab67647d48b53fcbc1bdd
+    }
+  }
+
+  async componentDidMount() {
+    const script = document.createElement("script");
+  
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+  
+    document.body.appendChild(script);
+  
+    try {
+      if (isEmpty(this.props.user)) {
+        const currentUser = await getCurrentUser();
+        this.props.updateUser(currentUser);
+        console.log(this.props);
+      }
+  
+     
+    } catch (error) {
+      console.log(error);
+    }
+  
+    }
+    paymentHandler(e) {
+      e.preventDefault();
+      const expertID = this.props.expert._id;
+      const userID = this.props.user._id;
+      const  payment_amount  = e.target.value;
+      const self = this;
+      const options = {
+        key: "rzp_test_4JLpoFGA17xkZq",
+        amount: payment_amount*100,
+        name: 'Payments',
+        description: 'Donate yourself some time',
+  
+        async handler(response) {
+          const paymentId = response.razorpay_payment_id;
+          const payment_data =await API.post('/payment/status',{
+            payment_id:paymentId
+          })
+          console.log(payment_data)
+  
+          if(payment_data.data.status=="captured")
+          {
+            console.log(expertID);
+            console.log(userID);
+            const response =await API.post('/payment/success',{
+              userID : userID,
+              expertID : expertID
+            })
+            console.log(response);
+          }
+          const url ="http://localhost:3000/payment/"+paymentId+'/'+payment_amount;
+          // Using my server endpoints to capture the payment
+          fetch(url, {
+            method: 'get',
+            headers: {
+              "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+            }
+          })
+         // .then(resp=>resp.json())
+          .then(function (data) {
+            console.log('Request succeeded with JSON response', data);
+  
+            self.setState({
+              refund_id: response.razorpay_payment_id
+            });
+          })
+          .catch(function (error) {
+            console.log('Request failed', error);
+          });
+        },
+  
+        prefill: {
+          name: 'Shashank Shekhar',
+          email: 'ss@localtrip.in',
+        },
+        notes: {
+          address: 'Goa,India',
+        },
+        theme: {
+          color: '#9D50BB',
+        },
+      };
+      const rzp1 = new window.Razorpay(options);
+  
+      rzp1.open();
+    }
+
 
   async handleSubmit(evt) {
     evt.preventDefault();
@@ -104,12 +209,16 @@ class ExpandedExpertCard extends Component {
                 <button className={this.state.durationIndex === 1 ? "duration-btn btn-selected" : "duration-btn"} onClick={(e) => this.toggleDuration(e, 1)}>
                   <span>30 Min</span>
                   <span>|</span>
-                  <span>100 Rs</span>
+                  <button value="100" onClick={(e) => this.paymentHandler(e)}>
+                      100 Rs
+                    </button>
                 </button>
                 <button className={this.state.durationIndex === 2 ? "duration-btn btn-selected" : "duration-btn"} onClick={(e) => this.toggleDuration(e, 2)}>
                   <span>60 Min</span>
                   <span>|</span>
-                  <span>200 Rs</span>
+                  <button value="200" onClick={(e) => this.paymentHandler(e)}>
+                      200 Rs
+                    </button>
                 </button>
               </div>
             </div>

@@ -8,8 +8,8 @@ import Razorpay from 'razorpay';
 import {Helmet} from "react-helmet";
 
 class Payment extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     
     this.state = {
         payment_amount: 0,
@@ -42,7 +42,7 @@ class Payment extends Component {
     e.preventDefault();
     const expertID = this.props.location.data;
     const userID = this.props.user._id;
-    const  payment_amount  = this.state.payment_amount;
+    const  payment_amount  = this.props.location.amount;
     const self = this;
     const options = {
       key: "rzp_test_4JLpoFGA17xkZq",
@@ -105,7 +105,6 @@ class Payment extends Component {
   }
 
     render(){
-        const { payment_amount, refund_id } = this.state;
         return(
             
   <div className="wrapper">
@@ -123,15 +122,7 @@ class Payment extends Component {
                   Amount to be paid
                 </label>
               </p>
-              <input
-                type="number"
-                value={payment_amount}
-                className="pay_amount"
-                placeholder="Amount in INR"
-                onChange={e =>
-                  this.setState({ payment_amount: e.target.value })
-                }
-              />
+        <p>{this.props.location.amount}</p>
               <p>
                 <button type="submit">Pay Now</button>
               </p>
@@ -142,6 +133,7 @@ class Payment extends Component {
   
         );
     }
-    }
+  }
+    
     export default withRouter(Payment);
 
