@@ -35,10 +35,8 @@ class ExpertCard extends Component {
   render() {
     console.log(this.props);
     let usertype = false;
-    if(this.props.user===undefined)
-    usertype = true;
-    else if(this.props.user.type==='USER')
-    usertype = true;
+    if (this.props.user === undefined) usertype = true;
+    else if (this.props.user.type === "USER") usertype = true;
     const { expert, faved, slot_ready } = this.props;
     return (
       <div className="Expert-Card">
@@ -51,18 +49,24 @@ class ExpertCard extends Component {
             <h3>{expert.name}</h3>
             <h3>{expert.institution}</h3>
             <h3>{expert.branch}</h3>
-            {!usertype ? null :(
-            <div className="btn-container">
-            {!slot_ready ? (<button
-                className="book-slot-btn"
-                onClick={(e) => this.props.trigger(e, expert._id)}
-              >
-                VIEW DETAILS
-              </button>) : (
-                <button className="book-slot-btn" onClick={this.handleMessage}>
-                  MESSAGE
-                </button>
-              )}
+            {!usertype ? null : (
+              <div className="btn-container">
+                {!slot_ready ? (
+                  <button
+                    className="book-slot-btn"
+                    onClick={(e) => this.props.trigger(e, expert._id)}
+                  >
+                    VIEW DETAILS
+                  </button>
+                ) : (
+                  <button
+                    className="book-slot-btn"
+                    onClick={this.handleMessage}
+                  >
+                    MESSAGE
+                  </button>
+                )}
+
 
               <button className="fav-btn" onClick={this.handleFav}>
                 <svg
@@ -88,11 +92,12 @@ class ExpertCard extends Component {
                         className="cls-2"
                         d="M45,21.81a8,8,0,0,0-11,.62L32.85,23.6l-1.14-1.21a8,8,0,0,0-10.94-1A8.43,8.43,0,0,0,19.7,33.28c.09.11.18.22.28.32L31.14,45.53a1.85,1.85,0,0,0,2.6.1l.06-.06L45.36,34a8.42,8.42,0,0,0,0-11.92Z"
                       />
+
                     </g>
-                  </g>
-                </svg>
-              </button>
-            </div>)}
+                  </svg>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -98,7 +98,7 @@ class ExpertApptPage extends Component {
     return (
       <div>
         <div>
-          {/* <h5>Unapporved</h5> */}
+          <h5>Unapporved</h5>
           {this.state.unapproved.map((appt) => (
             <UserCard
               user={this.props.user}
@@ -110,7 +110,7 @@ class ExpertApptPage extends Component {
           ))}
         </div>
         <div>
-          {/* <h5>Upcoming Appointments</h5> */}
+          <h5>Upcoming Appointments</h5>
           {this.state.upcoming.map((appt) => (
             <UserCard
               user={this.props.user}
@@ -120,7 +120,7 @@ class ExpertApptPage extends Component {
           ))}
         </div>
         <div>
-          {/* <h5>Past Appointments</h5> */}
+          <h5>Past Appointments</h5>
           {this.state.past.map((appt) => (
             <UserCard
               appt={appt.user}
