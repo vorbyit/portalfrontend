@@ -38,7 +38,8 @@ class UserApptPage extends Component {
       past : [],
       sortBy: "upcoming",
       loaded: false,
-      slot_ready : []
+      slot_ready : [],
+      faved : []
     }
     this.setSort=this.setSort.bind(this);
   }
@@ -62,6 +63,14 @@ class UserApptPage extends Component {
           this.props.history.push('/login');
         }
       }
+
+      const faved = await API.post("/expert/faved", {
+        userId: this.props.user._id,
+      });
+     
+      this.setState({faved:faved.data});
+
+  
 
       const { data } = await API.post('/user/appointments',{
         userID: this.props.user._id
@@ -91,8 +100,10 @@ class UserApptPage extends Component {
 
   render() {
     // if(this.state.loaded)
-    if(isEmpty(this.state.slot_ready))
-    return null;
+    //if(isEmpty(this.state.slot_ready))
+    //return null;
+    if ( isEmpty(this.state.faved) ) 
+      return null;
       return (
           <div>
             <FilterBar filters={['wishlist', 'upcoming', 'past']} sortBy={this.setSort}/>
@@ -116,7 +127,7 @@ class UserApptPage extends Component {
                   itemClass="carousel-item-padding-40-px"
                 >
                 {this.state[this.state.sortBy].map((appts) => 
-                  <ExpertCard appt={true} expert={appts} slot_ready={this.state.slot_ready.includes(appts._id)}/>
+                  <ExpertCard appt={true} expert={appts} slot_ready={this.state.slot_ready.includes(appts._id)} faved={this.state.faved.includes(appts._id)}/>
                 )}
                 </Carousel>
               </div>
