@@ -23,19 +23,11 @@
   font-weight: 100;
 }
 
-.Expert-Card .info .Expert-avatar {
-  border-radius: 50%;
-  border: 0.1rem solid #0b6283;
-}
-
-.Expert-Card .Expert-info {
-  margin-top: 2%;
-}
-
 .Expert-Card .info .btn-container {
   display: flex;
   justify-content: space-evenly;
   padding: 1%;
+  width: 100%;
 }
 
 .Expert-Card .info .btn-container .book-slot-btn {
@@ -46,7 +38,7 @@
   flex-grow: 2;
   margin-right: 0.5rem;
   color: #ecf9ff;
-  font-size: 1.2 rem;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: ease;
   transition-duration: 0.1s;
