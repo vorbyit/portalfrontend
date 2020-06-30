@@ -25,7 +25,7 @@ render(){
   return (
  
     <div>
-        <div>
+        <div className = "nav1">
       <Navbar light expand="md">
               <NavbarToggler onClick={this.toggleNav} >
                 <img src={logo} alt="logo"/>
@@ -33,7 +33,7 @@ render(){
               <Collapse isOpen={this.state.isNavOpen} navbar>
                   <Nav className="FilterBar" navbar>
                   {this.props.filters.map((filter) => (
-            <NavItem id={filter} onClick={this.props.sortBy}>
+            <NavItem className = "a" id={filter} onClick={this.props.sortBy}>
               {filter[0].toUpperCase() + filter.slice(1)}
             </NavItem>
           ))}

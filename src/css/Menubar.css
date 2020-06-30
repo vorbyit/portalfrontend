@@ -22,7 +22,6 @@
 .menu li {
   float: left;
   padding: 0px 63px;
-
 }
 
 .menu li .a {
@@ -31,6 +30,7 @@
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  width:150px
 }
 
 .menu .a:hover{
@@ -43,11 +43,18 @@ border-bottom-color:#00e3ff;
   border-bottom-color:#00e3ff;
 }
 
-.menu .menu{
-    margin-left: 87px;
+
+  .menu {
+    margin:auto ;
     width: 85%;
+    justify-content: space-around;
   }
 
   .navbar-light {
-    background-color: rgb(236, 238, 243)
+    background-color : rgba(255, 255, 255, 0.89);
 }
+
+.nav1 {
+  box-shadow: 0 0 0.5rem #00000d;
+  }
+

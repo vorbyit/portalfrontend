@@ -19,6 +19,7 @@ class AddSlots extends Component {
       currDate: null,
       timeFrom: "00:00",
       timeTo: "11:59",
+      errormsg : false
     };
     this.generateDates = this.generateDates.bind(this);
     this.setDate = this.setDate.bind(this);
@@ -78,6 +79,16 @@ class AddSlots extends Component {
     let { timeFrom, timeTo, currDate, slots } = this.state;
     slots[currDate] = {};
 
+    let time1 = parseInt(timeFrom.split(":")[0]);
+    let time2 = parseInt(timeTo.split(":")[0]);
+    console.log(time1);
+    console.log(time2);
+
+    if((time2-time1)>=12)
+      this.setState({errormsg:true})
+    else
+      this.setState({errormsg:false})
+    
     timeFrom = timeFrom.split(":").map((t) => parseInt(t, 10));
     timeTo = timeTo.split(":").map((t) => parseInt(t, 10));
 
@@ -160,7 +171,7 @@ class AddSlots extends Component {
                   id="to"
                 />
               </div>
-              <div className="table-container">
+              {!this.state.errormsg ? (<div className="table-container">
                 {isEmpty(this.state.slots) ||
                 isEmpty(this.state.slots[this.state.currDate]) ? null : (
                   <div className="table">
@@ -177,7 +188,7 @@ class AddSlots extends Component {
                     )}
                   </div>
                 )}
-              </div>
+              </div>) : (<div> Select a time frame of less than 12 hrs </div>)}
               <button onClick={this.handleSubmit} type="submit">
                 ADD SLOTS
               </button>
