@@ -28,12 +28,13 @@ export default class UserCard extends Component {
 
   async onReject(e) {
     try {
-      const rejected = await API.post("slots/reject", {
+      /*const rejected = await API.post("slots/reject", {
         id: e.target.id,
       });
       if (rejected.status === 200) {
         this.props.rejectSlot(rejected.data._id);
-      }
+      }*/
+      this.props.rejectSlot();
     } catch (error) {
       console.log(error);
     }

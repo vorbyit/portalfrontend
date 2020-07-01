@@ -5,6 +5,8 @@ import UserCard from "./UserCard";
 import ExpertApptCard from "./ExpertApptCard";
 import isEmpty from "../utils/isEmpty";
 import getCurrentUser from "../utils/getCurrentUser";
+import "../css/Expertapptpage.css"
+let slotvalue = "";
 
 class ExpertApptPage extends Component {
   constructor() {
@@ -15,10 +17,14 @@ class ExpertApptPage extends Component {
       past: [],
 
       sortBy: "upcoming",
-      appointments : []
-
+      appointments : [],
+      slots : [],
+      slot : "",
+      displayslots : false
     };
     this.approveSlot = this.approveSlot.bind(this);
+    this.handleSlots = this.handleSlots.bind(this);
+    this.handleReschedule = this.handleReschedule.bind(this);
     this.rejectSlot = this.rejectSlot.bind(this);
   }
 
@@ -47,6 +53,41 @@ class ExpertApptPage extends Component {
       const d = new Date();
       const date = d.toISOString().split("T")[0];
       const time = d.toTimeString();
+      let slot1,slot2;
+
+      for (let i=0 ; i<24; i++)
+      {
+        if(i<10)
+        {
+          slot1 = "0"+i.toString()+":00-0"+i.toString()+":30"
+          if(i==9)
+          {
+            slot2 = "0"+i.toString()+":30-10:00"
+          }
+          else
+          {
+            slot2 = "0"+i.toString()+":30-0"+(i+1).toString()+":00"
+          }
+        }
+        else
+        {
+          slot1 = i.toString() + ":00-" + i.toString()+":30"
+          if(i==19)
+          {
+            slot2 = i.toString() + ":30-20:00" 
+          }
+          else if(i==23)
+          {
+            slot2 = i.toString() + ":30-00:00"
+          }
+          else
+          {
+            slot2 = i.toString() + ":30-" + (i+1).toString() + ":00"
+          }
+        }
+        this.state.slots.push(slot1)
+        this.state.slots.push(slot2)
+      }
 
       for (let i = 0; i < data.length; i++) {
         if (!data[i].slot[0].approved) {
@@ -66,15 +107,28 @@ class ExpertApptPage extends Component {
     }
   }
 
-  rejectSlot(id) {
-    const { unapproved } = this.state;
+  rejectSlot() {
+    this.setState({displayslots:true});
+    /*const { unapproved } = this.state;
     for (let i = 0; i < unapproved.length; i++) {
       if (unapproved[i]._id === id) {
         delete unapproved[i];
         return;
       }
-    }
+    }*/
   }
+
+ handleSlots(e)
+ {
+   e.preventDefault();
+  console.log(e.currentTarget.value);
+  slotvalue = e.currentTarget.value
+ }
+
+ handleReschedule()
+ {
+   console.log(slotvalue);
+ }
 
   approveSlot(id) {
     const { unapproved, upcoming } = this.state;
@@ -90,6 +144,10 @@ class ExpertApptPage extends Component {
   }
 
   render() {
+    const d1 = new Date();
+    const time1 = d1.toTimeString().slice(0,5);
+    console.log(time1);
+    console.log(this.state.slots)
     const d = new Date();
     // console.log(d.toISOString())
     const date = d.toISOString().split("T")[0];
@@ -99,6 +157,8 @@ class ExpertApptPage extends Component {
       <div>
         <div>
           <h5>Unapporved</h5>
+          {!this.state.displayslots ? (
+            <React.Fragment>
           {this.state.unapproved.map((appt) => (
             <UserCard
               user={this.props.user}
@@ -107,7 +167,23 @@ class ExpertApptPage extends Component {
               appt={appt.user}
               slot={appt.slot}
             />
-          ))}
+          ))}</React.Fragment>) : (
+            <div className="table-container">
+                  <div className="table">
+                    {this.state.slots.filter(slot => time1>slot.slice(0,5)).map(
+                     (slot)  => (
+                        <button value={slot} className="time-slots" onClick={(e) => this.handleSlots(e)}>
+                          {" "}
+                          {slot}{" "}
+                        </button>
+                      )
+                    )}
+                  </div>
+                  <button onClick={this.handleReschedule}>
+                    CONFIRM
+                  </button>
+              </div>
+          )}
         </div>
         <div>
           <h5>Upcoming Appointments</h5>
