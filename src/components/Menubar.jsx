@@ -25,7 +25,7 @@ class Menubar extends Component {
 
       <div>
         <div className="txt">Thankyou for your support</div>
-        <div>
+        <div className="nav1">
       <Navbar light expand="md">
               <NavbarToggler onClick={this.toggleNav} />
               <Collapse isOpen={this.state.isNavOpen} navbar>
@@ -34,7 +34,7 @@ class Menubar extends Component {
                   <NavLink to="/appointments" className="a" activeClassName="active">
                 Appointments
               </NavLink>
-                  </NavItem>
+                  </NavItem >
                   <NavItem>
                   <NavLink to="/addslots" className="a" activeClassName="active">
                 Time Slots
@@ -44,7 +44,7 @@ class Menubar extends Component {
                   <NavLink to="/nolink" className="a" activeClassName="active">
                 Messaging
               </NavLink>
-                  </NavItem>
+                  </NavItem >
                   <NavItem>
                   <NavLink to="/profile" className="a" activeClassName="active">
                 Your Profile{" "}

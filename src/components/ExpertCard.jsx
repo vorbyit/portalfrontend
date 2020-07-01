@@ -33,7 +33,6 @@ class ExpertCard extends Component {
   }
 
   render() {
-    console.log(this.props);
     let usertype = false;
     if (this.props.user === undefined) usertype = true;
     else if (this.props.user.type === "USER") usertype = true;

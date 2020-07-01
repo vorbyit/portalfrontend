@@ -1,7 +1,7 @@
 
 .FilterBar{
   /* margin-left: 87px; */
-  margin: 2rem auto;
+  margin:auto ;
   width: 85%;
   justify-content: space-around;
   display: flex;
@@ -25,7 +25,24 @@
     display: inline-block;
 }
 
+ .a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  width:150px
+}
+
 .FilterBar li+li:hover, .FilterBar .filter-selected {
   border-bottom: 2px solid #0b6283;
   cursor: pointer;
+}
+
+.nav1 {
+  margin-right: 40px;
+  margin-left: 40px;
+  box-shadow: 0 0 0.5rem #00000d;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
