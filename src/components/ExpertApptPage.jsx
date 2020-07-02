@@ -7,7 +7,7 @@ import isEmpty from "../utils/isEmpty";
 import getCurrentUser from "../utils/getCurrentUser";
 import "../css/Expertapptpage.css"
 let slotvalue = "";
-
+let slotid = null;
 class ExpertApptPage extends Component {
   constructor() {
     super();
@@ -20,7 +20,8 @@ class ExpertApptPage extends Component {
       appointments : [],
       slots : [],
       slot : "",
-      displayslots : false
+      displayslots : false,
+      rescheduled : false
     };
     this.approveSlot = this.approveSlot.bind(this);
     this.handleSlots = this.handleSlots.bind(this);
@@ -107,7 +108,9 @@ class ExpertApptPage extends Component {
     }
   }
 
-  rejectSlot() {
+  rejectSlot(id) {
+    console.log(id);
+    slotid = id;
     this.setState({displayslots:true});
     /*const { unapproved } = this.state;
     for (let i = 0; i < unapproved.length; i++) {
@@ -125,9 +128,23 @@ class ExpertApptPage extends Component {
   slotvalue = e.currentTarget.value
  }
 
- handleReschedule()
+ async handleReschedule()
  {
+   this.setState({rescheduled:true})
    console.log(slotvalue);
+   const response = await API.post("/slots/reschedule", {
+    id: slotid,
+    slot : slotvalue
+  });
+  console.log(response);
+  
+  const { data } = await API.post("chats",{
+    sender : response.data.expertId,
+    receiver : response.data.userId,
+    message : "Your slot has been rescheduled"
+  });
+  console.log(data);
+
  }
 
   approveSlot(id) {
@@ -156,8 +173,8 @@ class ExpertApptPage extends Component {
     return (
       <div>
         <div>
-          <h5>Unapporved</h5>
-          {!this.state.displayslots ? (
+          <h5>Unapproved</h5>
+          {!this.state.rescheduled ? (<React.Fragment>{!this.state.displayslots ? (
             <React.Fragment>
           {this.state.unapproved.map((appt) => (
             <UserCard
@@ -170,7 +187,7 @@ class ExpertApptPage extends Component {
           ))}</React.Fragment>) : (
             <div className="table-container">
                   <div className="table">
-                    {this.state.slots.filter(slot => time1>slot.slice(0,5)).map(
+                    {this.state.slots.filter(slot => time1<slot.slice(0,5)).map(
                      (slot)  => (
                         <button value={slot} className="time-slots" onClick={(e) => this.handleSlots(e)}>
                           {" "}
@@ -183,8 +200,9 @@ class ExpertApptPage extends Component {
                     CONFIRM
                   </button>
               </div>
-          )}
+          )}</React.Fragment>) : (<h2>Hello! Your appointment is rescheduled</h2>)}
         </div>
+        {this.state.upcoming.length>0 ? (
         <div>
           <h5>Upcoming Appointments</h5>
           {this.state.upcoming.map((appt) => (
@@ -194,7 +212,9 @@ class ExpertApptPage extends Component {
               slot={appt.slot}
             />
           ))}
-        </div>
+        </div>) : null}
+
+        {this.state.past.length>0 ? (
         <div>
           <h5>Past Appointments</h5>
           {this.state.past.map((appt) => (
@@ -204,7 +224,7 @@ class ExpertApptPage extends Component {
               slot={appt.slot}
             />
           ))}
-        </div>
+        </div>) : null}
       </div>
     );
   }
