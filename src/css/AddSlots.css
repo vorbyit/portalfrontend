@@ -71,3 +71,53 @@
   grid-auto-columns: repeat(auto-fill, 50px);
   width: 100%;
 }
+
+.slot {
+  margin-top : 5%;
+  margin-bottom : 5%;
+  margin-left : 5%;
+  margin-right : 5%;
+  justify-content: space-around;
+}
+
+.slot1 {
+  margin-top : 5%;
+  margin-bottom : 5%;
+  margin-left : 5%;
+  margin-right : 5%;
+  justify-content: space-around;
+}
+
+.divide {
+  margin-bottom : 2.5%;
+}
+
+.bott{
+  margin-left : 2.5%;
+  margin-right: 2.5%;
+  margin-bottom: 2.5%;
+  border: none;
+  border-radius: 2rem;
+  background-color: #0b6283;
+  height: 3rem;
+  flex-grow: 2;
+  margin-right: 0.5rem;
+  color: #ecf9ff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: ease;
+  transition-duration: 0.1s;
+}
+
+.bott:visited{
+  background-color:red;
+}
+
+.delete {
+  margin-top : 5%;
+  margin-bottom : 5%;
+  margin-left : 5%;
+  margin-right : 5%;
+  justify-content: space-around;
+}
+
