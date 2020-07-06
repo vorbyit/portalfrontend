@@ -23,7 +23,8 @@ class AddSlots extends Component {
       timeTo: "11:59",
       errormsg : false,
       modifypage : false,
-      slotarr : []
+      slotarr : [],
+      successmsg : false
     };
     this.colorRefs = new MultiRef();
     this.changeColor = React.createRef();
@@ -157,6 +158,7 @@ class AddSlots extends Component {
       slots : expertslotarray
     })
     console.log(response)
+    this.setState({successmsg:true})
   }
 
   handleButtonClick(event){
@@ -259,7 +261,7 @@ class AddSlots extends Component {
                   </div>
                 )}
               </div>) : (<div> Select a time frame of less than 12 hrs </div>)}
-              <button onClick={this.handleSubmit} type="submit">
+              <button className = "addslot" onClick={this.handleSubmit} type="submit">
                 ADD SLOTS
               </button>
 
@@ -285,6 +287,7 @@ class AddSlots extends Component {
                   </div>
                 ))}
                 <button className="delete" onClick = {this.handleDelete}>DELETE</button>
+                {!this.state.successmsg ? null : (<h2>Slots deleted successfully</h2>)}
             </div>)
     );
   }
