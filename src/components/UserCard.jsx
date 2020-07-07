@@ -8,6 +8,7 @@ import "../css/UserCard.css";
 export default class UserCard extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props);
     this.onApprove = this.onApprove.bind(this);
     this.onReject = this.onReject.bind(this);
   }
@@ -28,18 +29,21 @@ export default class UserCard extends Component {
 
   async onReject(e) {
     try {
-      const rejected = await API.post("slots/reject", {
+      console.log(e.currentTarget.id);
+      /*const rejected = await API.post("slots/reject", {
         id: e.target.id,
       });
       if (rejected.status === 200) {
         this.props.rejectSlot(rejected.data._id);
-      }
+      }*/
+      this.props.rejectSlot(e.currentTarget.id);
     } catch (error) {
       console.log(error);
     }
   }
 
   render() {
+    console.log(this.props.slot[0]._id)
     return (
       <div className="user-card-container">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 241.812">
@@ -70,16 +74,16 @@ export default class UserCard extends Component {
           {!this.props.slot[0].approved ? (
             <div className="btn-panel">
               <button
-                id={this.props.slot._id}
+                id={this.props.slot[0]._id}
                 className="btn btn-approve"
                 onClick={this.onApprove}
               >
                 Approve
               </button>
               <button
-                id={this.props.slot._id}
+                id={this.props.slot[0]._id}
                 className="btn btn-reject"
-                onClick={this.onReject}
+                onClick={(e) => this.onReject(e)}
               >
                 Reschedule
               </button>

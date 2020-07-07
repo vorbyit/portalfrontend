@@ -6,8 +6,10 @@ import isEmpty from "../utils/isEmpty";
 import getCurrentUser from "../utils/getCurrentUser";
 
 import "../css/AddSlots.css";
+import MultiRef from 'react-multi-ref';
 
 let selectedDate = null;
+let expertslotarray = [];
 
 class AddSlots extends Component {
   constructor() {
@@ -19,13 +21,20 @@ class AddSlots extends Component {
       currDate: null,
       timeFrom: "00:00",
       timeTo: "11:59",
-      errormsg : false
+      errormsg : false,
+      modifypage : false,
+      slotarr : []
     };
+    this.colorRefs = new MultiRef();
+    this.changeColor = React.createRef();
     this.generateDates = this.generateDates.bind(this);
     this.setDate = this.setDate.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleModify = this.handleModify.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     this.deleteSlot = this.deleteSlot.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
   async componentDidMount() {
@@ -44,6 +53,24 @@ class AddSlots extends Component {
       }
       const bookedSlots = await API.get("/slots/getslots");
       this.setState({ bookedSlots: bookedSlots.data });
+
+      console.log(this.props)
+      const expertSlots = await API.post("/slots/getexpertslots",
+      {
+        expertID : this.props.user._id
+      })
+      console.log(expertSlots.data.slots)
+      let slotarray = []
+      for(let i in expertSlots.data.slots)
+      {
+        slotarray.push({[i] : expertSlots.data.slots[i]})
+      }
+      let slotarr = []
+      slotarray.map(slot => {
+        slotarr.push({[Object.keys(slot)[0]] : Object.keys(slot[Object.keys(slot)[0]]) })
+      })
+      console.log(slotarr)
+      this.setState({slotarr : slotarr})
     } catch (error) {
       console.log(error);
     }
@@ -119,6 +146,47 @@ class AddSlots extends Component {
     }
   }
 
+  handleModify(){
+      this.setState({modifypage : true})
+  }
+
+  async handleDelete(){
+    const response = await API.post("/slots/deleteslots",
+    {
+      expertID : this.props.user._id,
+      slots : expertslotarray
+    })
+    console.log(response)
+  }
+
+  handleButtonClick(event){
+    console.log(event.currentTarget.id)
+    console.log(event.currentTarget.value)
+    if(expertslotarray.includes(event.currentTarget.id))
+    {
+      expertslotarray = expertslotarray.filter((slot) => slot!==event.currentTarget.id);
+    }
+    else
+    {
+      expertslotarray.push(event.currentTarget.id)
+    }
+    console.log(expertslotarray)
+    console.log(this.colorRefs.map.get(event.currentTarget.id));
+    const style = getComputedStyle(this.colorRefs.map.get(event.currentTarget.id))
+    //console.log(this.changeColor.current)
+    //console.log(style.backgroundColor);
+    if(style.backgroundColor=="rgb(11, 98, 131)")
+    {
+      console.log("true")
+      this.colorRefs.map.get(event.currentTarget.id).style.backgroundColor = "red";
+    }
+    else
+    {
+      console.log("false")
+      this.colorRefs.map.get(event.currentTarget.id).style.backgroundColor = "rgb(11, 98, 131)";
+    }
+  }
+
   async handleSubmit(evt) {
     evt.preventDefault();
     try {
@@ -131,6 +199,8 @@ class AddSlots extends Component {
 
   render() {
     return (
+
+       !this.state.modifypage ? (
       <div className="add-slots-container">
         <div className="menu">
           <div className="txt">Thank you for your support</div>
@@ -192,12 +262,30 @@ class AddSlots extends Component {
               <button onClick={this.handleSubmit} type="submit">
                 ADD SLOTS
               </button>
+
+              <button onClick = {this.handleModify}>
+                MODIFY SLOTS
+              </button>
+
             </div>
           </div>
         </div>
         <div>{/* Dates */}</div>
         <div></div>
-      </div>
+      </div>) : 
+            (<div className="slot1">
+                {this.state.slotarr.map(slot =>(
+                  <div className="slot">
+                  <div  className = "divide">{Object.keys(slot)[0]}</div>
+                  <div>
+                    {slot[Object.keys(slot)[0]].map(slots => (
+                      <button ref={this.colorRefs.ref(Object.keys(slot)[0].toString()+";"+slots.toString())} id = {Object.keys(slot)[0].toString()+";"+slots.toString()}  value={slots} className = "bott" onClick = {this.handleButtonClick}> {slots} </button>
+                    ))}
+                  </div>
+                  </div>
+                ))}
+                <button className="delete" onClick = {this.handleDelete}>DELETE</button>
+            </div>)
     );
   }
 }
