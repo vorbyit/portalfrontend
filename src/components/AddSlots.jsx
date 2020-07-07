@@ -159,7 +159,6 @@ class AddSlots extends Component {
     })
     console.log(response)
     this.setState({successmsg:true})
-    setTimeout(500000)
     this.setState({modifypage:false})
   }
 
