@@ -4,7 +4,7 @@ import { NavLink, withRouter } from "react-router-dom";
 import {
   Nav,
   Navbar,
-  NavbarBrand,
+  NavbarText,
   NavbarToggler,
   Collapse,
   NavItem,
@@ -30,13 +30,23 @@ class FilterBar extends Component {
 
   render() {
     return (
-      <div>
-        <div className="nav1">
+      <React.Fragment>
+        <div className="filterbar-nav">
           <Navbar light expand="md">
-            <NavbarToggler onClick={this.toggleNav}>
-              <img src={logo} alt="logo" />
+            <NavbarToggler
+              className="filterby-container"
+              onClick={this.toggleNav}
+            >
+              <img className="filterby-icon" src={logo} alt="logo" />
+              <NavbarText>Filter by</NavbarText>
             </NavbarToggler>
             <Collapse isOpen={this.state.isNavOpen} navbar>
+              {!this.state.isNavOpen ? (
+                <span>
+                  <img className="filterby-icon" src={logo} alt="logo" />
+                  Filter by
+                </span>
+              ) : null}
               <Nav className="FilterBar" navbar>
                 {this.props.filters.map((filter) => (
                   <NavItem
@@ -51,7 +61,7 @@ class FilterBar extends Component {
             </Collapse>
           </Navbar>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
