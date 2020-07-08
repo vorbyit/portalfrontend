@@ -1,26 +1,25 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:100,400&display=swap");
-
-.Expert-Card, .EC-details {
+.Expert-Card {
   width: initial;
   margin: 5% 10%;
-  border-radius: 1rem;
-  font-family: "Roboto", sans-serif;
+  border: 1px solid #707070;
+  border-radius: 1.5rem;
+  font-family: 'Segoe UI';
+  font-size: 1.25rem;
   transition: ease;
   transition-duration: 0.5s;
   color: #707070;
-}
-
-.Expert-Card:hover {
-  box-shadow: 0 0 1.5rem #00000d;
+  box-shadow: 0 5px 6px;
 }
 
 .Expert-Card .info {
   padding: 1%;
   width: 100%;
-  background-color: #ecf9ff;
   border-radius: 1rem;
   text-align: center;
-  font-weight: 100;
+}
+
+.Expert-Card .info h3+h3 {
+  font-size: 1.2rem;
 }
 
 .Expert-Card .info .btn-container {
@@ -37,8 +36,8 @@
   height: 3rem;
   flex-grow: 2;
   margin-right: 0.5rem;
+  font-size: 1.4375rem;
   color: #ecf9ff;
-  font-size: 1.2rem;
   cursor: pointer;
   transition: ease;
   transition-duration: 0.1s;
@@ -46,7 +45,7 @@
 
 .Expert-Card .info .btn-container .fav-btn {
   border: none;
-  background-color: #ecf9ff;
+  background-color: #fff;
   height: 3rem;
   width: 3rem;
   cursor: pointer;
@@ -78,11 +77,11 @@
 
 .EC-details {
   display: flex;
-  border: 2px solid black;
   justify-content: space-between;
 }
 
 .EC-details .info {
+  background-color: #ECFAFF;
   flex: 1;
 }
 

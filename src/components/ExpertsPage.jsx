@@ -85,7 +85,6 @@ class ExpertsPage extends Component {
     expertsUngrouped = await API.get("/expert/getexperts");
     expertsUngrouped = expertsUngrouped.data;
     expertsUngrouped.forEach((expert) => (expert.expand = false));
-    console.log(expertsUngrouped);
     this.setState({
       user: userdata,
       faved: faved.data,

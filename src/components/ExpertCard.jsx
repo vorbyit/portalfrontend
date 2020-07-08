@@ -7,7 +7,7 @@ import defaultPic from "../public/defaultpic.png";
 class ExpertCard extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.faved)
+    console.log(this.props.faved);
     this.state = {
       faved: this.props.faved,
     };
@@ -44,28 +44,23 @@ class ExpertCard extends Component {
             src={expert.pic === "defaultpic" ? defaultPic : expert.pic}
             alt="profpic"
           />
-          <div>
-            <h3>{expert.name}</h3>
-            <h3>{expert.institution}</h3>
-            <h3>{expert.branch}</h3>
-            {!usertype ? null : (
-              <div className="btn-container">
-                {!slot_ready ? (
-                  <button
-                    className="book-slot-btn"
-                    onClick={(e) => this.props.trigger(e, expert._id)}
-                  >
-                    VIEW DETAILS
-                  </button>
-                ) : (
-                  <button
-                    className="book-slot-btn"
-                    onClick={this.handleMessage}
-                  >
-                    MESSAGE
-                  </button>
-                )}
-
+          <h3>{expert.name}</h3>
+          <h3>{expert.institution}</h3>
+          <h3>{expert.branch}</h3>
+          {!usertype ? null : (
+            <div className="btn-container">
+              {!slot_ready ? (
+                <button
+                  className="book-slot-btn"
+                  onClick={(e) => this.props.trigger(e, expert._id)}
+                >
+                  VIEW DETAILS
+                </button>
+              ) : (
+                <button className="book-slot-btn" onClick={this.handleMessage}>
+                  MESSAGE
+                </button>
+              )}
 
               <button className="fav-btn" onClick={this.handleFav}>
                 <svg
@@ -79,9 +74,7 @@ class ExpertCard extends Component {
                         id="Path_340"
                         data-name="Path 340"
                         className={
-                          !this.state.faved
-                            ? "cls-1-uncheck"
-                            : "cls-1-check"
+                          !this.state.faved ? "cls-1-uncheck" : "cls-1-check"
                         }
                         d="M12.75,6.57c14.33-10.9,34.91-7.93,46,6.62s8.41,35.17-5.91,46.06-34.91,7.92-46-6.62S-1.58,17.46,12.75,6.57Z"
                       />
@@ -92,12 +85,11 @@ class ExpertCard extends Component {
                         d="M45,21.81a8,8,0,0,0-11,.62L32.85,23.6l-1.14-1.21a8,8,0,0,0-10.94-1A8.43,8.43,0,0,0,19.7,33.28c.09.11.18.22.28.32L31.14,45.53a1.85,1.85,0,0,0,2.6.1l.06-.06L45.36,34a8.42,8.42,0,0,0,0-11.92Z"
                       />
                     </g>
-                    </g>
-                  </svg>
-                </button>
-              </div>
-            )}
-          </div>
+                  </g>
+                </svg>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     );
