@@ -1,48 +1,59 @@
+.filterbar-nav {
+  margin: 40px auto;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  width: 75%;
+}
 
-.FilterBar{
+.FilterBar {
   /* margin-left: 87px; */
-  margin:auto ;
+  margin: auto;
   width: 85%;
   justify-content: space-around;
   display: flex;
 }
 
-.FilterBar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #fff;
-    box-shadow: 0px 0px 6px #88888830;
-    display: flex;
-    justify-content: space-around;
-}
-  
-.FilterBar li {
-    padding: 0.5rem 0;
-    border-bottom: 2px solid white;
-    margin-left: -9%;
-    display: inline-block;
+.filterby-container {
+  border: none !important;
 }
 
- .a {
+.filterby-icon {
+  margin-right: 0.5rem;
+}
+
+.filterby-container:focus {
+  outline: none !important;
+}
+
+.FilterBar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+}
+
+.FilterBar li {
+  padding: 0.5rem 0;
+  border-bottom: 2px solid white;
+  margin-left: -9%;
+  display: inline-block;
+}
+
+.a {
   display: block;
   color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  width:150px
+  width: 150px;
 }
 
-.FilterBar li+li:hover, .FilterBar .filter-selected {
+.FilterBar li:hover,
+.FilterBar .filter-selected {
   border-bottom: 2px solid #0b6283;
   cursor: pointer;
 }
 
-.nav1 {
-  margin-right: 40px;
-  margin-left: 40px;
-  box-shadow: 0 0 0.5rem #00000d;
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
+

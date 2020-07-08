@@ -22,22 +22,22 @@ const responsive = {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
     items: 4,
-    partialVisibilityGutter: 30
+    partialVisibilityGutter: 30,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
     items: 3,
-    partialVisibilityGutter: 30
+    partialVisibilityGutter: 30,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
     items: 2,
-    partialVisibilityGutter: 30
+    partialVisibilityGutter: 30,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
     items: 1,
-    partialVisibilityGutter: 0
+    partialVisibilityGutter: 0,
   },
 };
 
@@ -85,7 +85,6 @@ class ExpertsPage extends Component {
     expertsUngrouped = await API.get("/expert/getexperts");
     expertsUngrouped = expertsUngrouped.data;
     expertsUngrouped.forEach((expert) => (expert.expand = false));
-    console.log(expertsUngrouped);
     this.setState({
       user: userdata,
       faved: faved.data,
@@ -102,7 +101,7 @@ class ExpertsPage extends Component {
     this.expandAreaRef.current.classList.add("expansion-area");
     this.mainPageRef.current.classList.add("grayed-out");
     btnNode = e.target;
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }
 
   collapseCard(e) {
@@ -139,13 +138,13 @@ class ExpertsPage extends Component {
       <React.Fragment>
         <div ref={this.expandAreaRef}>
           {!this.state.expand ? null : (
-          <ExpandedExpertCard
-            showCard={this.state.expand}
-            expert={expertsUngrouped[index]}
-            appt={false}
-            user={this.state.user}
-            minimizeCard={this.collapseCard}
-          />
+            <ExpandedExpertCard
+              showCard={this.state.expand}
+              expert={expertsUngrouped[index]}
+              appt={false}
+              user={this.state.user}
+              minimizeCard={this.collapseCard}
+            />
           )}
         </div>
         <div className="main-page" ref={this.mainPageRef}>
@@ -157,9 +156,9 @@ class ExpertsPage extends Component {
             <div>
               {Object.keys(sortParam).map((param) => (
                 <div>
-                  <h3 className="param"><span>{param}</span></h3>
-                  <br />
-
+                  <h3 className="param">
+                    <span className="filter-criteria">{param}</span>
+                  </h3>
                   <Carousel
                     swipeable={true}
                     draggable={true}

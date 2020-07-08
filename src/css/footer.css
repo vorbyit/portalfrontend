@@ -4,9 +4,8 @@ footer {
   height: 10rem;
   padding-top: 3rem;
   color: rgb(184, 184, 184);
-  position: sticky;
+  position: absolute;
   bottom: 0;
-  left: 0;
 }
 
 footer .social-media {

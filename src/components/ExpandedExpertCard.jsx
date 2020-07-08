@@ -155,7 +155,7 @@ class ExpandedExpertCard extends Component {
     const expert = this.props.expert;
     return !show ? null : (
       <React.Fragment>
-        <div className="Expert-Card EC-details">
+        <div className="EC-details">
           <div className="info">
             <img
               src={expert.pic === "defaultpic" ? defaultPic : expert.pic}
