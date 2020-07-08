@@ -8,12 +8,13 @@ import 'react-chatbox-component/dist/style.css';
 import {ChatBox} from 'react-chatbox-component';
 import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import "../css/Messaging.css"
-
 import VideoCallImg from "../public/icons8-video-call-40.png";
+import Talk from "talkjs";
 
 class Messaging extends Component {
   constructor() {
     super();
+    this.talkjsContainer = React.createRef();
     this.state = {
       chats: [],
       currChat: null,
@@ -46,6 +47,20 @@ class Messaging extends Component {
       console.log(error);
     }
 
+  console.log(this.props.user);
+  console.log(this.props.location.data);
+
+
+  let userdata;
+  await API.post("user/getUser",{
+    userId : this.props.location.data,
+  }).then(res => {
+    console.log(res)
+    userdata = res.data
+  })
+  console.log(userdata)
+  //console.log(userdata)
+
     const { data } = await API.post("chats",{
       sender : this.props.user._id,
       receiver : this.props.location.data,
@@ -55,6 +70,34 @@ class Messaging extends Component {
     console.log(this.props);
 
     this.setState({messages : data.messageList});
+
+    Talk.ready.then(() => {
+      var me = new Talk.User({
+        id: this.props.user._id,
+        name: this.props.user.name,
+        welcomeMessage: "Hey there! How are you? :-)"
+      });
+      
+      let talkSession = new Talk.Session({
+        appId: "tcn0j2ir",
+        me: me
+      });
+      
+      var other = new Talk.User({
+        id: userdata._id,
+        name: userdata.name,
+        email:userdata.email,
+        welcomeMessage: "Hey, how can I help?"
+      });
+
+      var conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, other));
+      conversation.setParticipant(me);
+      conversation.setParticipant(other);
+      
+      var inbox = talkSession.createInbox({selected: conversation});
+      inbox.mount(this.talkjsContainer.current);
+    });
+  
 
    /*this.setState({messages : [
       {
@@ -100,9 +143,9 @@ class Messaging extends Component {
 
   render() {
     return (
-      <div>
-
-     <ChatBox
+      <div ref={this.talkjsContainer} className="chatbox-container" >
+      
+     {/*<ChatBox
       messages={this.state.messages}
       user={this.state.user}
       onSubmit={(e) => this.handlechat(e)}
@@ -110,7 +153,7 @@ class Messaging extends Component {
 
     <div className="videodiv">
       <button className="video-btn" onClick={this.handleVideoCall}><img src={VideoCallImg} /></button>
-      </div>
+     </div>*/}
        {/*<div>
           {this.state.chats.map((chat, i) => (
             <div id={i}>
