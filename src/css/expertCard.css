@@ -1,4 +1,4 @@
-.Expert-Card {
+.Expert-Card, .EC-details {
   width: initial;
   margin: 5% 10%;
   border: 1px solid #707070;
@@ -11,7 +11,11 @@
   box-shadow: 0 5px 6px;
 }
 
-.Expert-Card .info {
+.EC-details {
+  border: none;
+}
+
+.Expert-Card .info, .EC-details .info {
   padding: 1%;
   width: 100%;
   border-radius: 1rem;
@@ -22,14 +26,18 @@
   font-size: 1.2rem;
 }
 
-.Expert-Card .info .btn-container {
+.EC-details .info h3+h3 {
+  font-size: 1.4rem;
+}
+
+.Expert-Card .info .btn-container, .EC-details .info .btn-container {
   display: flex;
   justify-content: space-evenly;
   padding: 1%;
   width: 100%;
 }
 
-.Expert-Card .info .btn-container .book-slot-btn {
+.Expert-Card .info .btn-container .book-slot-btn, .EC-details .info .btn-container .book-slot-btn {
   border: none;
   border-radius: 2rem;
   background-color: #0b6283;
@@ -92,8 +100,8 @@
 
 .EC-details .details .close-btn {
   background-color: white;
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 2rem;
+  width: 2rem;
   border-radius: 50%;
 }
 
