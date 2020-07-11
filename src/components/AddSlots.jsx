@@ -220,7 +220,7 @@ class AddSlots extends Component {
                 ))}
               </div>
             </div>
-            <div className="time-select">
+            <div className="slot-select">
               <span className="select-time-range">
                 {" "}
                 Add Time limit: &nbsp;
@@ -247,11 +247,12 @@ class AddSlots extends Component {
                     <div className="table">
                       {Object.keys(this.state.slots[this.state.currDate]).map(
                         (slot) => (
-                          <div className="time-slots">
-                            {" "}
-                            {slot}{" "}
+                          <div>
+                            <span className="time-slot">
+                            <span>{slot}</span>
                             <span id={slot} onClick={this.deleteSlot}>
                               X
+                            </span>
                             </span>
                           </div>
                         )
