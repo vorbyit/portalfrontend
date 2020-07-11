@@ -4,9 +4,10 @@ import { withRouter } from "react-router-dom";
 
 import isEmpty from "../utils/isEmpty";
 import getCurrentUser from "../utils/getCurrentUser";
+import Menubar from "./Menubar";
 
 import "../css/AddSlots.css";
-import MultiRef from 'react-multi-ref';
+import MultiRef from "react-multi-ref";
 
 let selectedDate = null;
 let expertslotarray = [];
@@ -21,10 +22,10 @@ class AddSlots extends Component {
       currDate: null,
       timeFrom: "00:00",
       timeTo: "11:59",
-      errormsg : false,
-      modifypage : false,
-      slotarr : [],
-      successmsg : false
+      errormsg: false,
+      modifypage: false,
+      slotarr: [],
+      successmsg: false,
     };
     this.colorRefs = new MultiRef();
     this.changeColor = React.createRef();
@@ -36,6 +37,7 @@ class AddSlots extends Component {
     this.deleteSlot = this.deleteSlot.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.setSort = this.setSort.bind(this);
   }
 
   async componentDidMount() {
@@ -55,23 +57,23 @@ class AddSlots extends Component {
       const bookedSlots = await API.get("/slots/getslots");
       this.setState({ bookedSlots: bookedSlots.data });
 
-      console.log(this.props)
-      const expertSlots = await API.post("/slots/getexpertslots",
-      {
-        expertID : this.props.user._id
-      })
-      console.log(expertSlots.data.slots)
-      let slotarray = []
-      for(let i in expertSlots.data.slots)
-      {
-        slotarray.push({[i] : expertSlots.data.slots[i]})
+      console.log(this.props);
+      const expertSlots = await API.post("/slots/getexpertslots", {
+        expertID: this.props.user._id,
+      });
+      console.log(expertSlots.data.slots);
+      let slotarray = [];
+      for (let i in expertSlots.data.slots) {
+        slotarray.push({ [i]: expertSlots.data.slots[i] });
       }
-      let slotarr = []
-      slotarray.map(slot => {
-        slotarr.push({[Object.keys(slot)[0]] : Object.keys(slot[Object.keys(slot)[0]]) })
-      })
-      console.log(slotarr)
-      this.setState({slotarr : slotarr})
+      let slotarr = [];
+      slotarray.map((slot) => {
+        slotarr.push({
+          [Object.keys(slot)[0]]: Object.keys(slot[Object.keys(slot)[0]]),
+        });
+      });
+      console.log(slotarr);
+      this.setState({ slotarr: slotarr });
     } catch (error) {
       console.log(error);
     }
@@ -101,6 +103,10 @@ class AddSlots extends Component {
     selectedDate = evt.target;
   }
 
+  setSort() {
+    return null;
+  }
+
   async handleChange(evt) {
     await this.setState({ [evt.target.name]: evt.target.value });
 
@@ -112,11 +118,9 @@ class AddSlots extends Component {
     console.log(time1);
     console.log(time2);
 
-    if((time2-time1)>=12)
-      this.setState({errormsg:true})
-    else
-      this.setState({errormsg:false})
-    
+    if (time2 - time1 >= 12) this.setState({ errormsg: true });
+    else this.setState({ errormsg: false });
+
     timeFrom = timeFrom.split(":").map((t) => parseInt(t, 10));
     timeTo = timeTo.split(":").map((t) => parseInt(t, 10));
 
@@ -147,46 +151,45 @@ class AddSlots extends Component {
     }
   }
 
-  handleModify(){
-      this.setState({modifypage : true})
+  handleModify() {
+    this.setState({ modifypage: true });
   }
 
-  async handleDelete(){
-    const response = await API.post("/slots/deleteslots",
-    {
-      expertID : this.props.user._id,
-      slots : expertslotarray
-    })
-    console.log(response)
-    this.setState({successmsg:true})
-    this.setState({modifypage:false})
+  async handleDelete() {
+    const response = await API.post("/slots/deleteslots", {
+      expertID: this.props.user._id,
+      slots: expertslotarray,
+    });
+    console.log(response);
+    this.setState({ successmsg: true });
+    this.setState({ modifypage: false });
   }
 
-  handleButtonClick(event){
-    console.log(event.currentTarget.id)
-    console.log(event.currentTarget.value)
-    if(expertslotarray.includes(event.currentTarget.id))
-    {
-      expertslotarray = expertslotarray.filter((slot) => slot!==event.currentTarget.id);
+  handleButtonClick(event) {
+    console.log(event.currentTarget.id);
+    console.log(event.currentTarget.value);
+    if (expertslotarray.includes(event.currentTarget.id)) {
+      expertslotarray = expertslotarray.filter(
+        (slot) => slot !== event.currentTarget.id
+      );
+    } else {
+      expertslotarray.push(event.currentTarget.id);
     }
-    else
-    {
-      expertslotarray.push(event.currentTarget.id)
-    }
-    console.log(expertslotarray)
+    console.log(expertslotarray);
     console.log(this.colorRefs.map.get(event.currentTarget.id));
-    const style = getComputedStyle(this.colorRefs.map.get(event.currentTarget.id))
+    const style = getComputedStyle(
+      this.colorRefs.map.get(event.currentTarget.id)
+    );
     //console.log(this.changeColor.current)
     //console.log(style.backgroundColor);
-    if(style.backgroundColor=="rgb(11, 98, 131)")
-    {
-      console.log("true")
-      this.colorRefs.map.get(event.currentTarget.id).style.backgroundColor = "red";
-    }
-    else
-    {
-      console.log("false")
-      this.colorRefs.map.get(event.currentTarget.id).style.backgroundColor = "rgb(11, 98, 131)";
+    if (style.backgroundColor == "rgb(11, 98, 131)") {
+      console.log("true");
+      this.colorRefs.map.get(event.currentTarget.id).style.backgroundColor =
+        "red";
+    } else {
+      console.log("false");
+      this.colorRefs.map.get(event.currentTarget.id).style.backgroundColor =
+        "rgb(11, 98, 131)";
     }
   }
 
@@ -201,31 +204,24 @@ class AddSlots extends Component {
   }
 
   render() {
-    return (
-
-       !this.state.modifypage ? (
-      <div className="add-slots-container">
-        <div className="menu">
-          <div className="txt">Thank you for your support</div>
-          {/* <ul>
-          <li><a  className="a active1" href="#apptments" >Appointments</a></li>
-          <li><a className="a" href="../components/Slots" target="Frame">Time Slots</a></li>
-          <li><a className="a" href="#contact">Messaging</a></li>
-          <li><a className="a" href="#about">Your Profile </a></li>
-          </ul> */}
+    return !this.state.modifypage ? (
+      <React.Fragment>
+        <div className="slots-and-dates">
+          <span>Thank you for your support</span>
+          <Menubar />
           <div className="frame" name="Frame">
-            <div className="date">
-              <div className="txt1">Date:</div> <br />
-              <div className="cards">
+            <div className="date-select">
+              <span className="title-date-text">Date:</span>
+              <div className="date-cards">
                 {this.state.dates.map((date) => (
                   <div className="date-card" id={date} onClick={this.setDate}>
-                    {date}
+                    <span className="date-text">{date}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="time">
-              <div className="txt2">
+            <div className="time-select">
+              <span className="select-time-range">
                 {" "}
                 Add Time limit: &nbsp;
                 <input
@@ -243,53 +239,72 @@ class AddSlots extends Component {
                   name="timeTo"
                   id="to"
                 />
-              </div>
-              {!this.state.errormsg ? (<div className="table-container">
-                {isEmpty(this.state.slots) ||
-                isEmpty(this.state.slots[this.state.currDate]) ? null : (
-                  <div className="table">
-                    {Object.keys(this.state.slots[this.state.currDate]).map(
-                      (slot) => (
-                        <div className="time-slots">
-                          {" "}
-                          {slot}{" "}
-                          <span id={slot} onClick={this.deleteSlot}>
-                            X
-                          </span>
-                        </div>
-                      )
-                    )}
-                  </div>
-                )}
-              </div>) : (<div> Select a time frame of less than 12 hrs </div>)}
-              <button className = "addslot" onClick={this.handleSubmit} type="submit">
+              </span>
+              {!this.state.errormsg ? (
+                <div className="table-container">
+                  {isEmpty(this.state.slots) ||
+                  isEmpty(this.state.slots[this.state.currDate]) ? null : (
+                    <div className="table">
+                      {Object.keys(this.state.slots[this.state.currDate]).map(
+                        (slot) => (
+                          <div className="time-slots">
+                            {" "}
+                            {slot}{" "}
+                            <span id={slot} onClick={this.deleteSlot}>
+                              X
+                            </span>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div> Select a time frame of less than 12 hrs </div>
+              )}
+              <button
+                className="addslot"
+                onClick={this.handleSubmit}
+                type="submit"
+              >
                 ADD SLOTS
               </button>
 
-              <button onClick = {this.handleModify}>
-                MODIFY SLOTS
-              </button>
-
+              <button onClick={this.handleModify}>MODIFY SLOTS</button>
             </div>
           </div>
         </div>
         <div>{/* Dates */}</div>
         <div></div>
-      </div>) : 
-            (<div className="slot1">
-                {this.state.slotarr.map(slot =>(
-                  <div className="slot">
-                  <div  className = "divide">{Object.keys(slot)[0]}</div>
-                  <div>
-                    {slot[Object.keys(slot)[0]].map(slots => (
-                      <button ref={this.colorRefs.ref(Object.keys(slot)[0].toString()+";"+slots.toString())} id = {Object.keys(slot)[0].toString()+";"+slots.toString()}  value={slots} className = "bott" onClick = {this.handleButtonClick}> {slots} </button>
-                    ))}
-                  </div>
-                  </div>
-                ))}
-                <button className="delete" onClick = {this.handleDelete}>DELETE</button>
-                {!this.state.successmsg ? null : (<h2>Slots deleted successfully</h2>)}
-            </div>)
+      </React.Fragment>
+    ) : (
+      <div className="slot1">
+        {this.state.slotarr.map((slot) => (
+          <div className="slot">
+            <div className="divide">{Object.keys(slot)[0]}</div>
+            <div>
+              {slot[Object.keys(slot)[0]].map((slots) => (
+                <button
+                  ref={this.colorRefs.ref(
+                    Object.keys(slot)[0].toString() + ";" + slots.toString()
+                  )}
+                  id={Object.keys(slot)[0].toString() + ";" + slots.toString()}
+                  value={slots}
+                  className="bott"
+                  onClick={this.handleButtonClick}
+                >
+                  {" "}
+                  {slots}{" "}
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
+        <button className="delete" onClick={this.handleDelete}>
+          DELETE
+        </button>
+        {!this.state.successmsg ? null : <h2>Slots deleted successfully</h2>}
+      </div>
     );
   }
 }
