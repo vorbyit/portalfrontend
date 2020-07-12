@@ -99,10 +99,7 @@ class Navbar extends Component {
                       <NavLink className="nav-item" to="/advisors" activeClassName="active"><span> Your Advisors</span> </NavLink>
                     }
                   
-                  <NavLink className="nav-item" to="/chats" activeClassName="active">
-
-                    Message
-                  </NavLink>
+                 
                   {this.props.user === undefined ||
                   this.props.user.type !== "EXPERT" ? null : (
                     <NavLink
