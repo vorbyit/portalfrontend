@@ -2,7 +2,6 @@
   margin: 40px auto;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   width: 75%;
-  color: #707070;
   font-size: 1rem;
 }
 
@@ -40,5 +39,5 @@
 .menubar-link:hover {
   border-bottom: 2px solid #0b6283;
   cursor: pointer;
-  color: #707070;
+  color: inherit;
 }

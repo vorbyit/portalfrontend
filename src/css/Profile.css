@@ -1,75 +1,73 @@
-.profile{
-    margin-left: 88px;
-    margin-top: 33px;
-    margin-bottom: 62px;
-
+.thank-you {
+  margin: 2%;
 }
 
-.chart{
-    text-align: center;
+.profile-details {
+  margin-left: 88px;
+  margin-top: 33px;
+  margin-bottom: 62px;
+  display: flex;
 }
 
-.chart1{
-    display: inline-block; 
+.profile-details .profile-pic {
+  display: inline-block;
+  position: relative;
+  width: fit-content;
+  margin-right: 158px;
 }
 
-.details2{
-        background-color: #0b6283;
-        width: 100%;
-        height: 9rem;
-        display: flex;
-        justify-content: space-between;
-
-
-}
-.div1{
-        color: antiquewhite;
-        font-size: large;
-        width: fit-content;
-        top: 0px;
-        left: 0px;
-        margin-top: 10%;
-        margin-left:10%;
+.profile-details .profile-information {
+    display: flex;
+    flex-direction: column;
 }
 
-.div2{
-    color: antiquewhite;
-    font-size: large;
-    width: fit-content;
-    top: 0px;
-    left: 0px;
-    margin-top: 15%;
-    margin-left:15%;
+.chart {
+  text-align: center;
 }
 
+.chart1 {
+  display: inline-block;
+}
 
-.about{
-    float: left;
-    margin-right: 70px;
+.details2 {
+  background-color: #0b6283;
+  width: 100%;
+  height: 9rem;
+  display: flex;
+  justify-content: space-between;
 }
-.pic .details1{
-    /* display:inline-block; */
+
+.div1 {
+  color: antiquewhite;
+  font-size: large;
+  width: fit-content;
+  top: 0px;
+  left: 0px;
+  margin-top: 10%;
+  margin-left: 10%;
 }
-.box{
-    border-width: thick;
-    width: 25%;
-    padding-top: 3px;
-    padding-bottom: 4px;
-    padding-left: 15px;
-    padding-right: 81px;
-    box-shadow: 4px 0px 6px #88888830;
-    
+
+.div2 {
+  color: antiquewhite;
+  font-size: large;
+  width: fit-content;
+  top: 0px;
+  left: 0px;
+  margin-top: 15%;
+  margin-left: 15%;
 }
+
+.about {
+  float: left;
+  margin-right: 70px;
+}
+
 .txt1 {
-    box-shadow: -3px 0px 6px #88888830;
-    padding: 23px 29px;
+  box-shadow: -3px 0px 6px #88888830;
+  padding: 23px 29px;
 }
-.pic{
-    width: fit-content;
-    float: left;
-    margin-right: 158px;
-}
+
 .img {
-    margin-top: -22px;
-    margin-right: -24px;
+  margin-top: -22px;
+  margin-right: -24px;
 }
