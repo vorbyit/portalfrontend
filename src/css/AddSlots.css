@@ -1,99 +1,143 @@
-
-.table{
-  
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 10px;
-  
-}
-.frame {
+.slots-and-dates {
   width: 100%;
-  height: 400px;
-
+  padding: 2.5rem;
+  font-size: 1.2rem;
+  color: #707070;
 }
 
 .frame {
   width: 100%;
   height: 400px;
+  display: flex;
+  justify-content: flex-start;
 }
 
-.date {
-  font-size: 20px;
-  padding-top: 46px;
-  float: left;
+.date-select .title-date-text, .select-time-range {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 2rem;
 }
 
-.cards {
+.date-select .title-date-text {
+  text-align: center;
+}
+
+.date-cards {
   margin: 4px, 4px;
-  padding: 4px;
-  width: 249px;
-  height: 168px;
+  width: 200px;
+  height: 220px;
   overflow-x: hidden;
-  overflow-x: auto;
-  text-align: justify;
+  overflow-y: auto;
 }
 
-.date-card {
-  width: 200px;
-  height: 54px;
+.date-cards::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.date-cards::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f5f5f5;
+}
+
+.date-cards::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #0B6283;
+}
+
+.date-cards .date-card {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.date-cards .date-card:last-child {
+  margin-bottom: 0;
 }
 
 .date-card:hover {
-  border-style: solid;
-  border-color: #707070;
-  border-width: thin;
+  border: 1px solid #707070 ;
 }
 
 .card-selected {
-  background-color: #0b6283;
+  background-color: #0B6283;
+  color: #ffffff;
 }
 
-.time {
-  padding-top: 46px;
-  font-size: 20px;
-  float: left;
+.date-card .date-text {
+  cursor: default;
+  pointer-events: none;
+}
+
+.slot-select {
   margin-left: 108px;
 }
 
-.table-container {
+.slot-select .table-container {
+  padding: 45px;
   border: solid;
   border-width: thin;
-  width: 796px;
-  height: 220px;
+  width: 800px;
+  height: 250px;
   margin-top: 17px;
+  margin-bottom: 60px;
 }
 
-.table-container .table {
+.slot-select .table-container .table {
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-rows: repeat(5, 16%);
-  grid-auto-columns: repeat(auto-fill, 50px);
-  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  overflow-y: scroll;
+  row-gap: 2rem;
+  column-gap: 2rem;
+  font-size: 1.5rem;
+}
+
+.slot-select .table-container .table::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.slot-select .table-container .table::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+
+.slot-select .table-container .table::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #0B6283;
 }
 
 .slot {
-  margin-top : 5%;
-  margin-bottom : 5%;
-  margin-left : 5%;
-  margin-right : 5%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
   justify-content: space-around;
 }
 
+input {
+  color: #707070;
+}
+
 .slot1 {
-  margin-top : 5%;
-  margin-bottom : 5%;
-  margin-left : 5%;
-  margin-right : 5%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
   justify-content: space-around;
 }
 
 .divide {
-  margin-bottom : 2.5%;
+  margin-bottom: 2.5%;
 }
 
-.bott{
-  margin-left : 2.5%;
+.bott {
+  margin-left: 2.5%;
   margin-right: 2.5%;
   margin-bottom: 2.5%;
   border: none;
@@ -103,24 +147,23 @@
   flex-grow: 2;
   margin-right: 0.5rem;
   color: #ecf9ff;
-  font-size: 1.2rem;
   cursor: pointer;
   transition: ease;
   transition-duration: 0.1s;
 }
 
-.bott:visited{
-  background-color:red;
+.bott:visited {
+  background-color: red;
 }
 
 .delete {
-  margin-top : 5%;
-  margin-bottom : 5%;
-  margin-left : 5%;
-  margin-right : 5%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
   justify-content: space-around;
 }
 
 .addslot {
-  margin-right : 2.5%;
+  margin-right: 2.5%;
 }

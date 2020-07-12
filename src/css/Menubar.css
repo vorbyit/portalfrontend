@@ -1,60 +1,44 @@
-
-.menu txt {
-
-    margin-top: 2em;
+.menubar-nav {
+  margin: 40px auto;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  width: 75%;
+  color: #707070;
+  font-size: 1rem;
 }
 
-.menu ul {
+.menubar-menu {
+  margin: auto;
+  width: 85%;
+  justify-content: space-around;
+  display: flex;
+}
+
+.menubar-menu ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: #fff;
-  box-shadow: 0px 0px 6px #88888830;
-  /* width: 150%; */
-  /* margin-left: 344px; */
-  margin-top: 22px;
-
-  margin: -23px 98px 3px 83px;
-
 }
 
-.menu li {
-  float: left;
-  padding: 0px 63px;
+.menubar-menu li {
+  margin-left: -9%;
+  display: inline-block;
+  width: 150px;
 }
 
-.menu li .a {
+.menubar-link {
   display: block;
-  color: black;
+  color: inherit;
   text-align: center;
+  border-bottom: 2px solid #fff;
   padding: 14px 16px;
-  text-decoration: none;
-  width:150px
+  text-decoration: none !important;
+  
 }
 
-.menu .a:hover{
-  border-bottom: 3px solid;
-border-bottom-color:#00e3ff;
+.menubar-link:hover {
+  border-bottom: 2px solid #0b6283;
+  cursor: pointer;
+  color: #707070;
 }
-
-.menu .active{
-  border-bottom: 3px solid;
-  border-bottom-color:#00e3ff;
-}
-
-
-  .menu {
-    margin:auto ;
-    width: 85%;
-    justify-content: space-around;
-  }
-
-  .navbar-light {
-    background-color : rgba(255, 255, 255, 0.89);
-}
-
-.nav1 {
-  box-shadow: 0 0 0.5rem #00000d;
-  }
-

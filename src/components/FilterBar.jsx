@@ -30,38 +30,28 @@ class FilterBar extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <div className="filterbar-nav">
-          <Navbar light expand="md">
-            <NavbarToggler
-              className="filterby-container"
-              onClick={this.toggleNav}
-            >
+      <div className="filterbar-nav">
+        <Navbar light expand="md">
+          <NavbarToggler onClick={this.toggleNav}></NavbarToggler>
+          <Collapse isOpen={this.state.isNavOpen} navbar>
+            <NavbarText>
               <img className="filterby-icon" src={logo} alt="logo" />
-              <NavbarText>Filter by</NavbarText>
-            </NavbarToggler>
-            <Collapse isOpen={this.state.isNavOpen} navbar>
-              {!this.state.isNavOpen ? (
-                <span>
-                  <img className="filterby-icon" src={logo} alt="logo" />
-                  Filter by
-                </span>
-              ) : null}
-              <Nav className="FilterBar" navbar>
-                {this.props.filters.map((filter) => (
-                  <NavItem
-                    className="a"
-                    id={filter}
-                    onClick={this.props.sortBy}
-                  >
-                    {filter[0].toUpperCase() + filter.slice(1)}
-                  </NavItem>
-                ))}
-              </Nav>
-            </Collapse>
-          </Navbar>
-        </div>
-      </React.Fragment>
+              Filter by
+            </NavbarText>
+            <Nav className="filterbar" navbar>
+              {this.props.filters.map((filter) => (
+                <NavItem
+                  className="filterbar-item"
+                  id={filter}
+                  onClick={this.props.sortBy}
+                >
+                  {filter[0].toUpperCase() + filter.slice(1)}
+                </NavItem>
+              ))}
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
     );
   }
 }

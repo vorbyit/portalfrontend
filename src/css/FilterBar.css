@@ -2,56 +2,40 @@
   margin: 40px auto;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   width: 75%;
-}
-
-.FilterBar {
-  /* margin-left: 87px; */
-  margin: auto;
-  width: 85%;
-  justify-content: space-around;
-  display: flex;
-}
-
-.filterby-container {
-  border: none !important;
+  color: #707070;
+  font-size: inherit;
 }
 
 .filterby-icon {
   margin-right: 0.5rem;
 }
 
-.filterby-container:focus {
-  outline: none !important;
+.filterbar {
+  margin: auto;
+  width: 85%;
+  justify-content: space-around;
+  display: flex;
 }
 
-.FilterBar ul {
+.filterbar ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: #fff;
-  display: flex;
-  justify-content: space-around;
 }
 
-.FilterBar li {
-  padding: 0.5rem 0;
-  border-bottom: 2px solid white;
-  margin-left: -9%;
-  display: inline-block;
-}
-
-.a {
+.filterbar-item {
   display: block;
-  color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  border-bottom: 2px solid #fff;
   width: 150px;
 }
 
-.FilterBar li:hover,
-.FilterBar .filter-selected {
+.filterbar li:hover,
+.filterbar .filter-selected {
   border-bottom: 2px solid #0b6283;
   cursor: pointer;
 }
