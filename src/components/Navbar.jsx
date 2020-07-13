@@ -93,19 +93,30 @@ class Navbar extends Component {
                   icon={faUser}
                 />
                 <div className="dropdown-content">
-                  <NavLink
-                    className="nav-item"
-                    to="/profile"
-                    activeClassName="active"
-                  >
-                    Your Profile
-                  </NavLink>
+                  {this.props.user !== undefined &&
+                  this.props.user.type === "EXPERT" ? (
+                    <NavLink
+                      className="nav-item"
+                      to="/expert/profile"
+                      activeClassName="active"
+                    >
+                      Your Profile
+                    </NavLink>
+                  ) : (
+                    <NavLink
+                      className="nav-item"
+                      to="/user/profile"
+                      activeClassName="active"
+                    >
+                      Your Profile
+                    </NavLink>
+                  )}
 
                   {this.props.user !== undefined &&
                   this.props.user.type === "EXPERT" ? (
                     <NavLink
                       className="nav-item"
-                      to="/appointments"
+                      to="/expert/appointments"
                       activeClassName="active"
                     >
                       <span>Appointments</span>
@@ -124,7 +135,7 @@ class Navbar extends Component {
                   this.props.user.type !== "EXPERT" ? null : (
                     <NavLink
                       className="nav-item"
-                      to="/addslots"
+                      to="/expert/addslots"
                       activeClassName="active"
                     >
                       Add Slots

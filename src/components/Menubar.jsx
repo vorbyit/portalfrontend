@@ -29,18 +29,26 @@ class Menubar extends Component {
               <Nav className="menubar-menu" navbar>
                 <NavItem>
                   <NavLink
-                    to="/appointments"
+                    to="/expert/appointments"
                     className="menubar-link"
                     activeClassName="active"
+                    activeStyle={{
+                      borderBottom: "2px solid #0b6283",
+                      color: "inherit"
+                    }}
                   >
                     Appointments
                   </NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink
-                    to="/addslots"
+                    to="/expert/addslots"
                     className="menubar-link"
                     activeClassName="active"
+                    activeStyle={{
+                      borderBottom: "2px solid #0b6283",
+                      color: "inherit"
+                    }}
                   >
                     Time Slots
                   </NavLink>
@@ -56,9 +64,13 @@ class Menubar extends Component {
                 </NavItem>
                 <NavItem>
                   <NavLink
-                    to="/profile"
+                    to="/expert/profile"
                     className="menubar-link"
                     activeClassName="active"
+                    activeStyle={{
+                      borderBottom: "2px solid #0b6283",
+                      color: "inherit"
+                    }}
                   >
                     Your Profile{" "}
                   </NavLink>
