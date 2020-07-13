@@ -1,5 +1,6 @@
-.thank-you {
-  margin: 2%;
+.profile-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .profile-details {
@@ -7,6 +8,8 @@
   margin-top: 33px;
   margin-bottom: 62px;
   display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .profile-details .profile-pic {
@@ -16,9 +19,22 @@
   margin-right: 158px;
 }
 
+.profile-details .profile-pic img:nth-child(1) {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+}
+
 .profile-details .profile-information {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-details .profile-information .profile-detail label {
+  display: inline-block;
+  width: 300px;
+  color: #000;
 }
 
 .chart {

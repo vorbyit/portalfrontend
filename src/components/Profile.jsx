@@ -5,7 +5,6 @@ import "../css/Profile.css";
 import defaultPic from "../public/defaultpic.png";
 import editIcon from "../public/notepad-edit-icon.png";
 import isEmpty from "../utils/isEmpty";
-import Menubar from "./Menubar";
 import getCurrentUser from "../utils/getCurrentUser";
 import Chart from "react-google-charts";
 
@@ -73,26 +72,25 @@ class Profile extends Component {
   render() {
     console.log(this.state);
     return (
-      <React.Fragment>
-        <span className="thank-you">Thank you for your support</span>
-        <Menubar />
+      <div className="profile-container">
         <div className="profile-details">
           <span className="profile-pic">
-            <img src={editIcon} alt="edit-icon"/>
+            <img src={editIcon} alt="edit-icon" />
             <img
               className="img"
               src={
                 this.state.pic === "defaultpic" ? defaultPic : this.state.pic
               }
-              alt="profile picture"
+              alt="profpic"
             />
           </span>
           <div className="profile-information">
             <span className="profile-detail">
-              Name:{" "}
+              <label htmlFor="name">Name:</label>
               <input
                 type="text"
                 name="name"
+                id="name"
                 value={this.state.name}
                 onChange={(e) => {
                   this.handleChange(e);
@@ -100,21 +98,23 @@ class Profile extends Component {
               />
             </span>
             <span className="profile-detail">
-              College:
+              <label htmlFor="mobile-number">Mobile:</label>
               <input
-                type="text"
-                name="username"
-                value={this.state.institution}
+                type="tel"
+                name="mobile"
+                id="mobile-number"
+                value={this.state.mobile}
                 onChange={(e) => {
                   this.handleChange(e);
                 }}
               />
             </span>
             <span className="profile-detail">
-              Email:
+              <label htmlFor="email">Email:</label>
               <input
                 type="text"
                 name="email"
+                id="email"
                 value={this.state.email}
                 onChange={(e) => {
                   this.handleChange(e);
@@ -122,23 +122,32 @@ class Profile extends Component {
               />
             </span>
             {this.state.type !== "EXPERT" ? null : (
-              <React.Fragment>
+              <>
                 <span className="profile-detail">
-                  Expertise:
+                  <label htmlFor="college">College:</label>
                   <input
                     type="text"
-                    name="mobile"
-                    value={this.state.mobile}
+                    name="institution"
+                    id="college"
+                    value={this.state.institution}
                     onChange={(e) => {
                       this.handleChange(e);
                     }}
                   />
                 </span>
                 <span className="profile-detail">
-                  {" "}
-                  Branch:<span>{this.state.branch}</span>
+                  <label htmlFor="expertise">Expertise:</label>
+                  <input
+                    type="text"
+                    name="branch"
+                    id="expertise"
+                    value={this.state.branch}
+                    onChange={(e) => {
+                      this.handleChange(e);
+                    }}
+                  />
                 </span>
-              </React.Fragment>
+              </>
             )}
           </div>
         </div>
@@ -187,7 +196,7 @@ class Profile extends Component {
             </div>
           </div>
         )}
-      </React.Fragment>
+      </div>
     );
   }
 }
