@@ -1,4 +1,4 @@
-import React, { Component, Profiler } from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import LoginForm from "./components/LoginForm";
@@ -17,14 +17,12 @@ import Menubar from "./components/Menubar";
 import Messaging from "./components/Messaging";
 
 import Payment from "./components/Payment";
-import ExpertCard from "./components/ExpertCard";
 
 import PaymentStatus from "./components/PaymentStatus";
 
 import Index from "./pages/index/index";
 
 import "./App.css";
-import ExpertApptCard from "./components/ExpertApptCard";
 
 export default class App extends Component {
   constructor() {
@@ -117,21 +115,13 @@ export default class App extends Component {
                   />
                 )}
               />
-
-              <Route
-                exact
-                path="/experts"
-                render={(props) => (
-                  <ExpertCard
-                    user={this.state.user}
-                    updateUser={this.updateUser}
-                  />
-                )}
-              />
             </Switch>
+
+            <Route path="/expert" component={Menubar} />
+
             <Route
               exact
-              path="/addslots"
+              path="/expert/addslots"
               render={(props) => (
                 <AddSlots user={this.state.user} updateUser={this.updateUser} />
               )}
@@ -139,21 +129,7 @@ export default class App extends Component {
 
             <Route
               exact
-              path="/appointments"
-              render={(props) =>
-                this.state.user === undefined ||
-                this.state.user.type === "EXPERT" ? (
-                  <Menubar
-                    user={this.state.user}
-                    updateUser={this.updateUser}
-                  />
-                ) : null
-              }
-            />
-
-            <Route
-              exact
-              path="/appointments"
+              path="/expert/appointments"
               render={(props) =>
                 this.state.user === undefined ||
                 this.state.user.type === "EXPERT" ? (
@@ -163,6 +139,14 @@ export default class App extends Component {
                   />
                 ) : null
               }
+            />
+
+            <Route
+              exact
+              path={["/expert/profile", "/user/profile"]}
+              render={(props) => (
+                <Profile user={this.state.user} updateUser={this.updateUser} />
+              )}
             />
 
             <Route
@@ -187,13 +171,6 @@ export default class App extends Component {
               }
             />
 
-            <Route
-              exact
-              path="/profile"
-              render={(props) => (
-                <Profile user={this.state.user} updateUser={this.updateUser} />
-              )}
-            />
             <Route
               exact
               path="/chats"

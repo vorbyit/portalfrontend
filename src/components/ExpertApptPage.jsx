@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import API from "../API";
 import UserCard from "./UserCard";
-import ExpertApptCard from "./ExpertApptCard";
 import isEmpty from "../utils/isEmpty";
 import getCurrentUser from "../utils/getCurrentUser";
 import "../css/Expertapptpage.css";
@@ -157,7 +156,7 @@ class ExpertApptPage extends Component {
     const time = d.toTimeString();
     console.log(this.state.appointments);
     return (
-      <div>
+      <div className="expert-appt-page-container">
         <div>
           <h5>Unapproved</h5>
           {!this.state.rescheduled ? (
