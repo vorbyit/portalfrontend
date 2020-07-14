@@ -44,7 +44,11 @@ class Profile extends Component {
           this.props.history.push("/login");
         }
       }
-      const { data } = await API.get(`/expert/profile`);
+      console.log(this.props.user);
+      const { data } = await API.post("/user/profile", {
+        userID: this.props.user._id,
+      });
+      console.log(data);
       this.setState(data.expert);
       this.setState({
         call_count: data.expert_data.call_count,
@@ -66,7 +70,7 @@ class Profile extends Component {
     this.setState({ [e.target.name]: e.target.value });
     // console.log(e.target.value);
     // var param = e.target.name;
-    // var var1 = e.target.value;    
+    // var var1 = e.target.value;
   }
 
   handleSave(e) {
@@ -79,7 +83,7 @@ class Profile extends Component {
       }
     }
     if (!changed) {
-      this.setState({ showBtnPanel: false, });
+      this.setState({ showBtnPanel: false });
       return null;
     }
     // try {
@@ -90,7 +94,7 @@ class Profile extends Component {
     // } catch (error) {
     //   console.log(error);
     // }
-    this.setState({ showBtnPanel: false, });
+    this.setState({ showBtnPanel: false });
   }
 
   handleCancel(e) {
@@ -186,7 +190,12 @@ class Profile extends Component {
             )}
             {this.state.showBtnPanel ? (
               <span className="btn-panel">
-                <button className="btn save-btn" onClick={(e) => this.handleSave(e)}>Save</button>
+                <button
+                  className="btn save-btn"
+                  onClick={(e) => this.handleSave(e)}
+                >
+                  Save
+                </button>
                 <button
                   className="btn cancel-btn"
                   onClick={(e) => this.handleCancel(e)}
