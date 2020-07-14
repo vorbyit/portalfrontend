@@ -8,6 +8,14 @@ import isEmpty from "../utils/isEmpty";
 import getCurrentUser from "../utils/getCurrentUser";
 import Chart from "react-google-charts";
 
+let tempDetails = {
+  name: "",
+  mobile: "",
+  email: "",
+  institution: "",
+  branch: "",
+};
+
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +28,7 @@ class Profile extends Component {
       mobile: "",
       call_count: 0,
       amount: 0,
+      showBtnPanel: false,
     };
   }
 
@@ -41,6 +50,9 @@ class Profile extends Component {
         call_count: data.expert_data.call_count,
         amount: data.expert_data.amount,
       });
+      for (const detail in tempDetails) {
+        tempDetails[detail] = data.expert[detail];
+      }
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -48,25 +60,49 @@ class Profile extends Component {
   }
 
   async handleChange(e) {
-    console.log(e.target.value);
-    var param = e.target.name;
-    var var1 = e.target.value;
-
-    try {
-      const { data } = await API.post("expert/edit", {
-        property: param,
-        value: var1,
-      });
-      console.log(data);
-      this.setState({
-        name: data.name,
-        username: data.username,
-        email: data.email,
-        mobile: data.mobile,
-      });
-    } catch (error) {
-      console.log(error);
+    if (!this.state.showBtnPanel) {
+      this.setState({ showBtnPanel: true });
     }
+    this.setState({ [e.target.name]: e.target.value });
+    // console.log(e.target.value);
+    // var param = e.target.name;
+    // var var1 = e.target.value;    
+  }
+
+  handleSave(e) {
+    e.preventDefault();
+    let changed = false;
+    for (let detail in tempDetails) {
+      if (tempDetails[detail] !== this.state[detail]) {
+        changed = true;
+        break;
+      }
+    }
+    if (!changed) {
+      this.setState({ showBtnPanel: false, });
+      return null;
+    }
+    // try {
+    //   const { data } = await API.post("expert/edit", {
+    //     property: param,
+    //     value: var1,
+    //   });
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    this.setState({ showBtnPanel: false, });
+  }
+
+  handleCancel(e) {
+    e.preventDefault();
+    this.setState({
+      name: tempDetails.name,
+      mobile: tempDetails.mobile,
+      email: tempDetails.email,
+      institution: tempDetails.institution,
+      branch: tempDetails.branch,
+      showBtnPanel: false,
+    });
   }
 
   render() {
@@ -97,11 +133,11 @@ class Profile extends Component {
               />
             </span>
             <span className="profile-detail">
-              <label htmlFor="mobile-number">Mobile:</label>
+              <label htmlFor="mobile">Mobile:</label>
               <input
                 type="tel"
                 name="mobile"
-                id="mobile-number"
+                id="mobile"
                 value={this.state.mobile}
                 onChange={(e) => {
                   this.handleChange(e);
@@ -111,7 +147,7 @@ class Profile extends Component {
             <span className="profile-detail">
               <label htmlFor="email">Email:</label>
               <input
-                type="text"
+                type="email"
                 name="email"
                 id="email"
                 value={this.state.email}
@@ -123,11 +159,11 @@ class Profile extends Component {
             {this.state.type !== "EXPERT" ? null : (
               <>
                 <span className="profile-detail">
-                  <label htmlFor="college">College:</label>
+                  <label htmlFor="institution">College:</label>
                   <input
                     type="text"
                     name="institution"
-                    id="college"
+                    id="institution"
                     value={this.state.institution}
                     onChange={(e) => {
                       this.handleChange(e);
@@ -135,11 +171,11 @@ class Profile extends Component {
                   />
                 </span>
                 <span className="profile-detail">
-                  <label htmlFor="expertise">Expertise:</label>
+                  <label htmlFor="branch">Expertise:</label>
                   <input
                     type="text"
                     name="branch"
-                    id="expertise"
+                    id="branch"
                     value={this.state.branch}
                     onChange={(e) => {
                       this.handleChange(e);
@@ -148,6 +184,17 @@ class Profile extends Component {
                 </span>
               </>
             )}
+            {this.state.showBtnPanel ? (
+              <span className="btn-panel">
+                <button className="btn save-btn" onClick={(e) => this.handleSave(e)}>Save</button>
+                <button
+                  className="btn cancel-btn"
+                  onClick={(e) => this.handleCancel(e)}
+                >
+                  Cancel
+                </button>
+              </span>
+            ) : null}
           </div>
         </div>
 
