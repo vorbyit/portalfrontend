@@ -1,10 +1,11 @@
 .profile-container {
   display: flex;
   flex-direction: column;
+  font-size: 1.2rem;
 }
 
 .profile-details {
-  margin-left: 88px;
+  margin-left: 200px;
   margin-top: 33px;
   margin-bottom: 62px;
   display: flex;
@@ -16,7 +17,7 @@
   display: inline-block;
   position: relative;
   width: fit-content;
-  margin-right: 158px;
+  margin-right: 100px;
 }
 
 .profile-details .profile-pic img:nth-child(1) {
@@ -26,64 +27,97 @@
   cursor: pointer;
 }
 
+.profile-details .profile-pic img {
+  margin-top: -22px;
+  margin-right: -24px;
+}
+
 .profile-details .profile-information {
   display: flex;
   flex-direction: column;
 }
 
+.profile-details .profile-information .profile-detail {
+  margin-bottom: 15px;
+}
+
+.profile-details .profile-information .profile-detail:last-child {
+  margin-bottom: 0;
+}
+
 .profile-details .profile-information .profile-detail label {
   display: inline-block;
-  width: 300px;
+  width: 90px;
+  text-align: end;
+  margin-right: 30px;
   color: #000;
 }
 
-.chart {
+.profile-details .profile-information .profile-detail input {
+  display: inline-block;
+  width: 400px;
+  padding: 5px;
+  padding-left: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.profile-details .profile-information .btn-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 2%;
+}
+
+.profile-details .profile-information .btn-panel .btn {
+  display: inline-block;
+  width: fit-content;
+  border-radius: 40%;
+}
+
+.profile-details .profile-information .btn-panel .save-btn {
+  background-color: #0b6283;
+  color: #fff;
+}
+
+
+.profile-container .about {
+  margin-left: 200px;
+  margin-bottom: 50px;
+}
+
+.profile-container .about .expert-description {
+  max-width: 1000px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  padding: 2%;
+}
+
+.stats-container .stats {
+  background-color: #0b6283;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+
+.stats-container .stats .stat {
+  color: #D6EFED;
+  transform: translateX(-4rem);
+}
+
+.stats-container .stats .stat .param {
+  font-size: 40px;
+}
+
+.stats-container .stats .stat .value {
+  font-size: 120px;
   text-align: center;
 }
 
-.chart1 {
+.stats-container .chart {
+  text-align: center;
+}
+
+.stats-container .chart .chart1 {
   display: inline-block;
 }
 
-.details2 {
-  background-color: #0b6283;
-  width: 100%;
-  height: 9rem;
-  display: flex;
-  justify-content: space-between;
-}
-
-.div1 {
-  color: antiquewhite;
-  font-size: large;
-  width: fit-content;
-  top: 0px;
-  left: 0px;
-  margin-top: 10%;
-  margin-left: 10%;
-}
-
-.div2 {
-  color: antiquewhite;
-  font-size: large;
-  width: fit-content;
-  top: 0px;
-  left: 0px;
-  margin-top: 15%;
-  margin-left: 15%;
-}
-
-.about {
-  float: left;
-  margin-right: 70px;
-}
-
-.txt1 {
-  box-shadow: -3px 0px 6px #88888830;
-  padding: 23px 29px;
-}
-
-.img {
-  margin-top: -22px;
-  margin-right: -24px;
-}
