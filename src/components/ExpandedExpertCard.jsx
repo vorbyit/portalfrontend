@@ -91,7 +91,8 @@ class ExpandedExpertCard extends Component {
           console.log(userID);
           const response = await API.post('/payment/success', {
             userID: userID,
-            expertID: expertID
+            expertID: expertID,
+            amount : payment_data.data.amount
           })
           console.log(response);
         }
