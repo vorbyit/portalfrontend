@@ -38,7 +38,11 @@ class Profile extends Component {
           this.props.history.push("/login");
         }
       }
-      const { data } = await API.get(`/expert/profile`);
+      console.log(this.props.user)
+      const { data } = await API.post('/user/profile',{
+        userID:this.props.user._id
+      });
+      console.log(data);
       this.setState( data.expert );
       this.setState({call_count:data.expert_data.call_count,amount:data.expert_data.amount})
       console.log(data);
