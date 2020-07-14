@@ -77,7 +77,6 @@ class Profile extends Component {
           <span className="profile-pic">
             <img src={editIcon} alt="edit-icon" />
             <img
-              className="img"
               src={
                 this.state.pic === "defaultpic" ? defaultPic : this.state.pic
               }
@@ -154,20 +153,19 @@ class Profile extends Component {
 
         <div className="about">
           <h2>Bio:</h2>
-          <div className="txt1">{this.state.desc}</div>
+          <div className="expert-description">{this.state.desc}</div>
         </div>
 
         {this.state.type !== "EXPERT" ? null : (
           <div className="stats-container">
-            <div className="details2">
-              <div>
-                <div className="div1">No. of students guided</div>
-
-                <div className="div1">{this.state.call_count}</div>
+            <div className="stats">
+              <div className="stat">
+                <div className="param">No. of students guided</div>
+                <div className="value">{this.state.call_count}</div>
               </div>
-              <div>
-                <div className="div2">Amount Earned</div>
-                <div className="div2">{this.state.amount}</div>
+              <div className="stat">
+                <div className="param">Amount Earned</div>
+                <div className="value">{this.state.amount}</div>
               </div>
             </div>
             <div className="chart">
