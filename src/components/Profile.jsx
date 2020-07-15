@@ -12,8 +12,7 @@ let tempDetails = {
   name: "",
   mobile: "",
   email: "",
-  institution: "",
-  branch: "",
+  username: "",
 };
 
 class Profile extends Component {
@@ -103,8 +102,7 @@ class Profile extends Component {
       name: tempDetails.name,
       mobile: tempDetails.mobile,
       email: tempDetails.email,
-      institution: tempDetails.institution,
-      branch: tempDetails.branch,
+      username: tempDetails.username,
       showBtnPanel: false,
     });
   }
@@ -131,6 +129,18 @@ class Profile extends Component {
                 name="name"
                 id="name"
                 value={this.state.name}
+                onChange={(e) => {
+                  this.handleChange(e);
+                }}
+              />
+            </span>
+            <span className="profile-detail">
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                value={this.state.username}
                 onChange={(e) => {
                   this.handleChange(e);
                 }}
@@ -169,6 +179,7 @@ class Profile extends Component {
                     name="institution"
                     id="institution"
                     value={this.state.institution}
+                    disabled={true}
                     onChange={(e) => {
                       this.handleChange(e);
                     }}
@@ -179,6 +190,7 @@ class Profile extends Component {
                   <input
                     type="text"
                     name="branch"
+                    disabled={true}
                     id="branch"
                     value={this.state.branch}
                     onChange={(e) => {
@@ -188,22 +200,24 @@ class Profile extends Component {
                 </span>
               </>
             )}
-            {this.state.showBtnPanel ? (
-              <span className="btn-panel">
-                <button
-                  className="btn save-btn"
-                  onClick={(e) => this.handleSave(e)}
-                >
-                  Save
-                </button>
-                <button
-                  className="btn cancel-btn"
-                  onClick={(e) => this.handleCancel(e)}
-                >
-                  Cancel
-                </button>
-              </span>
-            ) : null}
+            <span
+              className={
+                this.state.showBtnPanel ? "btn-panel show" : "btn-panel"
+              }
+            >
+              <button
+                className="btn save-btn"
+                onClick={(e) => this.handleSave(e)}
+              >
+                Save
+              </button>
+              <button
+                className="btn cancel-btn"
+                onClick={(e) => this.handleCancel(e)}
+              >
+                Cancel
+              </button>
+            </span>
           </div>
         </div>
 
