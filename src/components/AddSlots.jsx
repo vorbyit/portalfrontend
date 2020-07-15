@@ -4,7 +4,6 @@ import { withRouter } from "react-router-dom";
 
 import isEmpty from "../utils/isEmpty";
 import getCurrentUser from "../utils/getCurrentUser";
-import Menubar from "./Menubar";
 
 import "../css/AddSlots.css";
 import MultiRef from "react-multi-ref";
@@ -207,8 +206,6 @@ class AddSlots extends Component {
     return !this.state.modifypage ? (
       <React.Fragment>
         <div className="slots-and-dates">
-          <span>Thank you for your support</span>
-          <Menubar />
           <div className="frame" name="Frame">
             <div className="date-select">
               <span className="title-date-text">Date:</span>
