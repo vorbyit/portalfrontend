@@ -72,7 +72,7 @@ class Profile extends Component {
     // var var1 = e.target.value;
   }
 
-  handleSave(e) {
+  async handleSave(e) {
     e.preventDefault();
     let changed = false;
     for (let detail in tempDetails) {
@@ -85,14 +85,19 @@ class Profile extends Component {
       this.setState({ showBtnPanel: false });
       return null;
     }
-    // try {
-    //   const { data } = await API.post("expert/edit", {
-    //     property: param,
-    //     value: var1,
-    //   });
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      const { data } = await API.post("expert/edit", {
+        name: this.state.name,
+        username: this.state.username,
+        email: this.state.email,
+        mobile: this.state.mobile,
+      });
+      for (let detail in tempDetails) {
+        tempDetails[detail] = data[detail];
+      }
+    } catch (error) {
+      console.log(error);
+    }
     this.setState({ showBtnPanel: false });
   }
 
