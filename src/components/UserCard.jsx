@@ -2,15 +2,16 @@
 import React, { Component } from "react";
 import API from "../API";
 import defaultPic from "../public/defaultpic.png";
-
+import { withRouter, Link } from "react-router-dom";
 import "../css/UserCard.css";
 
-export default class UserCard extends Component {
+class UserCard extends Component {
   constructor(props) {
     super(props);
     console.log(this.props);
     this.onApprove = this.onApprove.bind(this);
     this.onReject = this.onReject.bind(this);
+    this.handleMessage = this.handleMessage.bind(this);
   }
 
   async onApprove(e) {
@@ -42,7 +43,15 @@ export default class UserCard extends Component {
     }
   }
 
+  handleMessage(e) {
+    this.props.history.push({
+      pathname: "/chats",
+      data: e.currentTarget.id,
+    });
+  }
+
   render() {
+    console.log(this.props.slot[0])
     console.log(this.props.slot[0]._id)
     return (
       <div className="user-card-container">
@@ -90,7 +99,7 @@ export default class UserCard extends Component {
             </div>
           ) : (
             <div className="btn-panel">
-              <button className="btn btn-success">Message</button>
+              <button id={this.props.slot[0].userId} className="btn btn-success" onClick={(e) => this.handleMessage(e)}>Message</button>
             </div>
           )}
         </div>
@@ -98,3 +107,5 @@ export default class UserCard extends Component {
     );
   }
 }
+
+export default withRouter(UserCard)
