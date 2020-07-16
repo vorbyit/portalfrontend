@@ -132,6 +132,7 @@ class UserApptPage extends Component {
                   expert={appts}
                   slot_ready={this.state.slot_ready.includes(appts._id)}
                   faved={this.state.faved.includes(appts._id)}
+                  forApptPage={true}
                 />
               ))}
             </Carousel>
