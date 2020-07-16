@@ -56,17 +56,25 @@ class Navbar extends Component {
               Advisors
             </NavLink>
 
-            <NavLink className="nav-item" to={{
-              pathname:"/udaan",
-              scroll:false  }} 
-              activeClassName="active">
+            <NavLink
+              className="nav-item"
+              to={{
+                pathname: "/udaan",
+                scroll: false,
+              }}
+              activeClassName="active"
+            >
               Project Udaan
             </NavLink>
 
-            <NavLink className="nav-item" to={{
-              pathname:"/udaan",
-              scroll:true  }}
-               activeClassName="active">
+            <NavLink
+              className="nav-item"
+              to={{
+                pathname: "/udaan",
+                scroll: true,
+              }}
+              activeClassName="active"
+            >
               Contact Us
             </NavLink>
             {this.props.user === undefined ? (
@@ -85,26 +93,49 @@ class Navbar extends Component {
                   icon={faUser}
                 />
                 <div className="dropdown-content">
-                  <NavLink
-                    className="nav-item"
-                    to="/profile"
-                    activeClassName="active"
-                  >
-                    Your Profile
-                  </NavLink>
+                  {this.props.user !== undefined &&
+                  this.props.user.type === "EXPERT" ? (
+                    <NavLink
+                      className="nav-item"
+                      to="/expert/profile"
+                      activeClassName="active"
+                    >
+                      Your Profile
+                    </NavLink>
+                  ) : (
+                    <NavLink
+                      className="nav-item"
+                      to="/user/profile"
+                      activeClassName="active"
+                    >
+                      Your Profile
+                    </NavLink>
+                  )}
 
-                  
-                    {this.props.user !== undefined && this.props.user.type === "EXPERT" ? 
-                      <NavLink className="nav-item" to="/appointments" activeClassName="active"><span>Appointments</span></NavLink> : 
-                      <NavLink className="nav-item" to="/advisors" activeClassName="active"><span> Your Advisors</span> </NavLink>
-                    }
-                  
-                 
+                  {this.props.user !== undefined &&
+                  this.props.user.type === "EXPERT" ? (
+                    <NavLink
+                      className="nav-item"
+                      to="/expert/appointments"
+                      activeClassName="active"
+                    >
+                      <span>Appointments</span>
+                    </NavLink>
+                  ) : (
+                    <NavLink
+                      className="nav-item"
+                      to="/advisors"
+                      activeClassName="active"
+                    >
+                      <span> Your Advisors</span>{" "}
+                    </NavLink>
+                  )}
+
                   {this.props.user === undefined ||
                   this.props.user.type !== "EXPERT" ? null : (
                     <NavLink
                       className="nav-item"
-                      to="/addslots"
+                      to="/expert/addslots"
                       activeClassName="active"
                     >
                       Add Slots

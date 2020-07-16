@@ -3,9 +3,17 @@ import { withRouter } from "react-router-dom";
 import API from "../API";
 import "../css/Profile.css";
 import defaultPic from "../public/defaultpic.png";
+import editIcon from "../public/notepad-edit-icon.png";
 import isEmpty from "../utils/isEmpty";
 import getCurrentUser from "../utils/getCurrentUser";
 import Chart from "react-google-charts";
+
+let tempDetails = {
+  name: "",
+  mobile: "",
+  email: "",
+  username: "",
+};
 
 class Profile extends Component {
   constructor(props) {
@@ -17,12 +25,9 @@ class Profile extends Component {
       username: "",
       email: "",
       mobile: "",
-      call_count:0,
-      amount:0,
-      name_disabled : true,
-      username_disabled : true,
-      email_disabled : true,
-      mobile_disabled : true
+      call_count: 0,
+      amount: 0,
+      showBtnPanel: false,
     };
   }
 
@@ -30,7 +35,7 @@ class Profile extends Component {
     console.log(1);
     try {
       if (this.props.user === undefined || isEmpty(this.props.user)) {
-        console.log(1, this.props.user)
+        console.log(1, this.props.user);
         const currentUser = await getCurrentUser();
         this.props.updateUser(currentUser);
         if (isEmpty(currentUser)) {
@@ -38,157 +43,232 @@ class Profile extends Component {
           this.props.history.push("/login");
         }
       }
-      console.log(this.props.user)
-      const { data } = await API.post('/user/profile',{
-        userID:this.props.user._id
+      console.log(this.props.user);
+      const { data } = await API.post("/user/profile", {
+        userID: this.props.user._id,
       });
       console.log(data);
-      this.setState( data.expert );
-      this.setState({call_count:data.expert_data.call_count,amount:data.expert_data.amount})
+      this.setState(data.expert);
+      this.setState({
+        call_count: data.expert_data.call_count,
+        amount: data.expert_data.amount,
+      });
+      for (const detail in tempDetails) {
+        tempDetails[detail] = data.expert[detail];
+      }
       console.log(data);
     } catch (error) {
       console.log(error);
     }
   }
 
-  handlemouseover(e) {
-     console.log(e.target.name);
-     if(e.target.name=="name")
-     this.setState({name_disabled:false});
-     else if(e.target.name=="username")
-     this.setState({username_disabled:false});
-     else if(e.target.name=="email")
-     this.setState({email_disabled:false});
-     else if(e.target.name=="mobile")
-     this.setState({mobile_disabled:false});
-
+  async handleChange(e) {
+    if (!this.state.showBtnPanel) {
+      this.setState({ showBtnPanel: true });
+    }
+    this.setState({ [e.target.name]: e.target.value });
+    // console.log(e.target.value);
+    // var param = e.target.name;
+    // var var1 = e.target.value;
   }
 
-  async handleChange(e) {
-      console.log(e.target.value);
-      var param = e.target.name;
-      var var1 = e.target.value
-      
-      try {
-        const { data } = await API.post('expert/edit', {
-          property : param , value : var1
-        });
-        console.log(data);
-        this.setState({name:data.name,username:data.username,email:data.email,mobile:data.mobile});
-      } catch (error) {
-        console.log(error);
+  async handleSave(e) {
+    e.preventDefault();
+    let changed = false;
+    for (let detail in tempDetails) {
+      if (tempDetails[detail] !== this.state[detail]) {
+        changed = true;
+        break;
       }
-      
+    }
+    if (!changed) {
+      this.setState({ showBtnPanel: false });
+      return null;
+    }
+    try {
+      const { data } = await API.post("expert/edit", {
+        name: this.state.name,
+        username: this.state.username,
+        email: this.state.email,
+        mobile: this.state.mobile,
+      });
+      for (let detail in tempDetails) {
+        tempDetails[detail] = data[detail];
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    this.setState({ showBtnPanel: false });
+  }
+
+  handleCancel(e) {
+    e.preventDefault();
+    this.setState({
+      name: tempDetails.name,
+      mobile: tempDetails.mobile,
+      email: tempDetails.email,
+      username: tempDetails.username,
+      showBtnPanel: false,
+    });
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.state);
     return (
-      <div>
-      <div>
-        <div className="profile">
-          <div className="pic">
+      <div className="profile-container">
+        <div className="profile-details">
+          <span className="profile-pic">
+            <img src={editIcon} alt="edit-icon" />
             <img
-              className="img"
               src={
                 this.state.pic === "defaultpic" ? defaultPic : this.state.pic
               }
               alt="profpic"
             />
-          </div>
-          <div className="details1">
-            <div>
-              Name: <input type="text" name="name" placeholder={this.state.name} disabled = {this.state.name_disabled} className="box" onMouseOver={(e)=>{
-                this.handlemouseover(e)}} onChange = {(e) => {
-                  this.handleChange(e)}}/>
-            </div>
-            <br />
-            <div>
-              College:<input type="text" name="username" placeholder={this.state.username} disabled = {this.state.username_disabled} className="box" onMouseOver={(e)=>{
-                this.handlemouseover(e)}} onChange = {(e) => {
-                  this.handleChange(e)}}/>
-            </div>
-            <br />
-            <div>
-              Email:<input type="text" name="email" placeholder={this.state.email} disabled = {this.state.email_disabled} className="box" onMouseOver={(e)=>{
-                this.handlemouseover(e)}} onChange = {(e) => {
-                  this.handleChange(e)}}/>
-            </div>
-            <br />
-            <div>
-              Expertise:<input type="text" name="mobile" placeholder={this.state.mobile} disabled = {this.state.mobile_disabled} className="box" onMouseOver={(e)=>{
-                this.handlemouseover(e)}} onChange = {(e) => {
-                  this.handleChange(e)}}/>
-            </div>
-            <br />
-            
+          </span>
+          <div className="profile-information">
+            <span className="profile-detail">
+              <label htmlFor="name">Name:</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                value={this.state.name}
+                onChange={(e) => {
+                  this.handleChange(e);
+                }}
+              />
+            </span>
+            <span className="profile-detail">
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                value={this.state.username}
+                onChange={(e) => {
+                  this.handleChange(e);
+                }}
+              />
+            </span>
+            <span className="profile-detail">
+              <label htmlFor="mobile">Mobile:</label>
+              <input
+                type="tel"
+                name="mobile"
+                id="mobile"
+                value={this.state.mobile}
+                onChange={(e) => {
+                  this.handleChange(e);
+                }}
+              />
+            </span>
+            <span className="profile-detail">
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                value={this.state.email}
+                onChange={(e) => {
+                  this.handleChange(e);
+                }}
+              />
+            </span>
             {this.state.type !== "EXPERT" ? null : (
-              <div>
-                <div>{this.state.institute}</div>
-                <div>
-                  {" "}
-                  Branch:<span className="box">{this.state.branch}</span>
-                </div>
-                <div className="about">
-                  <h2>Bio:</h2>
-                  <div className="txt1">{this.state.desc}</div>
-                </div>
-              </div>
+              <>
+                <span className="profile-detail">
+                  <label htmlFor="institution">College:</label>
+                  <input
+                    type="text"
+                    name="institution"
+                    id="institution"
+                    value={this.state.institution}
+                    disabled={true}
+                    onChange={(e) => {
+                      this.handleChange(e);
+                    }}
+                  />
+                </span>
+                <span className="profile-detail">
+                  <label htmlFor="branch">Expertise:</label>
+                  <input
+                    type="text"
+                    name="branch"
+                    disabled={true}
+                    id="branch"
+                    value={this.state.branch}
+                    onChange={(e) => {
+                      this.handleChange(e);
+                    }}
+                  />
+                </span>
+              </>
             )}
+            <span
+              className={
+                this.state.showBtnPanel ? "btn-panel show" : "btn-panel"
+              }
+            >
+              <button
+                className="btn save-btn"
+                onClick={(e) => this.handleSave(e)}
+              >
+                Save
+              </button>
+              <button
+                className="btn cancel-btn"
+                onClick={(e) => this.handleCancel(e)}
+              >
+                Cancel
+              </button>
+            </span>
           </div>
         </div>
 
-      </div>
-      {this.state.type!=="EXPERT" ? null : (<div className="details2">
-        <div>
-        <div className="div1">
-         No. of students guided
-       </div>
+        <div className="about">
+          <h2>Bio:</h2>
+          <div className="expert-description">{this.state.desc}</div>
+        </div>
 
-       <div className = "div1">
-       {this.state.call_count}
-       </div>
-       </div>
-
-       <div>
-       <div className="div2">
-         Amount Earned
-       </div>
-       <div className = "div2">
-       {this.state.amount}
-       </div>
-       </div>
-       
-      </div>)}
-
-      {this.state.type!=="EXPERT" ? null : 
-       (<div className="chart">
-        <div className="chart1">
-       <Chart
-  width={'500px'}
-  height={'300px'}
-  chartType="Bar"
-  loader={<div>Loading Chart</div>}
-  data={[
-    ['Week', 'Amount'],
-    ['Week 1', 1000],
-    ['Week 2', 600],
-    ['Week 3', 660],
-    ['Week 4', 250],
-  ]}
-  options={{
-      hAxis: { title: 'Week', minValue: 1, maxValue: 7 },
-      vAxis: { title: 'Amount', minValue: 0, maxValue: 1000 },
-      legend: 'none',
-    
-  }}
-  // For tests
-  rootProps={{ 'data-testid': '2' }}
-/>
-</div>
-
-       </div>)}
-
+        {this.state.type !== "EXPERT" ? null : (
+          <div className="stats-container">
+            <div className="stats">
+              <div className="stat">
+                <div className="param">No. of students guided</div>
+                <div className="value">{this.state.call_count}</div>
+              </div>
+              <div className="stat">
+                <div className="param">Amount Earned</div>
+                <div className="value">{this.state.amount}</div>
+              </div>
+            </div>
+            <div className="chart">
+              <div className="chart1">
+                <Chart
+                  width={"500px"}
+                  height={"300px"}
+                  chartType="Bar"
+                  loader={<div>Loading Chart</div>}
+                  data={[
+                    ["Week", "Amount"],
+                    ["Week 1", 1000],
+                    ["Week 2", 600],
+                    ["Week 3", 660],
+                    ["Week 4", 250],
+                  ]}
+                  options={{
+                    hAxis: { title: "Week", minValue: 1, maxValue: 7 },
+                    vAxis: { title: "Amount", minValue: 0, maxValue: 1000 },
+                    legend: "none",
+                  }}
+                  // For tests
+                  rootProps={{ "data-testid": "2" }}
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
