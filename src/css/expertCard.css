@@ -51,6 +51,10 @@
   transition-duration: 0.1s;
 }
 
+.Expert-Card .info .btn-container .msg-btn {
+  background-color: #FF6F59;
+}
+
 .Expert-Card .info .btn-container .fav-btn {
   border: none;
   background-color: #fff;
@@ -218,9 +222,3 @@
   height: 1rem;
   width: 10%;
 }
-
-
-
-
-
-

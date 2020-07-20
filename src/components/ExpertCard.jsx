@@ -33,9 +33,7 @@ class ExpertCard extends Component {
   }
 
   render() {
-    let usertype = false;
-    if (this.props.user === undefined) usertype = true;
-    else if (this.props.user.type === "USER") usertype = true;
+    let renderBtnPanel = this.props.user !== undefined && this.props.user.type === "USER" && !this.props.forApptPage;
     const { expert, slot_ready } = this.props;
     return (
       <div className="Expert-Card">
@@ -47,7 +45,7 @@ class ExpertCard extends Component {
           <h3>{expert.name}</h3>
           <h3>{expert.institution}</h3>
           <h3>{expert.branch}</h3>
-          {!usertype ? null : (
+          {!renderBtnPanel ? null : (
             <div className="btn-container">
               {!slot_ready ? (
                 <button
@@ -57,7 +55,7 @@ class ExpertCard extends Component {
                   VIEW DETAILS
                 </button>
               ) : (
-                <button className="book-slot-btn" onClick={this.handleMessage}>
+                <button className="book-slot-btn msg-btn" onClick={this.handleMessage}>
                   MESSAGE
                 </button>
               )}
