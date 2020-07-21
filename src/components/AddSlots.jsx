@@ -32,6 +32,7 @@ class AddSlots extends Component {
     this.setDate = this.setDate.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleModify = this.handleModify.bind(this);
+    this.handlePrevious = this.handlePrevious.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.deleteSlot = this.deleteSlot.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -94,6 +95,8 @@ class AddSlots extends Component {
 
   setDate(evt) {
     evt.preventDefault();
+    this.setState({slots:{}, timeFrom: "00:00",
+    timeTo: "11:59"})
     if (this.state.currDate) {
       selectedDate.classList.remove("card-selected");
     }
@@ -133,6 +136,7 @@ class AddSlots extends Component {
       ] = null;
     }
     this.setState({ slots });
+    console.log(this.state.slots)
   }
 
   deleteSlot(evt) {
@@ -148,6 +152,18 @@ class AddSlots extends Component {
       delete slots[currDate][slot];
       this.setState({ slot });
     }
+  }
+
+  async handlePrevious()
+  {
+  console.log(this.state.currDate);
+  const res = await API.post("/slots/copyslots", {date:this.state.currDate});
+  console.log(res);
+  if(res.data.message===undefined)
+  {
+  let slots = {[this.state.currDate]:res.data} 
+  this.setState({slots:slots})
+  }
   }
 
   handleModify() {
@@ -267,6 +283,8 @@ class AddSlots extends Component {
               >
                 ADD SLOTS
               </button>
+
+              <button className="addslot" onClick={this.handlePrevious}>SAME AS PREVIOUS</button>
 
               <button onClick={this.handleModify}>MODIFY SLOTS</button>
             </div>
