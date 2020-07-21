@@ -5,8 +5,6 @@ import isEmpty from "../utils/isEmpty";
 import "../css/expertCard.css";
 import defaultPic from "../public/defaultpic.png";
 import getCurrentUser from "../utils/getCurrentUser";
-import Razorpay from 'razorpay';
-import { Helmet } from "react-helmet";
 
 class ExpandedExpertCard extends Component {
   constructor(props) {

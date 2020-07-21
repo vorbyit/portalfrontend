@@ -16,10 +16,6 @@ import Menubar from "./components/Menubar";
 
 import Messaging from "./components/Messaging";
 
-import Payment from "./components/Payment";
-
-import PaymentStatus from "./components/PaymentStatus";
-
 import Index from "./pages/index/index";
 
 import "./App.css";
@@ -181,27 +177,6 @@ export default class App extends Component {
                 />
               )}
             />
-
-            <Route
-              exact
-              path="/payment"
-              render={(props) => (
-                <Payment user={this.state.user} updateUser={this.updateUser} />
-              )}
-            />
-
-            <Route
-              exact
-              path="/payment/status"
-              render={(props) => (
-                <PaymentStatus
-                  user={this.state.user}
-                  updateUser={this.updateUser}
-                />
-              )}
-            />
-
-            {/* <ChatBox /> */}
           </div>
         </Router>
         <Footer />
