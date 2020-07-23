@@ -1,3 +1,4 @@
+import io from "socket.io-client";
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import FilterBar from "./FilterBar";
@@ -60,8 +61,10 @@ class ExpertsPage extends Component {
   }
 
   async componentDidMount() {
-    console.log("00:00" < "00:03");
-    console.log("00:30" > "00:03");
+    const socket = io("http://localhost:8002/test", { path: "/messaging" });
+
+    socket.on("Backend socket test", () => console.log("Chal raha hai!!"));
+
     const userdata = await getCurrentUser();
     const userId = userdata._id;
     const slot_ready = await API.post("/expert/ready", {

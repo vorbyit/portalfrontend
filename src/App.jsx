@@ -13,9 +13,6 @@ import Navbar from "./components/Navbar";
 import Profile from "./components/Profile";
 import Footer from "./components/Footer";
 import Menubar from "./components/Menubar";
-
-import Messaging from "./components/Messaging";
-
 import Index from "./pages/index/index";
 
 import "./App.css";
@@ -165,17 +162,6 @@ export default class App extends Component {
                   />
                 ) : null
               }
-            />
-
-            <Route
-              exact
-              path="/chats"
-              render={(props) => (
-                <Messaging
-                  user={this.state.user}
-                  updateUser={this.updateUser}
-                />
-              )}
             />
           </div>
         </Router>
