@@ -8,6 +8,7 @@ import AddSlots from "./components/AddSlots";
 import ExpertPage from "./components/ExpertsPage";
 import ExpertApptPage from "./components/ExpertApptPage";
 import UserApptPage from "./components/UserApptPage";
+import Chats from "./components/Chats";
 import Udaan from "./components/Udaan";
 import Navbar from "./components/Navbar";
 import Profile from "./components/Profile";
@@ -139,6 +140,14 @@ export default class App extends Component {
               path={["/expert/profile", "/user/profile"]}
               render={(props) => (
                 <Profile user={this.state.user} updateUser={this.updateUser} />
+              )}
+            />
+
+            <Route
+              exact
+              path="/chats"
+              render={(props) => (
+                <Chats user={this.state.user} updateUser={this.updateUser} />
               )}
             />
 

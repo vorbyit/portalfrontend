@@ -32,7 +32,6 @@ class Profile extends Component {
   }
 
   async componentDidMount() {
-    console.log(1);
     try {
       if (this.props.user === undefined || isEmpty(this.props.user)) {
         console.log(1, this.props.user);
@@ -67,9 +66,6 @@ class Profile extends Component {
       this.setState({ showBtnPanel: true });
     }
     this.setState({ [e.target.name]: e.target.value });
-    // console.log(e.target.value);
-    // var param = e.target.name;
-    // var var1 = e.target.value;
   }
 
   async handleSave(e) {

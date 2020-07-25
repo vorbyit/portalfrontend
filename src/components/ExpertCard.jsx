@@ -18,7 +18,7 @@ class ExpertCard extends Component {
   handleMessage() {
     this.props.history.push({
       pathname: "/chats",
-      data: this.props.expert._id,
+      expertId: this.props.expert._id,
     });
   }
 
@@ -47,7 +47,7 @@ class ExpertCard extends Component {
           <h3>{expert.branch}</h3>
           {!renderBtnPanel ? null : (
             <div className="btn-container">
-              {!slot_ready ? (
+              {slot_ready ? (
                 <button
                   className="book-slot-btn"
                   onClick={(e) => this.props.trigger(e, expert._id)}
