@@ -312,8 +312,8 @@ class AgoraCanvas extends React.Component {
       this.client && this.client.leave(() => {
         console.log('Client succeed to leave.')
 
-        let callId = AgoraRTC.getCallId();
-        AgoraRTC.rate(callId, 5, "This is an awesome call!");  
+        //let callId = AgoraRTC.getCallId();
+        //AgoraRTC.rate(callId, 5, "This is an awesome call!");  
          
       }, () => {
         console.log('Client failed to leave.')
