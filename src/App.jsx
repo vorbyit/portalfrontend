@@ -22,6 +22,8 @@ import PaymentStatus from "./components/PaymentStatus";
 
 import Index from "./pages/index/index";
 
+import App1 from "./pages/App"
+
 import "./App.css";
 
 export default class App extends Component {
@@ -153,7 +155,7 @@ export default class App extends Component {
               exact
               path="/meeting"
               render={(props) => (
-                <Index user={this.state.user} updateUser={this.updateUser} />
+                <App1 user={this.state.user} updateUser={this.updateUser} />
               )}
             />
 

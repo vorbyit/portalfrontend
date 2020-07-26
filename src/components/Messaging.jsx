@@ -143,17 +143,17 @@ class Messaging extends Component {
 
   render() {
     return (
+
+      <div>
       <div ref={this.talkjsContainer} className="chatbox-container" >
-      
+
      {/*<ChatBox
       messages={this.state.messages}
       user={this.state.user}
       onSubmit={(e) => this.handlechat(e)}
-    />
+    />*/}
 
-    <div className="videodiv">
-      <button className="video-btn" onClick={this.handleVideoCall}><img src={VideoCallImg} /></button>
-     </div>*/}
+
        {/*<div>
           {this.state.chats.map((chat, i) => (
             <div id={i}>
@@ -167,7 +167,11 @@ class Messaging extends Component {
           ))}
         </div>
         <div></div>*/}
-        </div>
+              </div>
+              <div className="videodiv">
+      <button className="video-btn" onClick={this.handleVideoCall}><img src={VideoCallImg} /></button>
+     </div>
+              </div>
     );
   }
 }
