@@ -106,3 +106,35 @@
 .ag-btn.off.audioControlBtn .ag-icon-mic-off {
   display: inline-block;
 }
+
+.close{
+  background-color:red;
+}
+
+.modaltitle{
+   padding:25px;
+   margin-left:100px;
+   font-size: x-large;
+}
+
+
+.modalcontent{
+  padding:25px;
+  margin-left:120px
+}
+
+.modalclose{
+  margin-left:145px;
+  border: none;
+  border-radius: 2rem;
+  background-color: #da3c3c;
+  height: 3rem;
+  width: 7rem;
+  flex-grow: 2;
+  margin-right: 0.5rem;
+  font-size: 1.4375rem;
+  color: #ecf9ff;
+  cursor: pointer;
+  transition: ease;
+  transition-duration: 0.1s;
+}

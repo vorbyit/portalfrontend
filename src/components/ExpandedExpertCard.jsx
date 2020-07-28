@@ -71,6 +71,8 @@ class ExpandedExpertCard extends Component {
   paymentHandler() {
     const expertID = this.props.expert._id;
     const userID = this.props.user._id;
+    const choosenSlot = this.state.choosenSlot;
+    const date = this.state.currDate
     const payment_amount = parseInt(this.state.durationIndex, 10)*100;
     const self = this;
     const options = {
@@ -92,10 +94,13 @@ class ExpandedExpertCard extends Component {
           const response = await API.post('/payment/success', {
             userID: userID,
             expertID: expertID,
-            amount : payment_data.data.amount
+            amount : payment_data.data.amount,
+            slot:choosenSlot,
+            date : date
           })
           console.log(response);
         }
+        //let slotid = response.data._id;
         const url = "http://localhost:3000/payment/" + paymentId + '/' + payment_amount;
         // Using my server endpoints to capture the payment
         fetch(url, {

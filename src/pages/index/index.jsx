@@ -6,7 +6,6 @@ import Validator from '../../utils/Validator'
 import { RESOLUTION_ARR } from '../../utils/Settings'
 import './index.css'
 
-
 class Index extends React.Component {
   constructor(props) {
     super(props)
@@ -16,8 +15,7 @@ class Index extends React.Component {
       baseMode: 'avc',
       transcode: 'interop',
       attendeeMode: 'video',
-      videoProfile: '480p_4',
-
+      videoProfile: '480p_4'
     }
   }
 
@@ -53,7 +51,7 @@ class Index extends React.Component {
   }
 
   render() {
-    return (
+    return (   
       <div className="wrapper index">
         <div className="ag-header"></div>
         <div className="ag-main">

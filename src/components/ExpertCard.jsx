@@ -10,6 +10,7 @@ class ExpertCard extends Component {
     console.log(this.props.faved);
     this.state = {
       faved: this.props.faved,
+      slotid:this.props.slotid
     };
     this.handleFav = this.handleFav.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
@@ -18,7 +19,7 @@ class ExpertCard extends Component {
   handleMessage() {
     this.props.history.push({
       pathname: "/chats",
-      data: this.props.expert._id,
+      data: {expertID : this.props.expert._id,slotid:this.props.slotid}
     });
   }
 
@@ -34,7 +35,7 @@ class ExpertCard extends Component {
 
   render() {
     let renderBtnPanel = this.props.user !== undefined && this.props.user.type === "USER" && !this.props.forApptPage;
-    const { expert, slot_ready } = this.props;
+    const { expert, slot_ready , slotid } = this.props;
     return (
       <div className="Expert-Card">
         <div className="info">
