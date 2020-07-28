@@ -1,9 +1,24 @@
 import React from 'react'
 import { merge } from 'lodash'
 import AgoraRTC from 'agora-rtc-sdk'
-
+import { withRouter, Link } from 'react-router-dom';
 import './canvas.css'
 import '../../assets/fonts/css/icons.css'
+import API from "../../API";
+//import Modal from 'react-modal';
+import ReactStars from "react-rating-stars-component";
+import Modal from 'react-awesome-modal';
+ 
+/*const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};*/
 
 const tile_canvas = {
   '1': ['span 12/span 24'],
@@ -23,6 +38,7 @@ const tile_canvas = {
 class AgoraCanvas extends React.Component {
   constructor(props) {
     super(props)
+    console.log(this.props.slotid);
     this.client = {}
     this.localStream = {}
     this.shareClient = {}
@@ -30,7 +46,9 @@ class AgoraCanvas extends React.Component {
     this.state = {
       displayMode: 'pip',
       streamList: [],
-      readyState: false
+      readyState: false,
+      displayModal:false,
+      rating:null
     }
   }
 
@@ -307,11 +325,12 @@ class AgoraCanvas extends React.Component {
       return
     }
     try {
+      this.setState({displayModal:true})
       this.client && this.client.unpublish(this.localStream)
       this.localStream && this.localStream.close()
       this.client && this.client.leave(() => {
         console.log('Client succeed to leave.')
-
+        
         //let callId = AgoraRTC.getCallId();
         //AgoraRTC.rate(callId, 5, "This is an awesome call!");  
          
@@ -324,9 +343,35 @@ class AgoraCanvas extends React.Component {
       this.client = null
       this.localStream = null
       // redirect to index
-      window.location.hash = ''
+      //window.location.hash = ''
     }
   }
+
+  closeModal(){
+    this.setState({displayModal:false})
+  }
+
+  async handleModalExit(){
+    this.closeModal();
+    let slotid;
+    for(let i in this.props.slotid)
+    {
+        slotid = this.props.slotid[i]
+    }
+    console.log(slotid);
+    const response =await API.post('/slots/callend',{
+      slotid:slotid,
+      rating : this.state.rating
+    })
+    console.log(response);
+    window.location.hash = ''
+  }
+
+  ratingChanged = (newRating) => {
+    console.log(newRating);
+    this.setState({rating:newRating})
+  };
+
 
   render() {
     const style = {
@@ -381,6 +426,7 @@ class AgoraCanvas extends React.Component {
     )
 
     return (
+      <div>
       <div id="ag-canvas" style={style}>
         <div className="ag-btn-group">
           {exitBtn}
@@ -393,8 +439,23 @@ class AgoraCanvas extends React.Component {
           {hideRemoteBtn}
         </div>
       </div>
+      <Modal visible={this.state.displayModal} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                    <div >
+                        <h1 className="modaltitle">Rate the call</h1>
+                        <div className="modalcontent">
+                        <ReactStars
+                        count={5}
+                        onChange={this.ratingChanged}
+                        size={24}
+                        activeColor="#ffd700"
+                        />
+                        </div>
+                        <button className="modalclose" onClick={() => this.handleModalExit()}>Close</button>
+                    </div>
+                </Modal>
+          </div>
     )
   }
 }
 
-export default AgoraCanvas
+export default withRouter(AgoraCanvas)

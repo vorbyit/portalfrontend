@@ -16,7 +16,7 @@ let selectedFilter = null,
   expertsUngrouped = null,
   index = null,
   btnNode = null;
-
+let myexperts1
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -52,6 +52,7 @@ class ExpertsPage extends Component {
       user: {},
       faved: [],
       slot_ready: [],
+      slotid : {},
       expand: false,
     };
     this.setSort = this.setSort.bind(this);
@@ -60,8 +61,6 @@ class ExpertsPage extends Component {
   }
 
   async componentDidMount() {
-    console.log("00:00" < "00:03");
-    console.log("00:30" > "00:03");
     const userdata = await getCurrentUser();
     const userId = userdata._id;
     const slot_ready = await API.post("/expert/ready", {
@@ -90,6 +89,7 @@ class ExpertsPage extends Component {
       faved: faved.data,
       experts: groupExperts(expertsUngrouped),
       slot_ready: msgexperts,
+      slotid:myexperts
     });
   }
 
@@ -183,6 +183,7 @@ class ExpertsPage extends Component {
                         user={this.state.user}
                         faved={this.state.faved.includes(expert._id)}
                         slot_ready={this.state.slot_ready.includes(expert._id)}
+                        slotid = {this.state.slotid}
                         trigger={this.toggleExpansion}
                       />
                     ))}

@@ -63,7 +63,8 @@ class Payment extends Component {
           console.log(userID);
           const response =await API.post('/payment/success',{
             userID : userID,
-            expertID : expertID
+            expertID : expertID,
+            amount : payment_amount*100
           })
           console.log(response);
         }

@@ -8,6 +8,7 @@ import { AGORA_APP_ID } from "../../agora.config";
 class Meeting extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this.props);
     this.videoProfile = Cookies.get("videoProfile").split(",")[0] || "480p_4";
     this.channel = Cookies.get("channel") || "test";
     this.transcode = Cookies.get("transcode") || "interop";
@@ -39,6 +40,7 @@ class Meeting extends React.Component {
         <div className="ag-main">
           <div className="ag-container">
             <AgoraVideoCall
+            slotid={this.props.slotid}
               videoProfile={this.videoProfile}
               channel={this.channel}
               transcode={this.transcode}

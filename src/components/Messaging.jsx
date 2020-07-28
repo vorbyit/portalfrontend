@@ -25,12 +25,13 @@ class Messaging extends Component {
   }
 
   handleVideoCall() {
-    this.props.history.push('/meeting');
+    this.props.history.push({
+      pathname: "/meeting",
+      data: this.props.location.data.slotid
+    });
   }
 
   async componentDidMount() {
-
-
     try {
       if (isEmpty(this.props.user)) {
         const currentUser = await getCurrentUser();
@@ -53,7 +54,7 @@ class Messaging extends Component {
 
   let userdata;
   await API.post("user/getUser",{
-    userId : this.props.location.data,
+    userId : this.props.location.data.expertID,
   }).then(res => {
     console.log(res)
     userdata = res.data
@@ -63,7 +64,7 @@ class Messaging extends Component {
 
     const { data } = await API.post("chats",{
       sender : this.props.user._id,
-      receiver : this.props.location.data,
+      receiver : this.props.location.data.expertID,
       message : ""
     });
     console.log(data);
@@ -130,7 +131,7 @@ class Messaging extends Component {
     console.log(e);
     const { data } = await API.post("chats",{
       sender : this.props.user._id,
-      receiver : this.props.location.data,
+      receiver : this.props.location.data.expertID,
       message : e
     });
     console.log(data);
